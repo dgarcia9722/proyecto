@@ -1,15 +1,29 @@
 from pymongo import MongoClient
+import pprint
 
 import json
 import pygal
 
 client = MongoClient('mongodb://asalinas:RealNet2019@192.168.60.9:27017/admin')
 db = client.prueba
+#{"$match": {"date": fecha}},
+#    {"$match":{"$and":[{"$gt":["date",fechai],"$lt":["date",fechaf]}]}},
+
+fechai = "2019-05-22";fechaf = "2019-05-29";
+
 result = db.logsprueba.aggregate([
-    {"$group":{"_id": "$catdesc","count":{"$sum":1}}},
-    {"$sort":{"_id":-1}}
+    {"$match":{"$and":[{"date":{"$gte":fechai,"$lte":fechaf}},{"catdesc":"Business"}]}},
+    {"$group":{"_id":"$catdesc","Conteo:":{"$sum":1}}}
 ])
-print(list(result))
+resultado = db.logsprueba.aggregate([
+    {"$match":{"$and":[{"$match":{"$and":[{"date":{"$gte":fechai,"$lte":fechaf}},{"catdesc":"Business"}]}},
+             {"$match":{"$and":[{"date":{"$gte":fechai,"$lte":fechaf}},{"catdesc":"Social Networking"}]}}
+             ]}},
+    {"$group":{"_id":"$catdesc","Conteo:":{"$sum":1}}}
+])
+
+pprint.pprint(list(resultado))
+
 
 #numero = ['numero ', []]
 #conteo = ['conteo ', []]
@@ -32,3 +46,6 @@ print(list(result))
 #<!--{{consulta[0]._id}}-->
 
 
+
+#{"$group":{"_id": "$catdesc","count":{"$sum":1}}},
+ #   {"$sort":{"_id":-{1}}

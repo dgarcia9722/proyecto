@@ -15,13 +15,20 @@ client = MongoClient('mongodb://asalinas:RealNet2019@192.168.60.9:27017/admin')
 db = client.prueba
 Puntos = content()
 
-@app.route('/')
+@app.route('/',methods=["POST","GET"])
 def dashboard():
+    if request.method =="POST":
+        initialDate = request.form['start']
+        finalDate = request.form['end']
+        print(initialDate)
+        print(finalDate)
+        return redirect(url_for('dashboard'))
     graph = graph_1()
     return render_template("dashboard.html",Puntos=Puntos,grafica1=graph)
 
-@app.route('/find',methods=["POST","GET"])
+@app.route('/find')
 def vista():
+
     datag = graph_1()
 
     return render_template("find.html",graph_data=datag)

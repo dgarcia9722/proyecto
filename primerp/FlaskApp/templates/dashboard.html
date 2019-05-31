@@ -72,16 +72,16 @@
         </div>
         <div class="col-md-8">
 
-            <form action="">
+            <form action="" method="post">
 
             <div class="input-daterange input-group cfecha" id="datepicker cfecha">
-               
-                <span class="input-group-addon">Inicio</span>
-                <input type="text" class="input-sm form-control" name="start" />
-                <span class="input-group-addon">Fin</span>
-                <input type="text" class="input-sm form-control" name="end" />
 
+                <span class="input-group-addon">Inicio</span>
+                <input type="text" class="input-sm form-control" name="start" value="{{request.form.start}}"/>
+                <span class="input-group-addon">Fin</span>
+                <input type="text" class="input-sm form-control" name="end" value="{{request.form.end}}"/>
             </div>
+                <input type="submit" class="btn btn-light" value="updateDate">
 
 
             </form>
