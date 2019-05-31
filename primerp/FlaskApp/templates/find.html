@@ -6,5 +6,23 @@
 <container>
 <embed src={{graph_data|safe}} type="image/svg+xml" style="max-width:500px">
 
+
+
+        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                                <input type='text' class="form-control" />
+
+
+                            </div>
+                        </div>
+
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker1').datetimepicker();
+                        });
+                    </script>
 </container>
 {%endblock%}
