@@ -1,0 +1,10 @@
+{% extends "base.html"%}
+
+{% block body%}
+<h2>Lista: </h2>
+<br>
+<container>
+<embed src={{graph_data|safe}} type="image/svg+xml" style="max-width:500px">
+
+</container>
+{%endblock%}
