@@ -1,28 +1,32 @@
-from pymongo import MongoClient
 import pprint
-
+from pymongo import MongoClient
 import json
 import pygal
 
-client = MongoClient('mongodb://asalinas:RealNet2019@192.168.60.9:27017/admin')
-db = client.prueba
+#client = MongoClient('mongodb://asalinas:RealNet2019@192.168.60.9:27017/admin')
+#db = client.prueba
 #{"$match": {"date": fecha}},
 #    {"$match":{"$and":[{"$gt":["date",fechai],"$lt":["date",fechaf]}]}},
 
-fechai = "2019-05-22";fechaf = "2019-05-29";
+#fechai = "2012-05-23";fechaf = "2012-05-29";
+#result = db.logsprueba.aggregate([
+ #       {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}}]}},
+  #      {"$group": {"_id": "$catdesc", "count": {"$sum": 1}}},
+   #     {"$sort": {"_id": -1}}
+   # ])
 
-result = db.logsprueba.aggregate([
-    {"$match":{"$and":[{"date":{"$gte":fechai,"$lte":fechaf}},{"catdesc":"Business"}]}},
-    {"$group":{"_id":"$catdesc","Conteo:":{"$sum":1}}}
-])
-resultado = db.logsprueba.aggregate([
-    {"$match":{"$and":[{"$match":{"$and":[{"date":{"$gte":fechai,"$lte":fechaf}},{"catdesc":"Business"}]}},
-             {"$match":{"$and":[{"date":{"$gte":fechai,"$lte":fechaf}},{"catdesc":"Social Networking"}]}}
-             ]}},
-    {"$group":{"_id":"$catdesc","Conteo:":{"$sum":1}}}
-])
+#result = db.logsprueba.aggregate([
+ #       {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}}]}},
+  #      {"$group": {"_id": "$catdesc", "count:": {"$sum": 1}}}
+   # ])
 
-pprint.pprint(list(resultado))
+#result = db.logsprueba.aggregate([
+ #   {"$match":{"$and":[{"date":{"$gte":fechai,"$lte":fechaf}},{"catdesc":"Business"}]}},
+  #  {"$group":{"_id":"$catdesc","Conteo:":{"$sum":1}}}
+#])
+#result = db.logsprueba.aggregate([{"$match":{"date":fechai}}])
+
+#pprint.pprint(len(list(result)))
 
 
 #numero = ['numero ', []]
@@ -45,7 +49,30 @@ pprint.pprint(list(resultado))
 #<p>Consulta aparte: </p>
 #<!--{{consulta[0]._id}}-->
 
-
+#result = db.logsprueba.aggregate([{"$group": {"_id": "$catdesc", "count": {"$sum": 1}}}, {"$sort": {"_id": -1}}])
 
 #{"$group":{"_id": "$catdesc","count":{"$sum":1}}},
  #   {"$sort":{"_id":-{1}}
+
+#resultado = db.logsprueba.aggregate([{"$match":{"date":fechai}},{"$group": {"_id": "$catdesc", "count": {"$sum": 1}}}, {"$sort": {"_id": -1}}])
+
+
+import pygal
+from pymongo import MongoClient
+
+
+client = MongoClient('mongodb://asalinas:RealNet2019@192.168.60.9:27017/admin')
+db = client.prueba
+graph = pygal.Bar()
+#result = db.logsprueba.aggregate([{"$group": {"_id": "$catdesc", "count": {"$sum": 1}}}, {"$sort": {"_id": -1}}])
+
+fechai = "2019-05-23";
+fechaf = "2019-05-29";
+result = db.logsprueba.aggregate([
+    {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname":"FWF90D3Z13000359"}]}},
+    {"$group": {"_id": "$catdesc", "count": {"$sum": 1}}},
+    {"$sort": {"_id": -1}}
+])
+resultados = list(result)
+print(len(list(resultados)))
+print(len(list(resultados)))
