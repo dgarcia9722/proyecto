@@ -7,10 +7,12 @@
     width: 100%;
     align-items: stretch;
 }
-
+#content {
+    padding-left: 10px;
+}
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+    background: #fff;
 }
 
 p {
@@ -29,17 +31,20 @@ a, a:hover, a:focus {
 
 #sidebar {
     /* don't forget to add all the previously mentioned styles here too */
-    background: #7386D5;
+    margin-top: -20px;
+    background: #fafafa;
     color: #fff;
     transition: all 0.3s;
     min-width: 250px;
     max-width: 250px;
-     min-height: 100vh;
-}
+    min-height: 100vh;
 
+}
 #sidebar .sidebar-header {
-    padding: 20px;
-    background: #6d7fcc;
+    margin-top: -5px;
+    padding: 1px;
+    background: #01295c;
+
 }
 
 #sidebar.active {
@@ -60,10 +65,12 @@ a, a:hover, a:focus {
     padding: 10px;
     font-size: 1.1em;
     display: block;
+    color : #01295c;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
+    color: #fff;
+    background: #01295c;
+
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
@@ -75,6 +82,33 @@ ul ul a {
     padding-left: 30px !important;
     background: #6d7fcc;
 }
+.botonEsc{
+    background-color:#eb2226;
+    border-color:#fff;
+    color:#fff;
+
+
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
 
 @media (max-width: 768px) {
     #sidebar {

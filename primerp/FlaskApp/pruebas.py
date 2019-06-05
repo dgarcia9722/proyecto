@@ -62,17 +62,50 @@ from pymongo import MongoClient
 
 
 client = MongoClient('mongodb://asalinas:RealNet2019@192.168.60.9:27017/admin')
-db = client.prueba
+db = client.registros
 graph = pygal.Bar()
 #result = db.logsprueba.aggregate([{"$group": {"_id": "$catdesc", "count": {"$sum": 1}}}, {"$sort": {"_id": -1}}])
 
-fechai = "2019-05-23";
-fechaf = "2019-05-29";
+fechai = "2017-05-23"
+fechaf = "2020-05-29"
+devname = "FWFRNT"
 result = db.logsprueba.aggregate([
-    {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname":"FWF90D3Z13000359"}]}},
+    {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname":"FWFRNT"}]}},
     {"$group": {"_id": "$catdesc", "count": {"$sum": 1}}},
     {"$sort": {"_id": -1}}
 ])
 resultados = list(result)
-print(len(list(resultados)))
-print(len(list(resultados)))
+print(resultados)
+
+def graph_1(fechai,fechaf,empresa):
+    graph = pygal.Bar()
+    #result = db.logsprueba.aggregate([{"$group": {"_id": "$catdesc", "count": {"$sum": 1}}}, {"$sort": {"_id": -1}}])
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
+        {"$group": {"_id": "$catdesc", "count": {"$sum": 1}}},
+        {"$sort": {"_id": -1}}
+    ])
+    result = list(result)
+    if (len(result)>1):
+        numero = ['numero ', []]
+        conteo = ['conteo ', []]
+        for doc in result:
+            numero[1].append(doc['_id'])
+            conteo[1].append(int(doc['count']))
+        graph.title = 'Grafica de prueba'
+        #print("Prueba")
+        print(len(numero[1]))
+        for i in range(10):
+            graph.add(numero[1][i], conteo[1][i])
+        graph_data = graph.render_data_uri()
+        return graph_data
+data = graph_1(fechai,fechaf,devname)
+
+#result = db.logs.aggregate([
+    #    {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
+   #     {"$group": {"_id": "$catdesc", "count": {"$sum": 1}}},
+  #      {"$sort": {"_id": -1}}
+ #   ])
+#result = list(result)
+
+#print(consulta)

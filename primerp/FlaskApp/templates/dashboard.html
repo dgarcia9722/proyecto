@@ -14,46 +14,31 @@
         <div class="sidebar-header">
             <h3>Indice</h3>
         </div>
+        <ul class="list-unstyled component">
+            <li><a href="">Ejemplo</a></li>
+            <li><a href="">Ejemplo</a></li>
 
-        <ul class="list-unstyled components">
-            <p>Dummy Heading</p>
-            <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#">Page 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Portfolio</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
+<!--        <div class="tab-content">
+
+            <div role="tabpanel" class="tab-pane active" id="{{Puntos[0]['puntos'][0]}}">
+                <p>{{Puntos[0]["puntos"][0]}}</p>
+                <li><a href="">{{dTablas[1][0] }}</a></li>
+
+             </div>
+
+            <div role="tabpanel" class="tab-pane" id="{{Puntos[0]['puntos'][1]}}">
+                <h2>{{Puntos[0]["puntos"][1]}}</h2>
+
+             </div>
+            <div role="tabpanel" class="tab-pane" id="{{Puntos[0]['puntos'][2]}}">
+                <h2>{{Puntos[0]["puntos"][2]}}</h2>
+
+             </div>
+            <div role="tabpanel" class="tab-pane" id="{{Puntos[0]['puntos'][3]}}">
+                <h2>{{Puntos[0]["puntos"][3]}}</h2>
+
+             </div>
+        </div> -->
         </ul>
     </nav>
 
@@ -62,37 +47,53 @@
         <div class="col-md-2">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <button type="button" id="sidebarCollapse" class=" botonEsc">
                     <i class="fas fa-align-left"></i>
-                    <span>Toggle Sidebar</span>
+                    <span>Esconder indice</span>
                     </button>
                 </div>
             </nav>
-
-            
         </div>
-        <div class="col-md-8">
-            <form action="" method="post">
-            <div class="input-daterange input-group cfecha" id="datepicker cfecha">
-                <span class="input-group-addon">Inicio</span>
-                <input type="text" class="input-sm form-control" name="start" value="{{request.form.start}}"/>
-                <span class="input-group-addon">Fin</span>
-                <input type="text" class="input-sm form-control" name="end" value="{{request.form.end}}"/>
-                <select name="empresa" >
-                    {%for opcion in dEmpresa[1]['empresas']%}
-                        <option value="{{opcion}}">{{opcion}}</option>
-                    {%endfor%}
-                </select>
-            </div>
-                <input type="submit" class="btn btn-light" value="updateDate" data-toggle="modal" data-target="#exampleModal">
+        <div class="col-md-10">
+
+                <div class="row">
+                    <form action="" method="post" class="form-inline">
+                    <div class="input-daterange input-group cfecha " id="datepicker cfecha">
+                        <div class="form-group mb-3">
+                            <input type="text" autocomplete="off" placeholder="Inicio" class="input-sm form-control" name="start" value="{{request.form.start}}"/>
+
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" autocomplete="off" placeholder="Fin" class="input-sm form-control" name="end" value="{{request.form.end}}"/>
+
+                        </div>
 
 
-            </form>
+                            <!--<span class="input-group-addon">Inicio</span> -->
+                            <!-- <span class="input-group-addon">Fin</span> -->
+
+                    </div>
+                    <div class="form-group mb-3">
+                        <select name="empresa" >
+                        {%for opcion in dEmpresa[1]['empresas']%}
+                            <option value="{{opcion}}">{{opcion}}</option>
+                        {%endfor%}
+                        </select>
+
+                    </div>
+                    <div class="form-group mb-3">
+                    <input type="submit" class="botonEsc" value="Buscar">
+
+                    </div>
+                    </form>
+
+                </div>
+
             <script type="text/javascript">$(function () {$('.cfecha').datepicker({language:'es',format: "yyyy-mm-dd"});});</script>
         </div>
     </div>
 
-    <h2>Tablas: </h2>
+
     {%with messages = get_flashed_messages()%}
         {%if messages%}
             {%for message in messages%}
@@ -103,23 +104,40 @@
     {%if estado == 1%}
     <div class="tab-content">
 
-        <div role="tabpanel" class="tab-pane active" id="{{Puntos['puntos'][0]}}">
-            <h2>{{Puntos["puntos"][0]}}</h2>
-            <embed src={{grafica1|safe}} type="image/svg+xml" style="max-width:500px">
-            <embed src={{grafica1|safe}} type="image/svg+xml" style="max-width:500px">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper, erat luctus vulputate imperdiet, leo leo aliquet ante, venenatis volutpat urna diam nec est. Sed a suscipit lacus. Donec ullamcorper lacinia lectus, vitae condimentum mi rutrum vitae. Etiam eu nibh et nisi mattis iaculis ac eget velit. Donec tempor dignissim lorem. Fusce bibendum auctor metus sed efficitur. Curabitur semper risus non finibus aliquet.</p>
-         </div>
+        <div role="tabpanel" class="tab-pane active" id="{{Puntos[0]['puntos'][0]}}">
+            <h2>{{Puntos[0]["puntos"][0]}}</h2>
+            <p>Las siguientes tablas son apartir del analisis de la información de la red</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <!--{%for i in range(Puntos[0]["puntos"]|length)%}
+                    {{Puntos[0]["puntos"][i]}}
+                    {{i}}
+                    {%endfor%} -->
+                     <h2>{{dTablas[1][0]}}</h2>
+                     <embed src={{grafica1|safe}} type="image/svg+xml" style="max-width:500px">
+                </div>
 
-        <div role="tabpanel" class="tab-pane" id="{{Puntos['puntos'][1]}}">
-            <h2>{{Puntos["puntos"][1]}}</h2>
+                <div class="col-md-6">
+                    <h2>info</h2>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="{{Puntos[0]['puntos'][1]}}">
+            <h2>{{Puntos[0]["puntos"][1]}}</h2>
 
          </div>
-        <div role="tabpanel" class="tab-pane" id="{{Puntos['puntos'][2]}}">
-            <h2>{{Puntos["puntos"][2]}}</h2>
+        <div role="tabpanel" class="tab-pane" id="{{Puntos[0]['puntos'][2]}}">
+            <h2>{{Puntos[0]["puntos"][2]}}</h2>
 
          </div>
-        <div role="tabpanel" class="tab-pane" id="{{Puntos['puntos'][3]}}">
-            <h2>{{Puntos["puntos"][3]}}</h2>
+        <div role="tabpanel" class="tab-pane" id="{{Puntos[0]['puntos'][3]}}">
+            <h2>{{Puntos[0]["puntos"][3]}}</h2>
 
          </div>
     </div>
@@ -127,7 +145,7 @@
 
 
 </div>
-
+</div>
 
 
     {%endif%}
