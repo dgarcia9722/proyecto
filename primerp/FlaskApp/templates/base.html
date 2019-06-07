@@ -45,10 +45,17 @@
           <ul class="nav navbar-nav">
 
             <li><img src="{{url_for('.static', filename='pg.png')}}" style="margin-top:5px;" width="100px" height="55px" alt=""></li>
-              {%for i in range(Puntos[0]["puntos"]|length)%}
-                <li><a href='#{{Puntos[1]["idpuntos"][i]}}' data-toggle="tab" id="navown">{{Puntos[0]["puntos"][i]}}</a></li>
 
-                    {%endfor%}
+                <li><a href="{{url_for('analisis')}}" id="navown">{{Puntos[0]["puntos"][0]}}</a></li>
+                <li><a href="{{url_for('productividad')}}" id="navown">{{Puntos[0]["puntos"][1]}}</a></li>
+                <li><a href="{{url_for('riesgoslegales')}}" id="navown">{{Puntos[0]["puntos"][2]}}</a></li>
+                <li><a href="{{url_for('fraudes')}}" id="navown">{{Puntos[0]["puntos"][3]}}</a></li>
+                <li><a href="{{url_for('robo')}}" id="navown">{{Puntos[0]["puntos"][4]}}</a></li>
+                <li><a href="{{url_for('lealtad')}}" id="navown">{{Puntos[0]["puntos"][5]}}</a></li>
+                <li><a href="{{url_for('evasion')}}" id="navown">{{Puntos[0]["puntos"][6]}}</a></li>
+                <li><a href="{{url_for('bandwidth')}}" id="navown">{{Puntos[0]["puntos"][7]}}</a></li>
+                <li><a href="{{url_for('politicas')}}" id="navown">{{Puntos[0]["puntos"][8]}}</a></li>
+                <li><a href="{{url_for('reportes')}}" id="navown">{{Puntos[0]["puntos"][9]}}</a></li>
 
 
           </ul>
