@@ -1,4 +1,5 @@
 import pygal
+from pygal.style import LightStyle
 from pymongo import MongoClient
 
 client = MongoClient('mongodb://asalinas:RealNet2019@192.168.60.9:27017/admin')
@@ -24,10 +25,3 @@ def graph_1(fechai,fechaf,empresa):
             graph.add(numero[1][i], conteo[1][i])
         graph_data = graph.render_data_uri()
         return graph_data
-
-
-
-
-
-
-

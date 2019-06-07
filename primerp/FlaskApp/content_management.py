@@ -43,6 +43,7 @@ def datosEmpresa():
         ]
     }
     nEmpresas = {"empresas":[
+        "Todos",
         "FWF90D3Z13000359",
         "FWFRNT",
         "Allan",

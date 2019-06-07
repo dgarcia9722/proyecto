@@ -69,13 +69,18 @@ graph = pygal.Bar()
 fechai = "2017-05-23"
 fechaf = "2020-05-29"
 devname = "FWFRNT"
-result = db.logsprueba.aggregate([
-    {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname":"FWFRNT"}]}},
-    {"$group": {"_id": "$catdesc", "count": {"$sum": 1}}},
+
+result = db.logs.aggregate([
+    {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}}]}},
+    {"$group": {"_id": {"devname":"$devname","categoria":"$catdesc"}, "count": {"$sum": 1}}},
     {"$sort": {"_id": -1}}
 ])
 resultados = list(result)
-print(resultados)
+print(len(resultados))
+#pprint.pprint(resultados)
+#pprint.pprint(resultados[1])
+
+
 
 def graph_1(fechai,fechaf,empresa):
     graph = pygal.Bar()
@@ -101,11 +106,12 @@ def graph_1(fechai,fechaf,empresa):
         return graph_data
 data = graph_1(fechai,fechaf,devname)
 
-#result = db.logs.aggregate([
-    #    {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
-   #     {"$group": {"_id": "$catdesc", "count": {"$sum": 1}}},
-  #      {"$sort": {"_id": -1}}
- #   ])
-#result = list(result)
+empresa = "FWFRNT"
+resulta = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}}]}},
+        {"$group": {"_id": {"categoria:":"$catdesc","dispositivo":"$devname"}, "count": {"$sum": 1}}},
+        {"$sort": {"_id": -1}}
+    ])
+resulta = list(resulta)
 
-#print(consulta)
+pprint.pprint(resulta)
