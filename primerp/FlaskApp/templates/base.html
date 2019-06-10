@@ -22,7 +22,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <script src="{{url_for('.static', filename='bootstrap-datepicker.js')}}"></script>
     <script src="{{url_for('.static', filename='bootstrap-datepicker.es.min.js')}}"></script>
-
     <script src="{{url_for('.static', filename='own.js')}}"></script>
 
 {%endblock%}
@@ -43,9 +42,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-
             <li><img src="{{url_for('.static', filename='pg.png')}}" style="margin-top:5px;" width="100px" height="55px" alt=""></li>
-
                 <li><a href="{{url_for('analisis')}}" id="navown">{{Puntos[0]["puntos"][0]}}</a></li>
                 <li><a href="{{url_for('productividad')}}" id="navown">{{Puntos[0]["puntos"][1]}}</a></li>
                 <li><a href="{{url_for('riesgoslegales')}}" id="navown">{{Puntos[0]["puntos"][2]}}</a></li>
@@ -56,8 +53,6 @@
                 <li><a href="{{url_for('bandwidth')}}" id="navown">{{Puntos[0]["puntos"][7]}}</a></li>
                 <li><a href="{{url_for('politicas')}}" id="navown">{{Puntos[0]["puntos"][8]}}</a></li>
                 <li><a href="{{url_for('reportes')}}" id="navown">{{Puntos[0]["puntos"][9]}}</a></li>
-
-
           </ul>
         </div>
       </div>

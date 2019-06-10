@@ -43,18 +43,17 @@ def datosEmpresa():
         ]
     }
     nEmpresas = {"empresas":[
-        "Todos",
         "FWF90D3Z13000359",
         "FWFRNT",
         "Allan",
     ]}
     return nPuntos,nEmpresas
 def Tablas():
-    Analisis = {
-        1:["Top 10 categorias"],
-        2: [{"Top"}],
-
+    Productividad = {
+        1:["Top 10 categorias web","pd1"],
+        2: ["Top 10 apps","pd2"],
+        3: ["Top 10 sitios web","pd3"],
     }
-    return Analisis
+    return Productividad
 #Analisis = Tablas()
 #print(Analisis['Top 10 categorias'])
