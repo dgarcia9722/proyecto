@@ -51,6 +51,8 @@ def productividad():
         graph = graph_1(initialDate, finalDate,empresa)
         graph_2 = tb1_prod(initialDate, finalDate,empresa)
         graph_3 = tb3_prod(initialDate, finalDate,empresa)
+        graph_4 = tb4_prod(initialDate, finalDate,empresa)
+
 
         if (graph==None):
             estado = 0
@@ -60,6 +62,7 @@ def productividad():
         grafica1=graph,
         grafica2=graph_2,
         grafica3=graph_3,
+        grafica4=graph_4,
         )
     else:
         fechai = "2019-01-01"
@@ -68,11 +71,14 @@ def productividad():
         graph = graph_1(fechai, fechaf,empresa)
         graph_2 = tb1_prod(fechai,fechaf,empresa)
         graph_3 = tb3_prod(fechai,fechaf,empresa)
+        graph_4 = tb4_prod(fechai,fechaf,empresa)
+
 
         return render_template("/puntos/productividad.html",Puntos=Puntos,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas,
         grafica1=graph,
         grafica2=graph_2,
         grafica3=graph_3,
+        grafica4=graph_4,
         )
 
 @app.route('/riesgoslegales',methods=["POST","GET"])
@@ -82,20 +88,23 @@ def riesgoslegales():
         initialDate = request.form['start']
         finalDate = request.form['end']
         empresa = request.form['empresa']
-        print(initialDate,finalDate,empresa)
-        print(len(empresa))
-        graph = graph_1(initialDate, finalDate,empresa)
-        if (graph==None):
+
+        graph1 = tb1_rl(initialDate, finalDate,empresa)
+        if (graph1==None):
             estado = 0
             flash("La busqueda no arrojo resultados. Intenta con diferente información")
-        return render_template("/puntos/legales.html", Puntos=Puntos, grafica1=graph,initialDate=initialDate,estado=estado,empresa=empresa,dEmpresa=dEmpresa,dTablas=dTablas)
+        return render_template("/puntos/legales.html", Puntos=Puntos,initialDate=initialDate,estado=estado,empresa=empresa,dEmpresa=dEmpresa,dTablas=dTablas,
+        grafica1=graph1
+        )
     else:
         fechai = "2019-05-23"
         fechaf = "2019-05-29"
         empresa = "FWFRNT"
-        graph = graph_1(fechai, fechaf,empresa)
+        graph1 = tb1_rl(fechai, fechaf,empresa)
 
-        return render_template("/puntos/legales.html",Puntos=Puntos,grafica1=graph,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas)
+        return render_template("/puntos/legales.html",Puntos=Puntos,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas,
+        grafica1=graph1
+        )
 
 @app.route('/fraudes',methods=["POST","GET"])
 def fraudes():

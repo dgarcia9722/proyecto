@@ -51,8 +51,9 @@ def datosEmpresa():
 def Tablas():
     Productividad = {
         1:["Top 10 categorias web","pd1"],
-        2: ["Top 10 apps","pd2"],
-        3: ["Top 10 sitios web","pd3"],
+        2:["Top 10 apps","pd2"],
+        3:["Top 10 sitios web","pd3"],
+        4:["Top 10 banda ancha","pd4"],
     }
     return Productividad
 #Analisis = Tablas()
