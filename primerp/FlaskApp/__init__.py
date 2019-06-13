@@ -53,6 +53,8 @@ def productividad():
         graph_3 = tb3_prod(initialDate, finalDate,empresa)
         graph_4 = tb4_prod(initialDate, finalDate,empresa)
         graph_5 = tb5_prod(initialDate, finalDate,empresa)
+        graph_6 = tb6_prod(initialDate, finalDate,empresa)
+
 
 
 
@@ -66,18 +68,18 @@ def productividad():
         grafica3=graph_3,
         grafica4=graph_4,
         grafica5=graph_5,
+        grafica6=graph_6,
         )
     else:
         fechai = "2019-01-01"
         fechaf = "2019-12-31"
-        empresa = "Allan"
+        empresa = "TLA HA 1"
         graph = graph_1(fechai, fechaf,empresa)
         graph_2 = tb1_prod(fechai,fechaf,empresa)
         graph_3 = tb3_prod(fechai,fechaf,empresa)
         graph_4 = tb4_prod(fechai,fechaf,empresa)
         graph_5 = tb5_prod(fechai,fechaf,empresa)
-
-
+        graph_6 = tb6_prod(fechai,fechaf,empresa)
 
         return render_template("/puntos/productividad.html",Puntos=Puntos,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas,
         grafica1=graph,
@@ -85,6 +87,7 @@ def productividad():
         grafica3=graph_3,
         grafica4=graph_4,
         grafica5=graph_5,
+        grafica6=graph_6,
         )
 
 @app.route('/riesgoslegales',methods=["POST","GET"])
@@ -96,17 +99,25 @@ def riesgoslegales():
         empresa = request.form['empresa']
 
         graph1 = tb1_rl(initialDate, finalDate,empresa)
+        graph2 = tb2_rl(initialDate, finalDate,empresa)
+        graph3 = tb3_rl(initialDate, finalDate,empresa)
+
         if (graph1==None):
             estado = 0
             flash("La busqueda no arrojo resultados. Intenta con diferente información")
         return render_template("/puntos/legales.html", Puntos=Puntos,initialDate=initialDate,estado=estado,empresa=empresa,dEmpresa=dEmpresa,dTablas=dTablas,
-        grafica1=graph1
+        grafica1=graph1,
+        grafica2=graph2,
+        grafica3=graph3,
+
         )
     else:
         fechai = "2019-05-23"
         fechaf = "2019-05-29"
-        empresa = "FWFRNT"
-        graph1 = tb1_rl(fechai, fechaf,empresa)
+        empresa = "HA-RNT FG100D"
+        graph1 = tb1_rl(fechai, fechaf,empresa),
+        graph2 = tb2_rl(fechai, fechaf,empresa),
+        graph3 = tb3_rl(fechai, fechaf,empresa),
 
         return render_template("/puntos/legales.html",Puntos=Puntos,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas,
         grafica1=graph1
@@ -129,7 +140,7 @@ def fraudes():
     else:
         fechai = "2019-05-23"
         fechaf = "2019-05-29"
-        empresa = "FWFRNT"
+        empresa = "HA-RNT FG100D"
         graph = graph_1(fechai, fechaf,empresa)
 
         return render_template("/puntos/fraudes.html",Puntos=Puntos,grafica1=graph,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas)

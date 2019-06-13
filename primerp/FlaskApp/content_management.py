@@ -43,10 +43,10 @@ def datosEmpresa():
         ]
     }
     nEmpresas = {"empresas":[
-        "FWF90D3Z13000359",
-        "FWFRNT",
-        "Allan",
-    ]}
+        "HA-RNT FG100D",
+        "TLA_HA_1",
+        "FG-Rhino-CDMX",
+        ]}
     return nPuntos,nEmpresas
 def Tablas():
     Productividad = {
@@ -55,9 +55,16 @@ def Tablas():
         3:["Top 10 sitios web","pd3"],
         4:["Top 10 banda ancha web","pd4"],
         5:["Top 10 banda ancha app","pd5"],
+        6:["Top 10 uso de banda ancha por usuario","pd6"],
+
 
     }
-    return Productividad
+    RiesgosLegales={
+        1:["Sitios potencialmente problematicos","rl1"],
+        2:["Sitios con contenido adulto ","rl2"],
+
+    }
+    return Productividad,RiesgosLegales
 #Analisis = Tablas()
 #print(Analisis['Top 10 categorias'])
 #Para clientes:

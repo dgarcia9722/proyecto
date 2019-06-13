@@ -1,9 +1,10 @@
 import pygal
 from pygal.style import LightStyle
 from pymongo import MongoClient
+import pprint
 
 
-client = MongoClient('mongodb://asalinas:RealNet2019@192.168.60.9:27017/admin')
+client = MongoClient('mongodb://asalinas:RealNet2019@172.16.11.20:27017/registros')
 db = client.registros
 def functQuery(titulo,result,graph):
     result = list(result)
@@ -72,44 +73,88 @@ def tb3_prod(fechai,fechaf,empresa): #Top 10 paginas
 def tb4_prod(fechai,fechaf,empresa): #Top 10 bandwidth web
     result = db.logs.aggregate([
         {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"subtype":"webfilter"}]}},
-        {"$addFields":{"count": {"$sum":["$sentbyte","$rcvdbyte"]}}},
-        {"$group": {"_id": "$hostname","count":{"$sum": "$sentbyte"}}},
-        {"$sort": {"count": -1}}
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": "$hostname","count":{"$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
     ])
     result = list(result)
-    for elemnt in result:
-        elemnt['count'] = elemnt['count'] /1024
+    for element in result:
+        if element['_id'] == None:
+            element['_id'] = 'Desconocida'
+        element['conteo'] = element['conteo'] /1024
     return result
-
 def tb5_prod(fechai,fechaf,empresa): #Top 10 bandwidth app
     result = db.logs.aggregate([
         {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
-        {"$addFields":{"count": {"$sum":["$sentbyte","$rcvdbyte"]}}},
-        {"$group": {"_id": "$app","count":{"$sum": "$sentbyte"}}},
-        {"$sort": {"count": -1}}
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": "$app","count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
     ])
     result = list(result)
-    print(result[0])
+    #print(result[0])
 
+    for element in result:
+        if element['_id'] == None:
+            element['_id'] = 'Desconocida'
+        element['conteo'] = element['conteo'] /1024
+    return result
+
+def tb6_prod(fechai,fechaf,empresa): #Top 10 usuarios bandwidth
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    print("HOLA")
+    print(result)
+
+    for element in result:
+        if element['_id'] == None:
+            element['_id'] = 'No registrado'
+        element['conteo'] = element['conteo'] /1024
+    print(result)
+
+    return result
+
+
+
+#TABLAS RIESGOS LEGALES
+
+def tb1_rl(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[    {"catdesc":"Child Abuse "},{"catdesc":"Discrimination "},{"catdesc":"Drug Abuse "},{"catdesc":"Explicit Violence "},{"catdesc":"Extremist Groups "},{"catdesc":"Hacking "},{"catdesc":"Illegal or Unethical "},{"catdesc":"Plagiarism "},{"catdesc":"Proxy Avoidance "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    pprint.pprint(result)
     for elemnt in result:
         elemnt['count'] = elemnt['count'] /1024
     return result
 
-
-#TABLAS RIESGOS LEGALES
-def tb1_rl(fechai,fechaf,empresa): #Top 10 bandwidth
-    graph = pygal.Bar()
+def tb2_rl(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
     result = db.logs.aggregate([
-        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
-        {"$addFields":{"count": {"$sum":["$sentbyte","$rcvdbyte"]}}},
-        {"$group": {"_id": "$hostname","count":{"$sum": "$sentbyte"}}},
-        {"$sort": {"count": -1}}
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[    {"catdesc":"Abortion "},{"catdesc":"Advocacy Organizations "},{"catdesc":"Alcohol "},{"catdesc":"Alternative Belifefs "},{"catdesc":"Dating "},{"catdesc":"Gambling "},{"catdesc":"Lingerie and Swimsuit "},{"catdesc":"Marijuana "},{"catdesc":"Nudity and Risque "},{"catdesc":"Other Adult Materials "},{"catdesc":"Pornography "},{"catdesc":"Sex Education "},{"catdesc":"Sports Hunting and War Games "},{"catdesc":"Tobacco "},{"catdesc":"Weapons(Sales) "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
     ])
     result = list(result)
-    #print(result)
     for elemnt in result:
         elemnt['count'] = elemnt['count'] /1024
+    return result
 
-
-    graph_data = functQuery("Top 10 sitios bandwidth",result,graph)
-    return graph_data
+def tb3_rl(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Phishing "},{"catdesc":"Spam URLs "},{"catdesc":"Malicious websites "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
