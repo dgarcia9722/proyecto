@@ -52,17 +52,20 @@ def productividad():
         graph_2 = tb1_prod(initialDate, finalDate,empresa)
         graph_3 = tb3_prod(initialDate, finalDate,empresa)
         graph_4 = tb4_prod(initialDate, finalDate,empresa)
+        graph_5 = tb5_prod(initialDate, finalDate,empresa)
+
 
 
         if (graph==None):
             estado = 0
-            flash("La busqueda no arrojo resultados. Intenta con diferente información")
+            flash("La busqueda no arrojo resultados. Intenta con diferente información                  ")
         return render_template("/puntos/productividad.html", Puntos=Puntos,
         initialDate=initialDate,estado=estado,empresa=empresa,dEmpresa=dEmpresa,dTablas=dTablas,
         grafica1=graph,
         grafica2=graph_2,
         grafica3=graph_3,
         grafica4=graph_4,
+        grafica5=graph_5,
         )
     else:
         fechai = "2019-01-01"
@@ -72,6 +75,8 @@ def productividad():
         graph_2 = tb1_prod(fechai,fechaf,empresa)
         graph_3 = tb3_prod(fechai,fechaf,empresa)
         graph_4 = tb4_prod(fechai,fechaf,empresa)
+        graph_5 = tb5_prod(fechai,fechaf,empresa)
+
 
 
         return render_template("/puntos/productividad.html",Puntos=Puntos,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas,
@@ -79,6 +84,7 @@ def productividad():
         grafica2=graph_2,
         grafica3=graph_3,
         grafica4=graph_4,
+        grafica5=graph_5,
         )
 
 @app.route('/riesgoslegales',methods=["POST","GET"])

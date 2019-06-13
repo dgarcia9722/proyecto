@@ -53,8 +53,35 @@ def Tablas():
         1:["Top 10 categorias web","pd1"],
         2:["Top 10 apps","pd2"],
         3:["Top 10 sitios web","pd3"],
-        4:["Top 10 banda ancha","pd4"],
+        4:["Top 10 banda ancha web","pd4"],
+        5:["Top 10 banda ancha app","pd5"],
+
     }
     return Productividad
 #Analisis = Tablas()
 #print(Analisis['Top 10 categorias'])
+#Para clientes:
+#Por filtro web:
+#•	Child abuse
+#•	Discrimination
+#•	Drug abuse
+#•	explicit violence
+#•	Extremist Groups
+#•	Hacking
+#•	Illegal or Unethical
+#•	Plagiarism
+#•	Proxy Avoidance
+#•	Abortion
+#•	Dating
+#•	Gambling
+#•	Marijuana
+#•	Nudity and Risque
+#•	Sports Hunting and War Games
+#•	Tobacco
+#•	Weapons(Sales)
+#•	Malicious Websites
+#•	Phishing
+#•	Spam URLs
+#•	Job search
+#Por aplicación:
+#•	Proxy

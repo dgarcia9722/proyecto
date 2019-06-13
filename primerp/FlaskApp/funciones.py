@@ -69,22 +69,32 @@ def tb3_prod(fechai,fechaf,empresa): #Top 10 paginas
     graph_data = functQuery("Top 10 sitios web",result,graph)
     return graph_data
 
-def tb4_prod(fechai,fechaf,empresa): #Top 10 bandwidth
-    graph = pygal.Bar()
+def tb4_prod(fechai,fechaf,empresa): #Top 10 bandwidth web
     result = db.logs.aggregate([
-        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"subtype":"webfilter"}]}},
         {"$addFields":{"count": {"$sum":["$sentbyte","$rcvdbyte"]}}},
         {"$group": {"_id": "$hostname","count":{"$sum": "$sentbyte"}}},
         {"$sort": {"count": -1}}
     ])
     result = list(result)
-    #print(result)
     for elemnt in result:
         elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb5_prod(fechai,fechaf,empresa): #Top 10 bandwidth app
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
+        {"$addFields":{"count": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": "$app","count":{"$sum": "$sentbyte"}}},
+        {"$sort": {"count": -1}}
+    ])
+    result = list(result)
     print(result[0])
 
-    graph_data = functQuery("Top 10 sitios bandwidth",result,graph)
-    return graph_data
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
 
 #TABLAS RIESGOS LEGALES
 def tb1_rl(fechai,fechaf,empresa): #Top 10 bandwidth
@@ -99,7 +109,7 @@ def tb1_rl(fechai,fechaf,empresa): #Top 10 bandwidth
     #print(result)
     for elemnt in result:
         elemnt['count'] = elemnt['count'] /1024
-    print(result[0])
+
 
     graph_data = functQuery("Top 10 sitios bandwidth",result,graph)
     return graph_data

@@ -82,11 +82,9 @@
         <h4>Resumen:</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lacus nulla, scelerisque sed tristique at, egestas eu neque. Vivamus vitae risus at erat malesuada ultrices. Quisque vel finibus enim. Suspendisse a nisl quis lorem dapibus mollis eu a sem. Etiam lacinia lectus augue, in lobortis lacus cursus ut. Mauris vel risus tempor, pretium velit sed, lacinia orci. Aenean rhoncus luctus interdum. Vivamus non feugiat metus. In auctor pretium quam, nec </p>
         <ul>
-          <li>La pagina web mas visitada fue: </li>
-          <li>La aplicacion mas usada fue:</li>
-          <li>La pagina web que mas ancho de banda consumio fue con </li>
-          <li>La aplicacion que mas ancho de banda consumio fue con</li>
-        </ul>
+          <li>La pagina web mas visitada fue: {{grafica3[2]['_id']}} </li>
+          <li>La aplicacion mas usada fue: {{grafica2[2]['_id']}}" con {{grafica2[2]['count']}}</li>
+          </ul>
 
           <div class="row">
 
@@ -155,20 +153,63 @@
               {%else%}
               <h2>{{dTablas[4][0]}}</h2>
               <h4>Web</h4>
-              <embed src={{grafica4[0]|safe}} type="image/svg+xml" style=" max-width:800px" >
-                {%if grafica4[1][0]['_id'] == "Desconocido" %}
-                  <p>Los sitios web desconocidos tuvieron {{grafica4[1][0]['count']}} peticiones</p>
-                {%else%}
-                  <p>El sitio mas visitado fue  "{{grafica4[1][0]['_id']}}" y tuvo {{grafica4[1][0]['count']}} peticiones.</p>
-                {%endif%}
-                {%if grafica4[2]['_id'] == "Desconocido" %}
-                  <p>Tambien los sitios web desconocidos fueron los mas visitados con un numero de {{grafica4[2]['count']}} peticiones</p>
-                {%else%}
-                  <p>El sitio mas visitado fue "{{grafica4[2]['_id']}}" con {{grafica4[2]['count']}} accesos.</p>
-                {%endif%}
+              <table class="table table-hover">
+                <thead>
+                  <th>Sitio</th>
+                  <th>Bandwidth</th>
+                </thead>
+                <tbody>
+
+                  {%for i in range(10)%}
+                    {%if grafica4[i]['count']>0%}
+                      <tr>
+                        <td>{{grafica4[i]['_id']}}</td>
+                        {%set vara = (grafica4[i]['count'])|round|int%}
+                        {%if vara >1000%}
+                          <td>{{vara/1000}} GB</td>
+                        {%else%}
+                        <td>{{vara}} MB</td>
+                        {%endif%}
+                      </tr>
+                    {%endif%}
+                  {%endfor%}
+                </tbody>
+              </table>
               {%endif%}
             </div>
-          </div>
+
+            <div id="{{dTablas[5][1]}}">
+              {%if grafica5 == None%}
+              {{pass}}
+              {%else%}
+              <h2>{{dTablas[5][0]}}</h2>
+              <h4>Aplicacion</h4>
+              <table class="table table-hover">
+                <thead>
+                  <th>Aplicacion</th>
+                  <th>Bandwidth</th>
+                </thead>
+                <tbody>
+
+                  {%for i in range(10)%}
+                    {%if grafica5[i]['count']>0%}
+                      <tr>
+                        <td>{{grafica5[i]['_id']}}</td>
+                        {%set vara = (grafica5[i]['count'])|round|int%}
+                        {%if vara >1000%}
+                          <td>{{vara/1000}} GB</td>
+                        {%else%}
+                        <td>{{vara}} MB</td>
+                        {%endif%}
+                      </tr>
+                    {%endif%}
+                  {%endfor%}
+                </tbody>
+              </table>
+              {%endif%}
+            </div>
+
+          </div> <!-- div container -->
 
       </div>
 
