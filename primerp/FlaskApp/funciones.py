@@ -5,7 +5,7 @@ import pprint
 
 
 #client = MongoClient('mongodb://asalinas:RealNet2019@172.16.11.20:27017/registros')
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb://asalinas:RealNet2019@172.16.11.20:27017/')
 
 db = client.registros
 def functQuery(titulo,result,graph):
@@ -41,10 +41,10 @@ def graph_1(fechai,fechaf,empresa): #Top 10 categorias web
     graph = pygal.Bar()
     result = db.logs.aggregate([
         {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
-        #{"$project":{"catdesc":{"$ifNull":["$catdesc","Desconocido"]}}},
         {"$group": {"_id": "$catdesc", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}}
     ])
+    pprint.pprint(result)
     graph_data=functQuery("Top 10 web",result,graph)
     return graph_data
 
@@ -105,18 +105,15 @@ def tb6_prod(fechai,fechaf,empresa): #Top 10 usuarios bandwidth
     result = db.logs.aggregate([
         {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
-        {"$group": {"_id": {"usuario":"$user","ip":"$srcip"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$group": {"_id": {"user":"$user","ip":"$srcip"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
         {"$sort": {"conteo": -1}}
     ])
     result = list(result)
-    print("HOLA")
-    print(result)
-
     for element in result:
         if element['_id'] == None:
             element['_id'] = 'No registrado'
         element['conteo'] = element['conteo'] /1024
-    print(result)
+    pprint.pprint(result)
 
     return result
 
@@ -132,7 +129,7 @@ def tb1_rl(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
         {"$sort": {"conteo": -1}}
     ])
     result = list(result)
-    pprint.pprint(result)
+    #pprint.pprint(result)
     for elemnt in result:
         elemnt['count'] = elemnt['count'] /1024
     if result == None:
@@ -226,6 +223,7 @@ def tb4_fd(fechai,fechaf,empresa): #Intereses personales
     result = list(result)
     for elemnt in result:
         elemnt['count'] = elemnt['count'] /1024
+    print(result)
     return result
 
 def tb5_fd(fechai,fechaf,empresa): #Intereses personales
@@ -252,4 +250,218 @@ def tb6_fd(fechai,fechaf,empresa): #Sitios de seguridad
         elemnt['count'] = elemnt['count'] /1024
     return result
 
-    
+#ROBO Y FUGA DE INFORMACION
+
+def tb1_rf(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Hacking "},{"catdesc":"Proxy Avoidance "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    if result == None:
+        result = 0
+
+    return result
+
+def tb2_rf(fechai,fechaf,empresa): #Bandwidth
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"File Sharing and Storage "},{"catdesc":"Peer-to-peer File Sharing "},{"catdesc":"Weapons(Sales) "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb3_rf(fechai,fechaf,empresa): #Sitios de seguridad
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Phishing "},{"catdesc":"Spam URLs "},{"catdesc":"Malicious websites "},{"catdesc":"Dynamic DNS "},{"catdesc":"Newly Observed Domain"},{"catdesc":"Newly Registered Domain"}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb4_rf(fechai,fechaf,empresa): #Intereses personales
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Web Chat "},{"catdesc":"Web Based Email "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb5_rf(fechai,fechaf,empresa): #Intereses de negocios
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Online Meeting "},{"catdesc":"Remote Access "},{"catdesc":"Web Hosting "},{"catdesc":"Web Based Applications "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb6_rf(fechai,fechaf,empresa): #Sitios de seguridad
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"appcat":"Email "},{"appcat":"Proxy "},{"appcat":"Storage Backup "},{"appcat":"Collaboration "},{"appcat":"P2P "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$appcat","Aplicacion":"$app"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+#LEALTAD
+def tb1_ld(fechai,fechaf,empresa): #Intereses personales
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Job Search "},{"catdesc":"Personal Privacy "},{"catdesc":"Web Based Email "},{"app":"LinkedIn "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb2_ld(fechai,fechaf,empresa): #Intereses de negocios
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Online Meeting "},{"catdesc":"Business "},{"catdesc":"Online Meeting "},{"catdesc":"Web Based Applications "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb3_ld(fechai,fechaf,empresa): #Sitios de seguridad
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"appcat":"Business "},{"appcat":"Email "},{"appcat":"Storage Backup "},{"appcat":"Collaboration "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$appcat","Aplicacion":"$app"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+#Evasion
+def tb1_ev(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Hacking "},{"catdesc":"Proxy Avoidance "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    if result == None:
+        result = 0
+
+    return result
+
+def tb2_ev(fechai,fechaf,empresa): #Bandwidth
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"File Sharing and Storage "},{"catdesc":"Peer-to-peer File Sharing "},{"catdesc":"Freeware and Software Downloads "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb3_ev(fechai,fechaf,empresa): #Sitios de seguridad
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Spam URLs "},{"catdesc":"Dynamic DNS "},{"catdesc":"Newly Observed Domain"},{"catdesc":"Newly Registered Domain"}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb4_ev(fechai,fechaf,empresa): #Intereses personales
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Remote Access "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+        ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb5_ev(fechai,fechaf,empresa): #Sitios de seguridad
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"appcat":"Proxy "},{"appcat":"Storage Backup "},{"appcat":"Cloud IT "},{"appcat":"Network Service "},{"appcat":"Remote Access "},{"appcat":"Web Client "},{"appcat":"Collaboration "},{"appcat":"P2P "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$appcat","Aplicacion":"$app"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+##BANDWIDTH
+
+def tb1_bd(fechai,fechaf,empresa): #Intereses personales
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"File Sharing and Storage "},{"catdesc":"Freewareand Software Downloads "},{"catdesc":"Internet Radio and TV "},{"catdesc":"Internet Telephony "},{"catdesc":"Peer-to-peer File Sharing "},{"catdesc":"Streaming Media and Download "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+
+def tb2_bd(fechai,fechaf,empresa): #Sitios de seguridad
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"appcat":"Storage Backup "},{"appcat":"Cloud IT "},{"appcat":"Social Media "},{"appcat":"P2P "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$appcat","Aplicacion":"$app"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+#Revision de politicas
+def tb1_ep(fechai,fechaf,empresa): #Intereses personales
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Phishing "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result

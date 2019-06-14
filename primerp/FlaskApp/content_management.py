@@ -81,7 +81,7 @@ def Tablas():
         3:["Sitios infectados ","rb3"],
         4:["Intereses personales ","rb4"],
         5:["Intereses financieros ","rb5"],
-        6:["Aplicaciones criticas ","rb6"],    
+        6:["Aplicaciones criticas ","rb6"],
 
     }
     Lealtad = {
@@ -104,6 +104,7 @@ def Tablas():
     Revision_de_politicas = {
         1:["Proteccion de datos ","rp1"],
     }
+
 
     Analisis = {
         1:["Consumo de banda ancha ","ans1"],

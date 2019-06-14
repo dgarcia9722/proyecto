@@ -81,13 +81,14 @@
 
 
         <h2>{{Puntos[0]["puntos"][1]}}</h2>
-        <h4>Resumen:</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lacus nulla, scelerisque sed tristique at, egestas eu neque. Vivamus vitae risus at erat malesuada ultrices. Quisque vel finibus enim. Suspendisse a nisl quis lorem dapibus mollis eu a sem. Etiam lacinia lectus augue, in lobortis lacus cursus ut. Mauris vel risus tempor, pretium velit sed, lacinia orci. Aenean rhoncus luctus interdum. Vivamus non feugiat metus. In auctor pretium quam, nec </p>
+        <p>Este punto de seguridad va enfocado a la productividad de los usuarios, hay paginas y aplicaciones que distraen a los empleados y el tener identificado cuales son los principales distractores nos ayudan a tener un mejor control sobre los recursos.</p>
+        <p>Categorias que abarca:</p>
         <ul>
-          <li>La pagina web mas visitada fue: {#grafica3[2]['_id']#} </li>
-          <li>La aplicacion mas usada fue: {#grafica2[2]['_id']#}" con {#grafica2[2]['count']#}</li>
-          </ul>
-
+          <li>Contenido adulto.</li>
+          <li>Contenido con alto consumo de ancho de banda</li>
+          <li>Intereses personales</li>
+          <li>Intereses de negocios</li>
+        </ul>
           <div class="row">
 
             <div id="{{dTablas[1][1]}}">
@@ -228,7 +229,7 @@
                   {%for i in range(1,11)%}
                     {%if grafica6[i]['conteo']>0%}
                       <tr>
-                        <td>{{grafica6[i]['_id']['usuario']}} </td>
+                        <td>{{grafica6[i]['_id']['user']}} </td>
                         <td>{{grafica6[i]['_id']['ip']}}</td>
                         {%set vara = (grafica6[i]['conteo'])|round|int%}
                         {%if vara >1000%}

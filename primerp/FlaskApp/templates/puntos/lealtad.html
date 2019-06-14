@@ -12,24 +12,22 @@
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-
-            <h3>{{Puntos[1]["idpuntos"][1]}}</h3>  <!-- titulo barra lateral -->
+            <h3 style="margin-left:10px">{{Puntos[0]["puntos"][5]}}</h3>  <!-- titulo barra lateral -->
         </div>
         <ul class="list-unstyled component">
-            <li><a href="#hola">{{dTablas[1][0] }}</a></li>
+            <li><a href="#{{dTablas[1][1][1]}}">{{dTablas[5][1][0]}}</a></li>
+            <li><a href="#{{dTablas[1][2][1]}}">{{dTablas[5][2][0]}}</a></li>
+            <li><a href="#{{dTablas[1][3][1]}}">{{dTablas[5][3][0]}}</a></li>
 
         </ul>
     </nav>
 
 <div id="content">
     <div class="row">
-      <div class="col-md-1">
-
-      </div>
+      <div class="col-md-1"></div>
         <div class="col-md-10">
                     <form action="" method="post" class="form-inline" role="form">
                       <div class="form-group">
-
                         <label for="cfecha">Filtrar: </label>
                         <div class="input-daterange input-group cfecha" id="datepicker cfecha">
                             <div class="form-group">
@@ -52,7 +50,7 @@
                         <input type="submit" class="botonEsc" value="Buscar" class="form-control">
                         </div>
                         </form>
-                      </div>
+        </div>
 
             <script type="text/javascript">$(function () {$('.cfecha').datepicker({language:'es',format: "yyyy-mm-dd"});});</script>
         </div>
@@ -77,17 +75,151 @@
       <div class="col-md-1">
       </div>
       <div class="col-md-9">
-        <h2>{{Puntos[0]["puntos"][0]}}</h2>
-        <p>Las siguientes tablas son apartir del analisis de la información de la red</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lacus nulla, scelerisque sed tristique at, egestas eu neque. Vivamus vitae risus at erat malesuada ultrices. Quisque vel finibus enim. Suspendisse a nisl quis lorem dapibus mollis eu a sem. Etiam lacinia lectus augue, in lobortis lacus cursus ut. Mauris vel risus tempor, pretium velit sed, lacinia orci. Aenean rhoncus luctus interdum. Vivamus non feugiat metus. In auctor pretium quam, nec pellentesque neque convallis vitae. Sed sodales purus massa, tincidunt suscipit sapien blandit at. Nullam pellentesque nisl at turpis tincidunt tristique. Mauris lacus nulla, elementum a finibus nec, venenatis nec ex. Vestibulum eget pharetra quam. Phasellus a ante imperdiet, eleifend mauris a, maximus dui. Aenean pellentesque leo eu augue efficitur fermentum. </p
-          <div class="row">
-              <h2 id="hola">{{dTablas[1][0]}}</h2>
-              <embed src={{grafica1|safe}} type="image/svg+xml" style=" max-height:400px" >
-              <h2 id="hola">{{dTablas[1][0]}}</h2>
-              <embed src={{grafica1|safe}} type="image/svg+xml" style="max-width:800px" >
+
+
+        <h2>{{Puntos[0]["puntos"][5]}}</h2>
+        <p>Este punto se enfoca en la lealtad de los empleados, esto a partir de la busqueda de empleo, analizando a que sitios de busqueda de empleo esta accediendo o si esta usando el correo mas de la cuenta.</p>
+        <p>Categorias que abarca</p>
+        <ul>
+          <li>Busqueda de empleo</li>
+          <li>LinkedIn</li>
+          <li>Intereses laborales</li>
+          <li>Correo</li>
+        </ul>
+        <div class="row">
+
+          <div id="{{dTablas[1][1][1]}}">|
+            <h2>{{dTablas[1][1][0]}}</h2>
+            <h4>Web</h4>
+            {%if not grafica1[0]%}
+            <p>Sin informacion</p>
+            {%else%}
+            <table class="table table-hover">
+              <thead>
+                <th>Usuario</th>
+                <th>IP</th>
+                <th>Sitio</th>
+                <th>Categoria</th>
+                <th>Bandwidth</th>
+              </thead>
+              <tbody>
+
+                {%for i in range(10)%}
+                  {%if grafica1[i]['count'] > 0 %}
+                    <tr>
+                      <td>{{grafica1[i]['_id']['usuario']}}</td>
+                      <td>{{grafica1[i]['_id']['ip']}}</td>
+                      <td>{{grafica1[i]['_id']['Sitio']}}</td>
+                      <td>{{grafica1[i]['_id']['Categoria']}}</td>
+                      {%set vara = (grafica1[i]['count'])|round|int%}
+                      {%if vara >1000%}
+                        <td>{{vara/1000}} GB</td>
+                      {%else%}
+                      <td>{{vara}} MB</td>
+                      {%endif%}
+                    </tr>
+                  {%endif%}
+                {%endfor%}
+              </tbody>
+            </table>
+            {%endif%}
           </div>
 
-      </div>
+        </div>
+        <div id="{{dTablas[1][2][1]}}"">
+          <h2>{{dTablas[1][2][0]}}</h2>
+          <h4>Web</h4>
+          {%if not grafica2[0]%}
+          <p>Sin información</p>
+          {%else%}
+          <table class="table table-hover">
+            <thead>
+              <th>Usuario</th>
+              <th>IP</th>
+              <th>Sitio</th>
+              <th>Categoria</th>
+              <th>Bandwidth</th>
+            </thead>
+            <tbody>
+
+              {%for i in range(grafica2|length)%}
+                {%if grafica2[0][i]['count'] > 0 %}
+                  <tr>
+                    <td>{{grafica2[i]['_id']['usuario']}}</td>
+                    <td>{{grafica2[i]['_id']['ip']}}</td>
+                    <td>{{grafica2[i]['_id']['Sitio']}}</td>
+                    <td>{{grafica2[i]['_id']['Categoria']}}</td>
+                    {%set vara = (grafica2[i]['count'])|round|int%}
+                    {%if vara >1000%}
+                      <td>{{vara/1000}} GB</td>
+                    {%else%}
+                    <td>{{vara}} MB</td>
+                    {%endif%}
+                  </tr>
+
+                {%else%}
+                  <tr>
+                    <td>{{grafica2[0][i]['_id']['usuario']}}</td>
+                    <td>{{grafica2[0][i]['_id']['ip']}}</td>
+                    <td>{{grafica2[0][i]['_id']['Sitio']}}</td>
+                    <td>{{grafica2[0][i]['_id']['Categoria']}}</td>
+                    {%set vara = (grafica2[0][i]['count'])|round|int%}
+                    {%if vara >1000%}
+                      <td>{{vara/1000}} GB</td>
+                    {%else%}
+                    <td>{{vara}} MB</td>
+                    {%endif%}
+                  </tr>
+                {%endif%}
+              {%endfor%}
+            </tbody>
+          </table>
+          {%endif%}
+        </div>
+
+        <div id="{{dTablas[1][3][1]}}">
+         <h2>{{dTablas[1][3][0]}}</h2>
+         <h4>Web</h4>
+
+         {%if not grafica3[0]%}
+         <p>Sin información</p>
+         {%else%}
+         <table id="{{dTablas[1][3][1]}}" class="table table-hover">
+           <thead>
+             <th>Usuario</th>
+             <th>IP</th>
+             <th>Aplicacion</th>
+             <th>Categoria</th>
+             <th>Bandwidth</th>
+           </thead>
+           <tbody>
+
+             {%for i in range(grafica3|length)%}
+               {%if grafica3[i][0]['count']>0%}
+                 <tr>
+                   <td>{{grafica3[i][0]['_id']['usuario']}}</td>
+                   <td>{{grafica3[i][0]['_id']['ip']}}</td>
+                   <td>{{grafica3[i][0]['_id']['Sitio']}}</td>
+                   <td>{{grafica3[i][0]['_id']['Categoria']}}</td>
+                   {%set vara = (grafica3[i][0]['count'])|round|int%}
+                   {%if vara >1000%}
+                     <td>{{vara/1000}} GB</td>
+                   {%else%}
+                   <td>{{vara}} MB</td>
+                   {%endif%}
+                 </tr>
+               {%endif%}
+             {%endfor%}
+           </tbody>
+         </table>
+         {%endif%}
+        </div>
+
+
+
+
+
+      </div> <!-- div row -->
 
     </div>
 
@@ -96,7 +228,5 @@
 
 </div>
 </div>
-
-
     {%endif%}
 {%endblock%}
