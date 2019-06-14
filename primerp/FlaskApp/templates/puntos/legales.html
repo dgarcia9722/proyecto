@@ -15,7 +15,10 @@
             <h3 style="margin-left:10px">{{Puntos[0]["puntos"][2]}}</h3>  <!-- titulo barra lateral -->
         </div>
         <ul class="list-unstyled component">
-            <li><a href="#{{dTablas[1][1]}}">{{dTablas[1][0]}}</a></li>
+            <li><a href="#{{dTablas[1][1][1]}}">{{dTablas[0][1][0]}}</a></li>
+            <li><a href="#{{dTablas[1][2][1]}}">{{dTablas[0][2][0]}}</a></li>
+            <li><a href="#{{dTablas[1][3][1]}}">{{dTablas[0][3][0]}}</a></li>
+            <li><a href="#{{dTablas[1][4][1]}}">{{dTablas[0][4][0]}}</a></li>
 
         </ul>
     </nav>
@@ -88,11 +91,11 @@
         <div class="row">
 
           <div id="{{dTablas[0][1]}}">
-            {%if grafica1['_id'] == None%}
-            <p>Sin informacion</p>
-            {%else%}
             <h2>{{dTablas[1][1][0]}}</h2>
             <h4>Web</h4>
+            {%if not grafica1[0]%}
+            <p>Sin informacion</p>
+            {%else%}
             <table class="table table-hover">
               <thead>
                 <th>Usuario</th>
@@ -126,11 +129,11 @@
 
         </div>
         <div id="{{dTablas[1][1]}}">
-          {%if grafica2['count'] == None%}
-          {{pass}}
-          {%else%}
           <h2>{{dTablas[1][2][0]}}</h2>
           <h4>Web</h4>
+          {%if not grafica2[0]%}
+          <h4>Sin informacion </h4>
+          {%else%}
           <table class="table table-hover">
             <thead>
               <th>Usuario</th>
@@ -162,14 +165,14 @@
           {%endif%}
         </div>
 
-      </div>
-
+      
       <div id="{{dTablas[1][2]}}">
-        {%if grafica3['count'] == None%}
-        {{pass}}
-        {%else%}
         <h2>{{dTablas[1][3][0]}}</h2>
         <h4>Web</h4>
+        
+        {%if not grafica3[0]%}
+        <h4>Sin informacion</h4>
+        {%else%}
         <table id="{{dTablas[1][3][1]}}" class="table table-hover">
           <thead>
             <th>Usuario</th>
@@ -200,10 +203,46 @@
         </table>
         {%endif%}
       </div>
+       <div id="{{dTablas[1][3]}}">
+        <h2>{{dTablas[1][4][0]}}</h2>
+        <h4>Web</h4>
+        {%if not grafica4[0]%}
+        <h4>Sin informacion</h4>
+        {%else%}
+        <table id="{{dTablas[1][4][1]}}" class="table table-hover">
+          <thead>
+            <th>Usuario</th>
+            <th>IP</th>
+            <th>Aplicacion</th>
+            <th>Categoria</th>
+            <th>Bandwidth</th>
+          </thead>
+          <tbody>
 
+            {%for i in range(grafica4|length)%}
+              {%if grafica4[0][i]['count']>0%}
+                <tr>
+                  <td>{{grafica4[0][i]['_id']['usuario']}}</td>
+                  <td>{{grafica4[0][i]['_id']['ip']}}</td>
+                  <td>{{grafica4[0][i]['Aplicacion']}}</td>
+                  <td>{{grafica4[0][i]['Categoria']}}</td>
+                  {%set vara = (grafica4[0][i]['count'])|round|int%}
+                  {%if vara >1000%}
+                    <td>{{vara/1000}} GB</td>
+                  {%else%}
+                  <td>{{vara}} MB</td>
+                  {%endif%}
+                </tr>
+              {%endif%}
+            {%endfor%}
+          </tbody>
+        </table>
+        {%endif%}
       </div>
 
 
+     
+      </div>
       </div> <!-- div row -->
 
     </div>
@@ -213,7 +252,5 @@
 
 </div>
 </div>
-
-
     {%endif%}
 {%endblock%}

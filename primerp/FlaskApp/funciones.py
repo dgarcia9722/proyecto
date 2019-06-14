@@ -4,7 +4,9 @@ from pymongo import MongoClient
 import pprint
 
 
-client = MongoClient('mongodb://asalinas:RealNet2019@172.16.11.20:27017/registros')
+#client = MongoClient('mongodb://asalinas:RealNet2019@172.16.11.20:27017/registros')
+client = MongoClient('mongodb://localhost:27017/')
+
 db = client.registros
 def functQuery(titulo,result,graph):
     result = list(result)
@@ -124,7 +126,7 @@ def tb6_prod(fechai,fechaf,empresa): #Top 10 usuarios bandwidth
 
 def tb1_rl(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
     result = db.logs.aggregate([
-        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[    {"catdesc":"Child Abuse "},{"catdesc":"Discrimination "},{"catdesc":"Drug Abuse "},{"catdesc":"Explicit Violence "},{"catdesc":"Extremist Groups "},{"catdesc":"Hacking "},{"catdesc":"Illegal or Unethical "},{"catdesc":"Plagiarism "},{"catdesc":"Proxy Avoidance "}]}]}},
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Child Abuse "},{"catdesc":"Discrimination "},{"catdesc":"Drug Abuse "},{"catdesc":"Explicit Violence "},{"catdesc":"Extremist Groups "},{"catdesc":"Hacking "},{"catdesc":"Illegal or Unethical "},{"catdesc":"Plagiarism "},{"catdesc":"Proxy Avoidance "}]}]}},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
         {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
         {"$sort": {"conteo": -1}}
@@ -133,11 +135,14 @@ def tb1_rl(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
     pprint.pprint(result)
     for elemnt in result:
         elemnt['count'] = elemnt['count'] /1024
+    if result == None:
+        result = 0
+
     return result
 
 def tb2_rl(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
     result = db.logs.aggregate([
-        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[    {"catdesc":"Abortion "},{"catdesc":"Advocacy Organizations "},{"catdesc":"Alcohol "},{"catdesc":"Alternative Belifefs "},{"catdesc":"Dating "},{"catdesc":"Gambling "},{"catdesc":"Lingerie and Swimsuit "},{"catdesc":"Marijuana "},{"catdesc":"Nudity and Risque "},{"catdesc":"Other Adult Materials "},{"catdesc":"Pornography "},{"catdesc":"Sex Education "},{"catdesc":"Sports Hunting and War Games "},{"catdesc":"Tobacco "},{"catdesc":"Weapons(Sales) "}]}]}},
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Abortion "},{"catdesc":"Advocacy Organizations "},{"catdesc":"Alcohol "},{"catdesc":"Alternative Belifefs "},{"catdesc":"Dating "},{"catdesc":"Gambling "},{"catdesc":"Lingerie and Swimsuit "},{"catdesc":"Marijuana "},{"catdesc":"Nudity and Risque "},{"catdesc":"Other Adult Materials "},{"catdesc":"Pornography "},{"catdesc":"Sex Education "},{"catdesc":"Sports Hunting and War Games "},{"catdesc":"Tobacco "},{"catdesc":"Weapons(Sales) "}]}]}},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
         {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
         {"$sort": {"conteo": -1}}
@@ -147,7 +152,7 @@ def tb2_rl(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
         elemnt['count'] = elemnt['count'] /1024
     return result
 
-def tb3_rl(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
+def tb3_rl(fechai,fechaf,empresa): #Sitios de seguridad
     result = db.logs.aggregate([
         {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Phishing "},{"catdesc":"Spam URLs "},{"catdesc":"Malicious websites "}]}]}},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
@@ -158,3 +163,93 @@ def tb3_rl(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
     for elemnt in result:
         elemnt['count'] = elemnt['count'] /1024
     return result
+
+def tb4_rl(fechai,fechaf,empresa): #Sitios de seguridad
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"appcat":"Phishing "},{"appcat":"Storage Backup "},{"appcat":"Remote Access "},{"appcat":"P2P "},]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$appcat","Aplicacion":"$app"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+#TABLAS FRAUDES
+def tb1_fd(fechai,fechaf,empresa): #Sitios Potencialmente problematicos
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Hacking "},{"catdesc":"Illegal or Unethical "},{"catdesc":"Plagiarism "},{"catdesc":"Proxy Avoidance "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    if result == None:
+        result = 0
+
+    return result
+
+def tb2_fd(fechai,fechaf,empresa): #Sitios Adultos
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Dating "},{"catdesc":"Gambling "},{"catdesc":"Weapons(Sales) "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb3_fd(fechai,fechaf,empresa): #Sitios de seguridad
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Phishing "},{"catdesc":"Spam URLs "},{"catdesc":"Malicious websites "},{"catdesc":"Dynamic DNS "},{"catdesc":"Newly Observed Domain"},{"catdesc":"Newly Registered Domain"}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb4_fd(fechai,fechaf,empresa): #Intereses personales
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"Advertising "},{"catdesc":"Auction "},{"catdesc":"Brokearage and Trading "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb5_fd(fechai,fechaf,empresa): #Intereses personales
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"General Organizations "},{"catdesc":"Finance and Banking "}]}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+def tb6_fd(fechai,fechaf,empresa): #Sitios de seguridad
+    result = db.logs.aggregate([
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"appcat":"P2P "}]}},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
+        {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$appcat","Aplicacion":"$app"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
+        {"$sort": {"conteo": -1}}
+    ])
+    result = list(result)
+    for elemnt in result:
+        elemnt['count'] = elemnt['count'] /1024
+    return result
+
+    

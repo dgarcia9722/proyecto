@@ -62,9 +62,55 @@ def Tablas():
     RiesgosLegales={
         1:["Sitios potencialmente problematicos","rl1"],
         2:["Sitios con contenido adulto ","rl2"],
+        3:["Sitios infectados ","rl3"],
+        4:["Aplicaciones peligrosas","rl4"],
 
     }
-    return Productividad,RiesgosLegales
+
+    Fraudes={
+        1:["Sitios potencialmente problematicos","fd1"],
+        2:["Sitios con contenido adulto ","fd2"],
+        3:["Sitios infectados ","fd3"],
+        4:["Intereses personales ","fd4"],
+        5:["Intereses financieros ","fd5"],
+        6:["Aplicaciones criticas ","fd6"],
+    }
+    Robo = {
+        1:["Sitios potencialmente problematicos","rb1"],
+        2:["Consumo de banda ancha ","rb2"],
+        3:["Sitios infectados ","rb3"],
+        4:["Intereses personales ","rb4"],
+        5:["Intereses financieros ","rb5"],
+        6:["Aplicaciones criticas ","rb6"],    
+
+    }
+    Lealtad = {
+        1:["Intereses personales ","ld1"],
+        2:["Intereses financieros ","ld2"],
+        3:["Aplicaciones criticas ","ld3"],
+    }
+    Evasion = {
+        1:["Sitios potencialmente problematicos","ev1"],
+        2:["Consumo de banda ancha ","ev2"],
+        3:["Sitios infectados ","ev3"],
+        4:["Acceso remoto ","ev4"],
+        5:["Aplicaciones criticas ","ev5"],
+    }
+    Ancho_de_banda = {
+        1:["Consumo de banda ancha ","ab1"],
+        2:["Aplicaciones criticas ","ab2"],
+    }
+
+    Revision_de_politicas = {
+        1:["Proteccion de datos ","rp1"],
+    }
+
+    Analisis = {
+        1:["Consumo de banda ancha ","ans1"],
+        2:["Aplicaciones criticas ","ans2"],
+    }
+
+    return Productividad,RiesgosLegales,Fraudes,Robo,Lealtad,Evasion,Ancho_de_banda,Revision_de_politicas,
 #Analisis = Tablas()
 #print(Analisis['Top 10 categorias'])
 #Para clientes:

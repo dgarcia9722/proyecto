@@ -15,12 +15,12 @@
             <h3 style="margin-left:10px">{{Puntos[1]["idpuntos"][1]}}</h3>  <!-- titulo barra lateral -->
         </div>
         <ul class="list-unstyled component">
-            <li><a href="#{{dTablas[1][1]}}">{{dTablas[1][0]}}</a></li>
-            <li><a href="#{{dTablas[2][1]}}">{{dTablas[2][0]}}</a></li>
-            <li><a href="#{{dTablas[3][1]}}">{{dTablas[3][0]}}</a></li>
-            <li><a href="#{{dTablas[4][1]}}">{{dTablas[4][0]}}</a></li>
-            <li><a href="#{{dTablas[5][1]}}">{{dTablas[5][0]}}</a></li>
-            <li><a href="#{{dTablas[6][1]}}">{{dTablas[6][0]}}</a></li>
+            <li><a href="#{{dTablas[0][1][1]}}">{{dTablas[0][1][0]}}</a></li>
+            <li><a href="#{{dTablas[0][2][1]}}">{{dTablas[0][2][0]}}</a></li>
+            <li><a href="#{{dTablas[0][3][1]}}">{{dTablas[0][3][0]}}</a></li>
+            <li><a href="#{{dTablas[0][4][1]}}">{{dTablas[0][4][0]}}</a></li>
+            <li><a href="#{{dTablas[0][5][1]}}">{{dTablas[0][5][0]}}</a></li>
+            <li><a href="#{{dTablas[0][6][1]}}">{{dTablas[0][6][0]}}</a></li>
 
         </ul>
     </nav>
@@ -110,8 +110,8 @@
               {%endif%}
             </div>
 
-            <div id="{{dTablas[2][1]}}">
-              <h2>{{dTablas[2][0]}}</h2>
+            <div id="{{dTablas[0][2][1]}}">
+              <h2>{{dTablas[0][2][0]}}</h2>
               <h4>Aplicacion</h4>
               {%if grafica2 == None%}
               {{"Nada"}}
@@ -129,11 +129,11 @@
                 {%endif%}
               {%endif%}
             </div>
-            <div id="{{dTablas[3][1]}}">
+            <div id="{{dTablas[0][3][1]}}">
               {%if grafica3 == None%}
               {{pass}}
               {%else%}
-              <h2>{{dTablas[3][0]}}</h2>
+              <h2>{{dTablas[0][3][0]}}</h2>
               <h4>Web</h4>
               <embed src={{grafica3[0]|safe}} type="image/svg+xml" style=" max-width:800px" >
                 {%if grafica3[1][0]['_id'] == "Desconocido" %}
@@ -149,11 +149,11 @@
               {%endif%}
             </div>
 
-            <div id="{{dTablas[4][1]}}">
-              {%if grafica4['count'] == None%}
+            <div id="{{dTablas[0][4][1]}}">
+              {%if not grafica4%}
               {{None}}
               {%else%}
-              <h2>{{dTablas[4][0]}}</h2>
+              <h2>{{dTablas[0][4][0]}}</h2>
               <h4>Web</h4>
               <table class="table table-hover">
                 <thead>
@@ -180,11 +180,11 @@
               {%endif%}
             </div>
 
-            <div id="{{dTablas[5][1]}}">
-              {%if grafica5 == None%}
+            <div id="{{dTablas[0][5][1]}}">
+              {%if not grafica5%}
               {{pass}}
               {%else%}
-              <h2>{{dTablas[5][0]}}</h2>
+              <h2>{{dTablas[0][5][0]}}</h2>
               <h4>Aplicacion</h4>
               <table class="table table-hover">
                 <thead>
@@ -211,11 +211,11 @@
               {%endif%}
             </div>
 
-            <div id="{{dTablas[6][1]}}">
-              {%if grafica6 == None%}
+            <div id="{{dTablas[0][6][1]}}">
+              {%if not grafica6%}
               {{pass}}
               {%else%}
-              <h2>{{dTablas[6][0]}}</h2>
+              <h2>{{dTablas[0][6][0]}}</h2>
               <h4>Aplicacion</h4>
               <table class="table table-hover">
                 <thead>

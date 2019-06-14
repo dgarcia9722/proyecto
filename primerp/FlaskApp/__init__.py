@@ -1,9 +1,9 @@
 from flask import Flask, render_template,request,url_for,redirect,flash
 from flask_bootstrap import Bootstrap
 from pymongo import MongoClient
-from FlaskApp.content_management import content,datosEmpresa,Tablas
-from FlaskApp.funciones import *
-from wtforms import DateTimeField,StringField
+from content_management import content,datosEmpresa,Tablas
+from funciones import *
+
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -101,6 +101,8 @@ def riesgoslegales():
         graph1 = tb1_rl(initialDate, finalDate,empresa)
         graph2 = tb2_rl(initialDate, finalDate,empresa)
         graph3 = tb3_rl(initialDate, finalDate,empresa)
+        graph4 = tb4_rl(initialDate, finalDate,empresa)
+
 
         if (graph1==None):
             estado = 0
@@ -109,18 +111,23 @@ def riesgoslegales():
         grafica1=graph1,
         grafica2=graph2,
         grafica3=graph3,
-
+        grafica4=graph4,
         )
     else:
         fechai = "2019-05-23"
         fechaf = "2019-05-29"
-        empresa = "HA-RNT FG100D"
+        empresa = "FWF90D3Z13000359"
         graph1 = tb1_rl(fechai, fechaf,empresa),
         graph2 = tb2_rl(fechai, fechaf,empresa),
         graph3 = tb3_rl(fechai, fechaf,empresa),
+        graph4 = tb4_rl(fechai, fechaf,empresa),
 
         return render_template("/puntos/legales.html",Puntos=Puntos,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas,
-        grafica1=graph1
+        grafica1=graph1,
+        grafica2=graph2,
+        grafica3=graph3,
+        grafica4=graph4,
+
         )
 
 @app.route('/fraudes',methods=["POST","GET"])
@@ -130,20 +137,44 @@ def fraudes():
         initialDate = request.form['start']
         finalDate = request.form['end']
         empresa = request.form['empresa']
-        print(initialDate,finalDate,empresa)
-        print(len(empresa))
-        graph = graph_1(initialDate, finalDate,empresa)
+        
+        graph1 = tb1_fd(initialDate, finalDate,empresa)
+        graph2 = tb2_fd(initialDate, finalDate,empresa)
+        graph3 = tb3_fd(initialDate, finalDate,empresa)
+        graph4 = tb4_fd(initialDate, finalDate,empresa)
+        graph5 = tb5_fd(initialDate, finalDate,empresa)
+        graph6 = tb6_fd(initialDate, finalDate,empresa)
+
         if (graph==None):
             estado = 0
             flash("La busqueda no arrojo resultados. Intenta con diferente información")
-        return render_template("/puntos/fraudes.html", Puntos=Puntos, grafica1=graph,initialDate=initialDate,estado=estado,empresa=empresa,dEmpresa=dEmpresa,dTablas=dTablas)
+        return render_template("/puntos/fraudes.html", Puntos=Puntos,initialDate=initialDate,estado=estado,empresa=empresa,dEmpresa=dEmpresa,dTablas=dTablas,
+        grafica1=graph1,
+        grafica2=graph2,
+        grafica3=graph3,
+        grafica4=graph4,
+        grafica5=graph5,
+        grafica6=graph6,
+            )
     else:
-        fechai = "2019-05-23"
-        fechaf = "2019-05-29"
-        empresa = "HA-RNT FG100D"
-        graph = graph_1(fechai, fechaf,empresa)
+        fechai = "2018-01-01"
+        fechaf = "2020-01-01"
+        empresa = "FWF90D3Z13000359"
 
-        return render_template("/puntos/fraudes.html",Puntos=Puntos,grafica1=graph,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas)
+        graph1 = tb1_fd(initialDate, finalDate,empresa)
+        graph2 = tb2_fd(initialDate, finalDate,empresa)
+        graph3 = tb3_fd(initialDate, finalDate,empresa)
+        graph4 = tb4_fd(initialDate, finalDate,empresa)
+        graph5 = tb5_fd(initialDate, finalDate,empresa)
+        graph6 = tb6_fd(initialDate, finalDate,empresa)
+
+        return render_template("/puntos/fraudes.html",Puntos=Puntos,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas,
+        grafica1=graph_1,
+        grafica2=graph_2,
+        grafica3=graph_3,
+        grafica4=graph_4,
+        grafica5=graph_5,
+        grafica6=graph_6,)
 
 @app.route('/robo',methods=["POST","GET"])
 def robo():
@@ -152,18 +183,38 @@ def robo():
         initialDate = request.form['start']
         finalDate = request.form['end']
         empresa = request.form['empresa']
-        print(initialDate,finalDate,empresa)
-        print(len(empresa))
-        graph = graph_1(initialDate, finalDate,empresa)
-        if (graph==None):
+
+        graph1 = tb1_rl(initialDate, finalDate,empresa)
+        graph2 = tb2_rl(initialDate, finalDate,empresa)
+        graph3 = tb3_rl(initialDate, finalDate,empresa)
+        graph4 = tb4_rl(initialDate, finalDate,empresa)
+
+
+        if (graph1==None):
             estado = 0
             flash("La busqueda no arrojo resultados. Intenta con diferente información")
-        return render_template("/puntos/robo.html", Puntos=Puntos, grafica1=graph,initialDate=initialDate,estado=estado,empresa=empresa,dEmpresa=dEmpresa,dTablas=dTablas)
+        return render_template("/puntos/legales.html", Puntos=Puntos,initialDate=initialDate,estado=estado,empresa=empresa,dEmpresa=dEmpresa,dTablas=dTablas,
+        grafica1=graph1,
+        grafica2=graph2,
+        grafica3=graph3,
+        grafica4=graph4,
+        )
     else:
         fechai = "2019-05-23"
         fechaf = "2019-05-29"
-        empresa = "FWFRNT"
-        graph = graph_1(fechai, fechaf,empresa)
+        empresa = "FWF90D3Z13000359"
+        graph1 = tb1_rl(fechai, fechaf,empresa),
+        graph2 = tb2_rl(fechai, fechaf,empresa),
+        graph3 = tb3_rl(fechai, fechaf,empresa),
+        graph4 = tb4_rl(fechai, fechaf,empresa),
+
+        return render_template("/puntos/robo.html",Puntos=Puntos,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas,
+        grafica1=graph1,
+        grafica2=graph2,
+        grafica3=graph3,
+        grafica4=graph4,
+
+        )
 
         return render_template("/puntos/robo.html",Puntos=Puntos,grafica1=graph,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas)
 
