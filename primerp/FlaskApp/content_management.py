@@ -112,30 +112,3 @@ def Tablas():
     }
 
     return Productividad,RiesgosLegales,Fraudes,Robo,Lealtad,Evasion,Ancho_de_banda,Revision_de_politicas,
-#Analisis = Tablas()
-#print(Analisis['Top 10 categorias'])
-#Para clientes:
-#Por filtro web:
-#•	Child abuse
-#•	Discrimination
-#•	Drug abuse
-#•	explicit violence
-#•	Extremist Groups
-#•	Hacking
-#•	Illegal or Unethical
-#•	Plagiarism
-#•	Proxy Avoidance
-#•	Abortion
-#•	Dating
-#•	Gambling
-#•	Marijuana
-#•	Nudity and Risque
-#•	Sports Hunting and War Games
-#•	Tobacco
-#•	Weapons(Sales)
-#•	Malicious Websites
-#•	Phishing
-#•	Spam URLs
-#•	Job search
-#Por aplicación:
-#•	Proxy
