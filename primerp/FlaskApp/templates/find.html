@@ -1,28 +1,36 @@
-{% extends "base.html"%}
+<!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      </head>
+      <body>
+        <p>Hola {encargado.consulta}</p>
+        <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
+          es el monitoreo diario de su equipo, el dia de hoy {fecha}, a las {tiempo} se detecto el ingreso a {hostname}, nuestro analisis arrojo que es un sitio de publicidad
+        a continuacion se muestra la información más detallada:</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>IP</th>
+              <th>Host</th>
+              <th>Bytes recibidos</th>
+              <th>Bytes enviados</th>
+            </tr>
+          </thead>
+          <tbody>
+            <th scope="row"></th>
+            <td></td>
+          </tbody>
+        </table>
+      <div class="container">
 
-{% block body%}
-<h2>Lista: </h2>
-<br>
-<container>
-<embed src={{graph_data|safe}} type="image/svg+xml" style="max-width:500px">
+      </div>
 
-
-
-        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker1'>
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                                <input type='text' class="form-control" />
-
-
-                            </div>
-                        </div>
-
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#datetimepicker1').datetimepicker();
-                        });
-                    </script>
-</container>
-{%endblock%}
+      </body>
+      </html>

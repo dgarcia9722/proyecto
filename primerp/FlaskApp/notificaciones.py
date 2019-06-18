@@ -12,11 +12,11 @@ def seleccion(diccionario,infoempresa):
     if not 'user' in diccionario:
         diccionario['user']='No disponible '
     if (diccionario.get('catdesc')=='Advertising'):
-        WebEmail2(diccionario,infoempresa)
+        emailAdvertising(diccionario,infoempresa)
 
 
 
-def WebEmail2(diccionario,infoempresa):
+def emailAdvertising(diccionario,infoempresa):
     html = """\
 <!DOCTYPE html>
       <html lang="en">
@@ -52,14 +52,12 @@ def WebEmail2(diccionario,infoempresa):
           </tbody>
         </table>
       <div class="container">
-
       </div>
-
       </body>
       </html>
 
     """.format(infoempresa[0]['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('hostname'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('hostname'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'))
-    #print(diccionario.get('user'))
+    
     print(html)
     envioCorreo(html,infoempresa)
 
