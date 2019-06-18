@@ -10,8 +10,17 @@ mydb = cliente["registros"]
 
 def seleccion(diccionario):
     devname = diccionario.get("devname")
-    infoempresa = mydb.empresas.find({"devname":devname})
-    infoempresa = list(infoempresa)
+    infoempresa = mydb.empresas.find_one({"devname":devname})
+#    infoempresa = list(infoempresa)
+#    print(infoempresa)
+ #   print(len(infoempresa))
+
+#    if not(infoempresa) == None:
+   #     print(infoempresa)
+  #      print(type(infoempresa))
+     #   if not infoempresa[0]['encargado']:
+    #        infoempresa[0]['encargado'] = 'No disponible'
+#       print("hola")
     if not 'user' in diccionario:
         diccionario['user']='No disponible '
     if (diccionario.get('catdesc')=='Advertising'):
@@ -102,7 +111,7 @@ def emailAdvertising(diccionario,infoempresa):
       </body>
       </html>
 
-    """.format(infoempresa[0]['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('hostname'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('hostname'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'))
+    """.format(infoempresa['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('hostname'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('hostname'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'))
 
     print(html)
     #envioCorreo(html,infoempresa)
@@ -250,8 +259,8 @@ def emailProxyapp(diccionario,infoempresa):
       </body>
       </html>
 
-    """.format(infoempresa[0]['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('app'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('app'),diccionario.get('appcat'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'))
-    #envioCorreo(html,infoempresa)
+    """.format(infoempresa['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('app'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('app'),diccionario.get('appcat'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'))
+#    envioCorreo(html,infoempresa)
 
     print(html)
 
@@ -273,8 +282,8 @@ def envioCorreo(html,infoempresa):
     mail.sendmail(user, sendto, msg.as_string())
     mail.quit
 
-diccionarior = {'logver': '56', 'timestamp': '1560549058','tz': 'UTC-5', 'devname': 'PG101E-IMESA', 'devid': 'FG101ETK18004534','vd': 'root', 'date': '2019-06-14', 'time': '16:50:58','logid': '0316013056', 'type': 'utm', 'subtype': 'webfilter','eventtype': 'ftgd blk', 'level': 'warning','eventtime': '1560549058', 'policyid': '4','sessionid': '69872110', 'srcip': '192.168.1.53','srcport': '53914', 'srcintf': 'LAN','srcintfrole': 'lan', 'dstip': '104.254.150.108','dstport': '443', 'dstintf':'wan2', 'dstintfrole': 'wan','proto': '6', 'service': 'PING', 'hostname': 'm.adnxs.com', 'profile': 'default', 'action': 'blocked', 'reqtype': 'direct', 'url': '/', 'sentbyte': 517, 'rcvdbyte': 0, 'direction': 'outgoing', 'msg': 'URL belongs to a denied category in policy', 'method': 'domain', 'cat': '17', 'catdesc': 'Child Abuse ', 'crscore': '30', 'crlevel': 'high '}
-diccionario = {'appcat':'Proxy','app':'Turbo.VPN','logver': '56', 'timestamp': '1560549058','tz': 'UTC-5', 'devname': 'PG101E-IMESA', 'devid': 'FG101ETK18004534','vd': 'root', 'date': '2019-06-14', 'time': '16:50:58','logid': '0316013056', 'type': 'utm', 'subtype': 'webfilter','eventtype': 'ftgd blk', 'level': 'warning','eventtime': '1560549058', 'policyid': '4','sessionid': '69872110', 'srcip': '192.168.1.53','srcport': '53914', 'srcintf': 'LAN','srcintfrole': 'lan', 'dstip': '104.254.150.108','dstport': '443', 'dstintf':'wan2', 'dstintfrole': 'wan','proto': '6', 'service': 'PING', 'hostname': 'm.adnxs.com', 'profile': 'default', 'action': 'blocked', 'reqtype': 'direct', 'url': '/', 'sentbyte': 517, 'rcvdbyte': 0, 'direction': 'outgoing', 'msg': 'URL belongs to a denied category in policy', 'method': 'domain', 'cat': '17', 'crscore': '30', 'crlevel': 'high '}
+#diccionarior = {'logver': '56', 'timestamp': '1560549058','tz': 'UTC-5', 'devname': 'PG101E-IMESA', 'devid': 'FG101ETK18004534','vd': 'root', 'date': '2019-06-14', 'time': '16:50:58','logid': '0316013056', 'type': 'utm', 'subtype': 'webfilter','eventtype': 'ftgd blk', 'level': 'warning','eventtime': '1560549058', 'policyid': '4','sessionid': '69872110', 'srcip': '192.168.1.53','srcport': '53914', 'srcintf': 'LAN','srcintfrole': 'lan', 'dstip': '104.254.150.108','dstport': '443', 'dstintf':'wan2', 'dstintfrole': 'wan','proto': '6', 'service': 'PING', 'hostname': 'm.adnxs.com', 'profile': 'default', 'action': 'blocked', 'reqtype': 'direct', 'url': '/', 'sentbyte': 517, 'rcvdbyte': 0, 'direction': 'outgoing', 'msg': 'URL belongs to a denied category in policy', 'method': 'domain', 'cat': '17', 'catdesc': 'Child Abuse ', 'crscore': '30', 'crlevel': 'high '}
+#diccionario = {'appcat':'Proxy','app':'Turbo.VPN','logver': '56', 'timestamp': '1560549058','tz': 'UTC-5', 'devname': 'PG101E-IMESA', 'devid': 'FG101ETK18004534','vd': 'root', 'date': '2019-06-14', 'time': '16:50:58','logid': '0316013056', 'type': 'utm', 'subtype': 'webfilter','eventtype': 'ftgd blk', 'level': 'warning','eventtime': '1560549058', 'policyid': '4','sessionid': '69872110', 'srcip': '192.168.1.53','srcport': '53914', 'srcintf': 'LAN','srcintfrole': 'lan', 'dstip': '104.254.150.108','dstport': '443', 'dstintf':'wan2', 'dstintfrole': 'wan','proto': '6', 'service': 'PING', 'hostname': 'm.adnxs.com', 'profile': 'default', 'action': 'blocked', 'reqtype': 'direct', 'url': '/', 'sentbyte': 517, 'rcvdbyte': 0, 'direction': 'outgoing', 'msg': 'URL belongs to a denied category in policy', 'method': 'domain', 'cat': '17', 'crscore': '30', 'crlevel': 'high '}
 
 
-seleccion(diccionario)
+#seleccion(diccionario)

@@ -1,3 +1,4 @@
+##### HOLA #######
 import os
 import time
 import re
@@ -54,6 +55,7 @@ for data in loglines:
     for e in data:
         full_data.append(e.split("="))
     for e in range (4,len(full_data)):
+        full_data[e][0] = full_data[e][0].replace('.',' ')
 
         if full_data[e][0]=='sentbyte':
 #            valor = "{'"+full_data[e][0]+"':"+full_data[e][1]+"}"
@@ -68,13 +70,11 @@ for data in loglines:
                 valor = '{"'+full_data[e][0]+'":"'+full_data[e][1]+'"}'
         valor = valor.replace('\n',' ')
         valor = valor.replace('_',' ')
-        valor = valor.replace('.',' ')
+        #valor = valor.replace('.',' ')
         vcast = ast.literal_eval(valor)
         diccionario.update(vcast)
 #    print(diccionario)
-    qdict = ['logver','timestamp','tz','devid','vd','logtime','policyid','sessionid','srcintf','srcintfrole','dstintf','dstintfrole','proto','profile','reqtype','direct
-ion','method','cat','cookies','itime','vdid','xauthuser','group','xauthgroup','remport','locport','itime_t','outintf','sentdelta','rcvddelta','dstserver','wanin','wanou
-t','lanin','lanout','countweb','countapp','crscore','craction','srcssid','apsn','ap','channel','radioband']
+    qdict = ['logver','timestamp','tz','devid','vd','logtime','policyid','sessionid','srcintf','srcintfrole','dstintf','dstintfrole','proto','profile','reqtype','direction','method','cat','cookies','itime','vdid','xauthuser','group','xauthgroup','remport','locport','itime_t','outintf','sentdelta','rcvddelta','dstserver','wanin','wanout','lanin','lanout','countweb','countapp','crscore','craction','srcssid','apsn','ap','channel','radioband']
 
     for q in qdict:
         try:
@@ -82,9 +82,9 @@ t','lanin','lanout','countweb','countapp','crscore','craction','srcssid','apsn',
         except:
             pass
     
-    if diccionario.get('catdesc') == 'Web-based Email ':
-        print(diccionario.get('catdesc'))
-
+#    if diccionario.get('catdesc') == 'Web-based Email ':
+ #       print(diccionario.get('catdesc'))
+    seleccion(diccionario)
     insercion = coleccion.insert_one(diccionario)
 f.close()
 
