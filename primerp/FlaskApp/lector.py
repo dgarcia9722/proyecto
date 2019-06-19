@@ -81,10 +81,10 @@ for data in loglines:
             diccionario.pop(q)
         except:
             pass
-    
+
 #    if diccionario.get('catdesc') == 'Web-based Email ':
  #       print(diccionario.get('catdesc'))
-#    seleccion(diccionario)
+    seleccion(diccionario)
     insercion = coleccion.insert_one(diccionario)
 f.close()
 
