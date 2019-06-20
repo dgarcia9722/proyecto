@@ -20,11 +20,28 @@ head = """\
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
   """
+virusp = {
+    "tr":"""<p>El tipo de virus que se detecto es del tipo troyano, un virus troyano es un tipo de malware que a menudo se disfraza de software legitimo, el atacante puede realizar actividades sin el consentimiento del usuario<p>""",
+    "bdr":""" <p>El tipo de virus que se detecto es del tipo backdoor, esto quiere decir que permite el acceso al sistema de forma remota permitiendole al atacante realizar lo que quiera.""",
+    "tr.ransom": "<p>El tipo de virus que se detecto es del tipo ransonware, este tipo de virus impide al usuario a acceder a su sistema, usualmente bloquea la pantalla o encripta la información del usuario, para liberar la información el atacante pide un pago, usualmente en alguna criptomoneda." ,
+    "tr.spy":"<p>El tipo de virus que se detecto es un troyano espia, este tiene la capacidad de robar información del usuario sin su consentimiento y mandarla al atacante. ",
+    "tr.pwd":"<p>El tipo de virus que se detecto es un troyano que se dedica a robar contraseñas, este busca contraseñas guardadas en el sistema y las manda al atacante.",
+    "tr.dldr":"<p>El tipo de virus es un troyano, este se enfoca en descargar archivos maliciosos o en actualizarse.",
+    "default":'<p>El tipo de virus que se detecto es un software malicioso que que busca comprometer la seguridad de nuestro equipo<p>'
+}
+
+virusc = {
+    "exploit":'<p>El tipo de virus que se detecto es un software malicioso que toma ventaja de alguna vulnerabilidad de nuestro sistema, el atacante puede habilitar el acceso remoto a nuestro equipo y asi hacer lo que sea.<p>',
+    "exploita":'<p>El tipo de virus que se detecto es un software malicioso que toma ventaja de alguna vulnerabilidad de nuestro sistema, el atacante puede habilitar el acceso remoto a nuestro equipo y asi hacer lo que sea.<p>',
+    "default":'<p>El tipo de virus que se detecto es un software malicioso que que busca comprometer la seguridad de nuestro equipo<p>'
+}
+
+
+
 
 def seleccion(diccionario):
     devname = diccionario.get("devname")
     infoempresa = mydb.empresas.find_one({"devname":devname})
-
     if not 'user' in diccionario:
         diccionario['user']='No disponible '
     if (diccionario.get('catdesc')=='Advertising'):
@@ -80,6 +97,11 @@ def seleccion(diccionario):
             emailJobsearch(diccionario,infoempresa)
     if (diccionario.get('appcat')=='Proxy'):
         emailProxyapp(diccionario,infoempresa)
+    if (diccionario.get('subtype')=='Virus'):
+        if(diccionario.get('service')=='POP3'):
+            emailVirusmail(diccionario,infoempresa)
+        if(diccionario.get('service')=='HTTP'):
+            emailVirushttp(diccionario,infoempresa)
 
 
 
@@ -1177,9 +1199,137 @@ def emailProxyapp(diccionario,infoempresa):
       </html>
 
     """.format(infoempresa['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('app'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('app'),diccionario.get('appcat'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'),accion)
-#    envioCorreo(html,infoempresa)
+    envioCorreo(html,infoempresa)
 
     print(html)
+
+def emailVirushttp(diccionario,infoempresa):
+    accion = "<p>Gracias a nuestro servicio el virus fue bloqueado exitosamente.</p>"
+    virus = diccionario.get('Virus')
+    tvirus = virus.split('!')
+    for element in virusp.keys():
+        if element==tvirus[len(tvirus)-1]:
+            virusr = virusp.get(element)
+            break
+            print(virusr)
+        else:
+            virusr = virusp.get('default')
+
+    html = """\
+<!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      </head>
+      <body>
+        <p>Hola {}</p>
+        <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
+          es el monitoreo diario de su equipo, el dia de hoy {}, a las {} se hizo la detección del virus con nombre: {} , el virus llego
+          atraves del sitio {}. {}
+          </p>
+        <p>A continuacion se muestra la información más detallada:</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>IP</th>
+              <th>Virus</th>
+              <th>Sitio</th>
+              <th>Bytes recibidos</th>
+              <th>Bytes enviados</th>
+            </tr>
+          </thead>
+          <tbody>
+            <th scope="row">{}</th>
+            <td>{}</td>
+            <td>{}</td>
+            <td>{}</td>
+            <td>{}</td>
+            <td>{}</td>
+          </tbody>
+        </table>
+        <p>{}</p>
+                <p>Cualquier duda o comentario estamos a sus ordenes</p>
+                <p>Saludos cordiales </p>
+      <div class="container">
+      </div>
+      </body>
+      </html>
+
+    """.format(infoempresa['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('virus'),diccionario.get('url'),virusr,diccionario.get('user'),diccionario.get('srcip'),diccionario.get('virus'),diccionario.get('url'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'),accion)
+    envioCorreo(html,infoempresa)
+
+def emailVirusmail(diccionario,infoempresa):
+    accion = "<p>Gracias a nuestro servicio el virus fue bloqueado exitosamente.</p>"
+    virus = diccionario.get('virus')
+    tvirus = virus.split('!')
+    if not 'from' in diccionario:
+        diccionario['from']='No disponible '
+    if not 'recipient' in diccionario:
+        diccionario['recipient']='No disponible '
+
+    for element in virusc.keys():
+        if element==tvirus[len(tvirus)-1]:
+            virusr = virusc.get(element)
+            break
+            print(virusr)
+        else:
+            virusr = virusc.get('default')
+    print(virusr)
+    html = """\
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      </head>
+      <body>
+        <p>Hola</p>
+        <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
+          es el monitoreo diario de su equipo, el dia de hoy {}, a las {} se hizo la detección del virus con nombre: {} , el virus llego
+          atraves del sitio {}. {}
+          </p>
+        <p>A continuacion se muestra la información más detallada:</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>IP</th>
+              <th>Virus</th>
+              <th>Sitio</th>
+              <th>Emisor</th>
+              <th>Receptor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <th scope="row">{}</th>
+            <td>{}</td>
+            <td>{}</td>
+            <td>{}</td>
+            <td>{}</td>
+            <td>{}</td>
+          </tbody>
+        </table>
+        <p>{}</p>
+                <p>Cualquier duda o comentario estamos a sus ordenes</p>
+                <p>Saludos cordiales </p>
+      <div class="container">
+      </div>
+      </body>
+      </html>
+
+    """.format(diccionario.get('date'),diccionario.get('time'),diccionario.get('virus'),diccionario.get('url'),virusr,diccionario.get('user'),diccionario.get('srcip'),diccionario.get('virus'),diccionario.get('url'),diccionario.get('from'),diccionario.get('recipient'),accion)
+
+
 
 def envioCorreo(html,infoempresa):
     #sendto = infoempresa[0]['email']
@@ -1198,6 +1348,7 @@ def envioCorreo(html,infoempresa):
     mail.login(user, password)
     mail.sendmail(user, sendto, msg.as_string())
     mail.quit
+
 
 #diccionarior = {'logver': '56', 'timestamp': '1560549058','tz': 'UTC-5', 'devname': 'PG101E-IMESA', 'devid': 'FG101ETK18004534','vd': 'root', 'date': '2019-06-14', 'time': '16:50:58','logid': '0316013056', 'type': 'utm', 'subtype': 'webfilter','eventtype': 'ftgd blk', 'level': 'warning','eventtime': '1560549058', 'policyid': '4','sessionid': '69872110', 'srcip': '192.168.1.53','srcport': '53914', 'srcintf': 'LAN','srcintfrole': 'lan', 'dstip': '104.254.150.108','dstport': '443', 'dstintf':'wan2', 'dstintfrole': 'wan','proto': '6', 'service': 'PING', 'hostname': 'm.adnxs.com', 'profile': 'default', 'action': 'blocked', 'reqtype': 'direct', 'url': '/', 'sentbyte': 517, 'rcvdbyte': 0, 'direction': 'outgoing', 'msg': 'URL belongs to a denied category in policy', 'method': 'domain', 'cat': '17', 'catdesc': 'Child Abuse ', 'crscore': '30', 'crlevel': 'high '}
 #diccionario = {'appcat':'Proxy','app':'Turbo.VPN','logver': '56', 'timestamp': '1560549058','tz': 'UTC-5', 'devname': 'PG101E-IMESA', 'devid': 'FG101ETK18004534','vd': 'root', 'date': '2019-06-14', 'time': '16:50:58','logid': '0316013056', 'type': 'utm', 'subtype': 'webfilter','eventtype': 'ftgd blk', 'level': 'warning','eventtime': '1560549058', 'policyid': '4','sessionid': '69872110', 'srcip': '192.168.1.53','srcport': '53914', 'srcintf': 'LAN','srcintfrole': 'lan', 'dstip': '104.254.150.108','dstport': '443', 'dstintf':'wan2', 'dstintfrole': 'wan','proto': '6', 'service': 'PING', 'hostname': 'm.adnxs.com', 'profile': 'default', 'action': 'blocked', 'reqtype': 'direct', 'url': '/', 'sentbyte': 517, 'rcvdbyte': 0, 'direction': 'outgoing', 'msg': 'URL belongs to a denied category in policy', 'method': 'domain', 'cat': '17', 'crscore': '30', 'crlevel': 'high '}

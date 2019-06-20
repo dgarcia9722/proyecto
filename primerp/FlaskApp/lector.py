@@ -27,19 +27,10 @@ loglines = follow(f)
 
 
 for data in loglines:
-#    print(data)
-   # s = re.findall('"(.*?)"', data)
-    #for i in range(len(s)):
-     #   texto = s[i].replace(":", " ")
-      #  data = data.replace(s[i], texto)
-
     s = re.findall('"(.*?)"', data)
     for i in range(len(s)):
         texto = s[i].replace(" ","_")
- #       print(texto)
-  #      print(s[i])
         data = data.replace('"'+s[i]+'"', texto)
-   #     print(data)
 
     s = re.findall('"(.*?)"', data)
     for i in range(len(s)):
@@ -51,39 +42,37 @@ for data in loglines:
     full_data = []
     diccionario = {}
     x = []
-#    print(data)
     for e in data:
         full_data.append(e.split("="))
     for e in range (4,len(full_data)):
         full_data[e][0] = full_data[e][0].replace('.',' ')
-
         if full_data[e][0]=='sentbyte':
-#            valor = "{'"+full_data[e][0]+"':"+full_data[e][1]+"}"
             valor = '{"'+full_data[e][0]+'":'+full_data[e][1]+'}'
         else:
-
             if full_data[e][0]=='rcvdbyte':
-#                valor = "{'"+full_data[e][0]+"':"+full_data[e][1]+"}"
                 valor = '{"'+full_data[e][0]+'":'+full_data[e][1]+'}'
             else:
-#                valor = "{'"+full_data[e][0]+"':'"+full_data[e][1]+"'}"
-                valor = '{"'+full_data[e][0]+'":"'+full_data[e][1]+'"}'
+                if full_data[e][0]=='duration':
+                    valor = '{"'+full_data[e][0]+'":'+full_data[e][1]+'}'
+                else:
+                    valor = '{"'+full_data[e][0]+'":"'+full_data[e][1]+'"}'
         valor = valor.replace('\n',' ')
         valor = valor.replace('_',' ')
-        #valor = valor.replace('.',' ')
         vcast = ast.literal_eval(valor)
         diccionario.update(vcast)
-#    print(diccionario)
-    qdict = ['logver','timestamp','tz','devid','vd','logtime','policyid','sessionid','srcintf','srcintfrole','dstintf','dstintfrole','proto','profile','reqtype','direction','method','cat','cookies','itime','vdid','xauthuser','group','xauthgroup','remport','locport','itime_t','outintf','sentdelta','rcvddelta','dstserver','wanin','wanout','lanin','lanout','countweb','countapp','crscore','craction','srcssid','apsn','ap','channel','radioband']
 
+    qdict = ['logver','timestamp','tz','devid','vd','logtime','policyid','sessionid','srcintf','srcintfrole','dstintf','dstintfrole','proto','profile','reqtype','direction','method','cat','cookies','itime','vdid','xauthuser','group','xauthgroup','remport','locport','itime_t','outintf','sentdelta','rcvddelta','dstserver','wanin','wanout','lanin','lanout','countweb','countapp','crscore','craction','srcssid','apsn','ap','channel','radioband']
     for q in qdict:
         try:
             diccionario.pop(q)
         except:
             pass
+<<<<<<< HEAD
 
 #    if diccionario.get('catdesc') == 'Web-based Email ':
  #       print(diccionario.get('catdesc'))
+=======
+>>>>>>> 55471788c015fb52764a5c1d1795ed71db2f776c
     seleccion(diccionario)
     insercion = coleccion.insert_one(diccionario)
 f.close()
