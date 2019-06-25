@@ -42,6 +42,10 @@ virusc = {
 def seleccion(diccionario):
     devname = diccionario.get("devname")
     infoempresa = mydb.empresas.find_one({"devname":devname})
+    if diccionario.get("sentbyte")==None:
+        diccionario['sentbyte'] = 0
+    if diccionario.get("rcvdbyte")==None:
+        diccionario['rcvdbyte'] = 0
     if not 'user' in diccionario:
         diccionario['user']='No disponible '
     if (diccionario.get('catdesc')=='Advertising'):
@@ -117,7 +121,7 @@ def emailAdvertising(diccionario,infoempresa):
         <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
           es el monitoreo diario de su equipo, el dia de hoy {}, a las {} se detecto el ingreso a {}, nuestro analisis arrojo que es un sitio de publicidad
         a continuacion se muestra la información más detallada:</p>
-        <table class="table">
+        <table class="table table-bordered">
           <thead>
             <tr>
               <th>Usuario</th>
@@ -159,7 +163,7 @@ def emailChildabuse(diccionario,infoempresa):
         <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
           es el monitoreo diario de su equipo, el dia de hoy {}, a las {} se detecto el ingreso a {}, nuestro analisis arrojo que es un sitio con contenido referente a abuso infantil, este sitio ha sido verificado por la asociacion reguladora de internet, este sitio puede meter en problemas legales a la compañia dado que es un sitio ilegal. </p>
         <p>A continuacion se muestra la información más detallada:</p>
-        <table class="table">
+        <table class="table table-bordered">
           <thead>
             <tr>
               <th>Usuario</th>
@@ -208,7 +212,7 @@ def emailDiscrimination(diccionario,infoempresa):
                <li>Superioridad de cualquier grupo</li>
              </ul>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -261,7 +265,7 @@ def emailDrugabuse(diccionario,infoempresa):
                <li>Distribución</li>
              </ul>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -316,7 +320,7 @@ def emailViolence(diccionario,infoempresa):
                <li>Muerte</li>
              </ul>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -368,7 +372,7 @@ def emailExgroups(diccionario,infoempresa):
                <li>Movimientos religiosos </li>
              </ul>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -420,7 +424,7 @@ def emailHacking(diccionario,infoempresa):
              </ul>
              <p>Todo esto con el fin de sacar provecho de la información obtenida a partir de lo anterior.
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -473,7 +477,7 @@ def emailIllegalorunethical(diccionario,infoempresa):
                <li>Chantajes</li>
              </ul>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -523,7 +527,7 @@ def emailPlagiarism(diccionario,infoempresa):
                <li>Diplomas</li>
              </ul>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -569,7 +573,7 @@ def emailProxyav(diccionario,infoempresa):
              que provee información o herramientas en como burlar la seguridad del equipo PG Guru mediante el uso de Proxy. </p>
 
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -614,7 +618,7 @@ def emailAbortion(diccionario,infoempresa):
              contenido sensible(aborto). </p>
 
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -664,7 +668,7 @@ def emailDating(diccionario,infoempresa):
                <li>Relaciones de ambito sexual</li>
              </ul>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -715,7 +719,7 @@ def emailGambling(diccionario,infoempresa):
                <li>Casinos </li>
              </ul>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -761,7 +765,7 @@ def emailMarijuana(diccionario,infoempresa):
              informacion acerca la cultivación, preparación y uso de marihuana </p>
 
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -808,7 +812,7 @@ def emailNudityrisque(diccionario,infoempresa):
              contenido adulto(18+), esto puede ser desnudez parcial o total pero sin insinuación sexual. </p>
 
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -860,7 +864,7 @@ def emailSportsHunting(diccionario,infoempresa):
              </ul>
              <p>Ademas de grupos, clubs y organizaciones relacionados a los puntos anteriores.</p>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -907,7 +911,7 @@ def emailWeapons(diccionario,infoempresa):
              es el monitoreo diario de su equipo, el dia de hoy {}, a las {} se detecto el ingreso a {}, nuestro analisis arrojo que es un
              sitio relacionado a venta de armamento, esto puede ser de forma legal o ilegal, abarcando la venta de pistolas, rifles, etc. </p>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -960,7 +964,7 @@ def emailMaliciouswebsites(diccionario,infoempresa):
              </ul>
              <p>Todo lo anterior sin el consentimiento del usuario.
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -1011,7 +1015,7 @@ def emailPhishing(diccionario,infoempresa):
                <li>Redes sociales </li>
              </ul>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -1063,7 +1067,7 @@ def emailSpamurls(diccionario,infoempresa):
                <li>Material ofensivo </li>
              </ul>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -1115,7 +1119,7 @@ def emailJobsearch(diccionario,infoempresa):
                <li>Servicios de consultoria </li>
              </ul>
            <p>A continuacion se muestra la información más detallada:</p>
-           <table class="table">
+           <table class="table table-bordered">
              <thead>
                <tr>
                  <th>Usuario</th>
@@ -1170,7 +1174,7 @@ def emailProxyapp(diccionario,infoempresa):
         <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
           es el monitoreo diario de su equipo, el dia de hoy {}, a las {} se detecto el uso de la aplicación {}, nuestro analisis arrojo que es una aplicación Proxy. Esta aplicación sirve para evadir la seguridad de la red.</p>
         <p>A continuacion se muestra la información más detallada:</p>
-        <table class="table">
+        <table class="table table-bordered">
           <thead>
             <tr>
               <th>Usuario</th>
@@ -1233,7 +1237,7 @@ def emailVirushttp(diccionario,infoempresa):
           atraves del sitio {}. {}
           </p>
         <p>A continuacion se muestra la información más detallada:</p>
-        <table class="table">
+        <table class="table table-bordered">
           <thead>
             <tr>
               <th>Usuario</th>
@@ -1299,7 +1303,7 @@ def emailVirusmail(diccionario,infoempresa):
           atraves del sitio {}. {}
           </p>
         <p>A continuacion se muestra la información más detallada:</p>
-        <table class="table">
+        <table class="table table-bordered">
           <thead>
             <tr>
               <th>Usuario</th>
@@ -1337,7 +1341,7 @@ def envioCorreo(html,infoempresa):
     user = 'allan.salinas.ramirez@gmail.com'
     password = 'Reflektor94'
     msg = MIMEMultipart('Alternative')
-    msg['Subject'] = "Notificacion prueba"
+    msg['Subject'] = "Notificacion AISEC"
     msg['From'] = user
     msg['To'] = sendto
     part1 = MIMEText(html,'html')
