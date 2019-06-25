@@ -5,12 +5,11 @@ import pprint
 
 
 #client = MongoClient('mongodb://asalinas:RealNet2019@172.16.11.20:27017/registros')
-client = MongoClient('mongodb://asalinas:RealNet2019@172.16.11.20:27017/')
+client = MongoClient('mongodb://172.16.11.20:27017/')
 
 db = client.registros
 def functQuery(titulo,result,graph):
     result = list(result)
-
     if (len(result)>1):
         if result[0] == 'DNS':
             n1 = result[0]

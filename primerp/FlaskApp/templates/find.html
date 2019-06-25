@@ -1,42 +1,75 @@
-<!DOCTYPE html><html lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Bootstrap Example</title>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-      </head>
-      <body>
-        <p>Hola  </p>
-        <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
-          es el monitoreo diario de su equipo, el dia de hoy 2019-06-19, a las 15:51:41 se detecto el uso de la aplicación Proxy.HTTP, nuestro analisis arrojo que es una aplicación Proxy. Esta aplicación sirve para evadir la seguridad de la red.</p>
-        <p>A continuacion se muestra la información más detallada:</p>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Usuario</th>
-              <th>IP</th>
-              <th>Aplicación</th>
-              <th>Tipo</th>
-              <th>Bytes recibidos</th>
-              <th>Bytes enviados</th>
-            </tr>
-          </thead>
-          <tbody>
-            <th scope="row">No disponible </th>
-            <td>192.168.20.10</td>
-            <td>Proxy.HTTP</td>
-            <td>Proxy</td>
-            <td>None</td>
-            <td>None</td>
-          </tbody>
-        </table>
-        <p><p>Gracias a nuestro servicio esta página fue bloqueada exitosamente.</p>
-                <p>Cualquier duda o comentario estamos a sus ordenes</p>
-                <p>Saludos cordiales </p>
-      <div class="container">
+    <meta charset="utf-8">
+  <!--  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+         Bootstrap CSS -->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="C:/Users/asalinas/PycharmProjects/flask/proyecto/primerp/primerp/FlaskApp/static/own.css" >
+
+    <title></title>
+  </head>
+  <body>
+    <div class="wrapper" display:block;>
+
+        <div class="row">
+          <div class="col-xs-1">
+          </div>
+          <div class="col-xs-10">
+            <h2>Reporte Productivity Guru</h2>
+            <p>Hola</p>
+            <p>{{dempresa['encargado']}}</p>
+            <p>Salto</p>
+            <embed src={{grafica1[0]|safe}} type="image/svg+xml" style=" max-width:800px" >
+            <div class="row" id="salto" style="page-break-before:always;">
+              <div class="col-xs-6">
+                <h3>Lado izquierdo</h3>
+              </div>
+
+              <div class="col-xs-6">
+                <h3>Lado derecho</h3>
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+    </div>
+    <p id="salto"> </p>
+    <div class="row">
+      <div class="col-xs-1">
+
+        <br>
       </div>
-      </body>
-      </html>
+      <div class="col-xs-10">
+        <h2>Reporte Productivity Guru</h2>
+        <p>Hola</p>
+<br><br>
+        <p>{{dempresa['encargado']}}</p>
+        <p>Salto</p>
+        <div class="row" id="salto" style="page-break-before:always;">
+          <div class="col-xs-6">
+            <h3>Lado izquierdo</h3>
+          </div>
 
-    
+          <div class="col-xs-6">
+            <h3>Lado derecho</h3>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

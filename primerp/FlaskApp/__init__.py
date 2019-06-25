@@ -7,7 +7,7 @@ from funciones import *
 
 app = Flask(__name__)
 Bootstrap(app)
-app.secret_key = 'flaashhh'
+app.secret_key = 'RealNet2019'
 Puntos = content()
 dEmpresa = datosEmpresa()
 dTablas = Tablas()
