@@ -31,8 +31,8 @@ def analisis():
         grafica2=graph_2,
         )
     else:
-        fechai = "2018-05-23"
-        fechaf = "2020-05-29"
+        fechai = "2019-01-01"
+        fechaf = "2020-01-01"
         empresa = "FG-Rhino-CDMX"
         graph = graph_1(fechai, fechaf,empresa)
         graph_2 = tb1_prod(fechai,fechaf,empresa)
@@ -69,7 +69,7 @@ def productividad():
         )
     else:
         fechai = "2019-01-01"
-        fechaf = "2019-12-31"
+        fechaf = "2020-01-01"
         empresa = "FG-Rhino-CDMX"
         graph = graph_1(fechai, fechaf,empresa)
         graph_2 = tb1_prod(fechai,fechaf,empresa)
