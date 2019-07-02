@@ -15,24 +15,18 @@
   <body>
     <div class="wrapper" display:block;>
 
-        <div class="row">
+        <div class="row"> <!-- caratula -->
           <div class="col-xs-1">
           </div>
           <div class="col-xs-10">
-            <h2>Reporte Productivity Guru</h2>
-            <p>Hola</p>
-            <p>{{dempresa['encargado']}}</p>
-            <p>Salto</p>
-            <embed src={{grafica1[0]|safe}} type="image/svg+xml" style=" max-width:800px" >
+            <h1>Reporte Productivity Guru</h1>
+            <h3 class="text-right">{{dempresa['devname']}}</h4>
+            <h3 class="text-right">Elaborado para: {{dempresa['encargado']}}</h4>
+            <br><br><br>
+            <img src="{{dempresa['logo']}}" style="width:850px; height:650;" alt="">
             <div class="row" id="salto" style="page-break-before:always;">
-              <div class="col-xs-6">
-                <h3>Lado izquierdo</h3>
-              </div>
-
-              <div class="col-xs-6">
-                <h3>Lado derecho</h3>
-              </div>
-
+              <h3 class="text-center">Fecha: {{diah}}</h3>
+              <h3 class="text-center">Periodo: {{diah}} - {{diam}}  </h4>
             </div>
 
 
@@ -40,32 +34,175 @@
 
         </div>
 
-    </div>
+
+
     <p id="salto"> </p>
-    <div class="row">
+
+
+    <div class="row"><!-- Tabla de contenidos -->
       <div class="col-xs-1">
 
         <br>
       </div>
       <div class="col-xs-10">
-        <h2>Reporte Productivity Guru</h2>
-        <p>Hola</p>
-<br><br>
-        <p>{{dempresa['encargado']}}</p>
-        <p>Salto</p>
         <div class="row" id="salto" style="page-break-before:always;">
-          <div class="col-xs-6">
-            <h3>Lado izquierdo</h3>
-          </div>
+          <h1>Tabla de contenidos.</h1>
+          <ul class="list-unstyled component">
+            {% for i in range(10)%}
+              <h4><a href="#{{puntos[1]['idpuntos'][i]}}">- {{puntos[0]['puntos'][i]}}</a></h4>
+              <br>
 
-          <div class="col-xs-6">
-            <h3>Lado derecho</h3>
-          </div>
+            {%endfor%}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="{{puntos[1]['idpuntos'][0]}}"><!-- Analisis-->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>{{puntos[0]['puntos'][0]}}</h1>
+        <p>Productivity Gurú, es un sistema con el que apoyamos a las empresas a ser más productivas, eficientes y a disminuir gastos operativos para aumentar la rentabilidad de la empresa.
+Es en base a la experiencia que RealNet brinda en sus servicios de asesoramiento y soluciones por medio de recursos TI, asesorando y administrando las redes de sus clientes con tecnologías de vanguardia que resulten confiables, económicas y flexibles para enfrentarse a los retos del mercado actual.
+El objetivo principal de este reporte es, mostrar el comportamiento de los usuarios en internet de la empresa {{dempresa['nombre']}}. </p>
+
+
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="{{puntos[1]['idpuntos'][1]}}"><!-- Productividad -->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>{{puntos[0]['puntos'][1]}}</h1>
+        <p>Hola</p>
+        <div class="row">
+          <p>{{pd4}}</p>
+          <p>Imagen 1</p>
+          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\pd1.png" alt="">
+          <p>Imagen 2</p>
+          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\pd2.png" alt="">
 
         </div>
 
 
       </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="{{puntos[1]['idpuntos'][2]}}"><!-- Riesgos legales -->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>{{puntos[0]['puntos'][2]}}</h1>
+        <p>Hola</p>
+        <div class="row">
+          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+        </div>
+
+
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="{{puntos[1]['idpuntos'][3]}}"><!-- Fraudes -->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>{{puntos[0]['puntos'][3]}}</h1>
+        <p>Hola</p>
+        <div class="row">
+          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+        </div>
+
+
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="{{puntos[1]['idpuntos'][4]}}"><!-- Robo de informacion-->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>{{puntos[0]['puntos'][4]}}</h1>
+        <p>Hola</p>
+        <div class="row">
+          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+        </div>
+
+
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="{{puntos[1]['idpuntos'][5]}}"><!-- Lealtad -->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>{{puntos[0]['puntos'][5]}}</h1>
+        <p>Hola</p>
+        <div class="row">
+          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+        </div>
+
+
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="{{puntos[1]['idpuntos'][6]}}"><!-- Evasion-->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>{{puntos[0]['puntos'][6]}}</h1>
+        <p>Hola</p>
+        <div class="row">
+          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+        </div>
+
+
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="{{puntos[1]['idpuntos'][7]}}"><!-- Ancho de banda -->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>{{puntos[0]['puntos'][7]}}</h1>
+        <p>Hola</p>
+        <div class="row">
+          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+        </div>
+
+
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="{{puntos[1]['idpuntos'][8]}}"><!-- Revision de politicas -->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>{{puntos[0]['puntos'][8]}}</h1>
+        <p>Hola</p>
+        <div class="row">
+          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+        </div>
+
+
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" ><!-- Reportes -->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1 id="{{puntos[1]['idpuntos'][9]}}">{{puntos[0]['puntos'][9]}}</h1>
+        <p>Hola</p>
+        <div class="row">
+        </div>
+
+
+      </div>
+    </div>
+
+
+
 
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
