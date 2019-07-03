@@ -101,12 +101,13 @@ def seleccion(diccionario):
             emailJobsearch(diccionario,infoempresa)
     if (diccionario.get('appcat')=='Proxy'):
         emailProxyapp(diccionario,infoempresa)
-    if (diccionario.get('subtype')=='Virus'):
+    if (diccionario.get('subtype')=='virus'):
         if(diccionario.get('service')=='POP3'):
             emailVirusmail(diccionario,infoempresa)
+            print(diccionario)
         if(diccionario.get('service')=='HTTP'):
             emailVirushttp(diccionario,infoempresa)
-
+            print(diccionario)
 
 
 
@@ -149,7 +150,7 @@ def emailAdvertising(diccionario,infoempresa):
 
     #print(html)
     html = head+body
-    #envioCorreo(html,infoempresa)
+	    #envioCorreo(html,infoempresa)
 
 def emailChildabuse(diccionario,infoempresa):
     if diccionario.get('action')=='blocked':
@@ -1203,13 +1204,14 @@ def emailProxyapp(diccionario,infoempresa):
       </html>
 
     """.format(infoempresa['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('app'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('app'),diccionario.get('appcat'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'),accion)
-    envioCorreo(html,infoempresa)
+#    envioCorreo(html,infoempresa)
 
     print(html)
 
 def emailVirushttp(diccionario,infoempresa):
     accion = "<p>Gracias a nuestro servicio el virus fue bloqueado exitosamente.</p>"
-    virus = diccionario.get('Virus')
+    virus = diccionario.get('virus')
+
     tvirus = virus.split('!')
     for element in virusp.keys():
         if element==tvirus[len(tvirus)-1]:
@@ -1271,6 +1273,7 @@ def emailVirushttp(diccionario,infoempresa):
 def emailVirusmail(diccionario,infoempresa):
     accion = "<p>Gracias a nuestro servicio el virus fue bloqueado exitosamente.</p>"
     virus = diccionario.get('virus')
+    print(virus)
     tvirus = virus.split('!')
     if not 'from' in diccionario:
         diccionario['from']='No disponible '
@@ -1331,7 +1334,9 @@ def emailVirusmail(diccionario,infoempresa):
       </body>
       </html>
 
+
     """.format(diccionario.get('date'),diccionario.get('time'),diccionario.get('virus'),diccionario.get('url'),virusr,diccionario.get('user'),diccionario.get('srcip'),diccionario.get('virus'),diccionario.get('url'),diccionario.get('from'),diccionario.get('recipient'),accion)
+    envioCorreo(html,infoempresa)
 
 
 

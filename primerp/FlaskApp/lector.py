@@ -11,7 +11,7 @@ cliente = pymongo.MongoClient("mongodb://172.16.11.20:27017")
 mydb = cliente["registros"]
 coleccion = mydb["logs"]
 
-f = open('/run/media/root/sda3/FG/172.16.11.27.log','r',encoding='latin-1') #Carga del archivo
+f = open('/run/media/root/sda31/FG/172.16.11.27.log','r',encoding='latin-1') #Carga del archivo
 
 def follow(f): #Funcion que lee el ultimo renglon del archivo, si detecta cambios espera 0.3 segundos para volver a correr
     f.seek(0, os.SEEK_END)
@@ -38,13 +38,15 @@ for data in loglines:
         data = data.replace(s[i], texto)
 
     data = data.replace('"','')
+    data = data.replace('\','/')
     data = data.split(" ")
     full_data = []
     diccionario = {}
     x = []
     for e in data:
         full_data.append(e.split("="))
-    for e in range (4,len(full_data)):
+    for e in range (5,len(full_data)):
+#        print(full_data)
         full_data[e][0] = full_data[e][0].replace('.',' ')
         if full_data[e][0]=='sentbyte':
             valor = '{"'+full_data[e][0]+'":'+full_data[e][1]+'}'
@@ -67,14 +69,9 @@ for data in loglines:
             diccionario.pop(q)
         except:
             pass
-<<<<<<< HEAD
-
-#    if diccionario.get('catdesc') == 'Web-based Email ':
- #       print(diccionario.get('catdesc'))
-=======
->>>>>>> 55471788c015fb52764a5c1d1795ed71db2f776c
     seleccion(diccionario)
     insercion = coleccion.insert_one(diccionario)
+#    print(diccionario)
 f.close()
 
 #@
