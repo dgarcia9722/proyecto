@@ -1,14 +1,14 @@
 import pygal
-from pygal.style import LightStyle
 from pymongo import MongoClient
 import pprint
 import cairosvg
-
+import time
 #client = MongoClient('mongodb://asalinas:RealNet2019@172.16.11.20:27017/registros')
 client = MongoClient('mongodb://172.16.11.20:27017/')
 
 db = client.registros
-def functQuery(titulo,result,graph):
+def functQuery(titulo,result,graph,nombre):
+    print("Hola")
     result = list(result)
     if (len(result)>1):
         if result[0] == 'DNS':
@@ -32,36 +32,41 @@ def functQuery(titulo,result,graph):
         graph.title = titulo
         for i in range(9):
             graph.add(numero[1][i], conteo[1][i])
-        graph_data = graph.render_data_uri()
-
-        return graph_data,appunk,n1
+        graph.render_to_png('templates/salidaReporte/archivos/'+nombre+'.png')
+        print("Adios")
+        return appunk,n1
 
 #TABLAS PRODUCTIVIDAD
 def graph_1(fechai,fechaf,empresa): #Top 10 categorias web
     graph = pygal.Bar()
+    print("hola")
     result = db.logs.aggregate([
         {"$match": {"$and": [{"devname": empresa},{"subtype":"webfilter"},{"date": {"$gte": fechai, "$lte": fechaf}}]}},
         {"$group": {"_id": "$catdesc", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}},
         {"$limit":10}
     ])
+    print("Adios")
     pprint.pprint(result)
-    graph_data=functQuery("Top 10 web",result,graph)
-    print("primero")
-
+    nombre="pd1"
+    graph_data=functQuery("Top 10 web",result,graph,nombre)
+    del result
+    print("primero listo")
     return graph_data
 
 
 def tb1_prod(fechai,fechaf,empresa): #Top 10 aplicaciones
     graph = pygal.Bar()
-    result = db.logs.aggregate([
+    pipee = [
         {"$match": {"$and": [{"devname": empresa},{"subtype":"app-ctrl"},{"date": {"$gte": fechai, "$lte": fechaf}}]}},
         {"$group": {"_id": "$app", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}},
         {"$limit":10}
-    ])
-    graph_data = functQuery("Top 10 aplicaciones",result,graph)
-    print("segundo")
+    ]
+    result = db.logs.aggregate(pipee)
+    nombre="pd2"
+    graph_data = functQuery("Top 10 aplicaciones",result,graph,nombre)
+    print("segundo listo")
 
     return graph_data
 
@@ -69,18 +74,20 @@ def tb1_prod(fechai,fechaf,empresa): #Top 10 aplicaciones
 def tb3_prod(fechai,fechaf,empresa): #Top 10 paginas
     graph = pygal.Bar()
     result = db.logs.aggregate([
-        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
-        #{"$project":{"hostname":{"$ifNull":["$hostname","Desconocido"]}}},
+        {"$match": {"$and": [{"devname": empresa},{"subtype":"webfilter"},{"date": {"$gte": fechai, "$lte": fechaf}}]}},
         {"$group": {"_id": "$hostname", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}},
         {"$limit":10}
     ])
-    graph_data = functQuery("Top 10 sitios web",result,graph)
+    nombre="pd3"
+    graph_data = functQuery("Top 10 sitios web",result,graph,nombre)
+    print("tercero listo")
+
     return graph_data
 
 def tb4_prod(fechai,fechaf,empresa): #Top 10 bandwidth web
     result = db.logs.aggregate([
-        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"subtype":"webfilter"}]}},
+        {"$match": {"$and": [{"devname": empresa},{"subtype":"webfilter"},{"date": {"$gte": fechai, "$lte": fechaf}}]}},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
         {"$group": {"_id": "$hostname","count":{"$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
         {"$sort": {"conteo": -1}},
@@ -91,10 +98,12 @@ def tb4_prod(fechai,fechaf,empresa): #Top 10 bandwidth web
         if element['_id'] == None:
             element['_id'] = 'Desconocida'
         element['conteo'] = element['conteo'] /1024
+    print("cuarto listo")
+
     return result
 def tb5_prod(fechai,fechaf,empresa): #Top 10 bandwidth app
     result = db.logs.aggregate([
-        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
+        {"$match": {"$and": [{"devname": empresa},{"subtype":"app-ctrl"},{"date": {"$gte": fechai, "$lte": fechaf}}]}},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
         {"$group": {"_id": "$app","count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
         {"$sort": {"conteo": -1}},
@@ -107,11 +116,13 @@ def tb5_prod(fechai,fechaf,empresa): #Top 10 bandwidth app
         if element['_id'] == None:
             element['_id'] = 'Desconocida'
         element['conteo'] = element['conteo'] /1024
+    print("quinto listo")
+
     return result
 
 def tb6_prod(fechai,fechaf,empresa): #Top 10 usuarios bandwidth
     result = db.logs.aggregate([
-        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa}]}},
+        {"$match": {"$and": [{"devname": empresa},{"date": {"$gte": fechai, "$lte": fechaf}}]}},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
         {"$group": {"_id": {"user":"$user","ip":"$srcip"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
         {"$sort": {"conteo": -1}},
@@ -123,6 +134,7 @@ def tb6_prod(fechai,fechaf,empresa): #Top 10 usuarios bandwidth
             element['_id'] = 'No registrado'
         element['conteo'] = element['conteo'] /1024
     pprint.pprint(result)
+    print("ultimo listo")
 
     return result
 
@@ -439,7 +451,7 @@ def tb5_ev(fechai,fechaf,empresa): #Sitios de seguridad
 
 def tb1_bd(fechai,fechaf,empresa): #Intereses personales
     result = db.logs.aggregate([
-        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"devname": empresa},{"$or":[{"catdesc":"File Sharing and Storage "},{"catdesc":"Freewareand Software Downloads "},{"catdesc":"Internet Radio and TV "},{"catdesc":"Internet Telephony "},{"catdesc":"Peer-to-peer File Sharing "},{"catdesc":"Streaming Media and Download "}]}]}},
+        {"$match": {"$and": [{"devname": empresa},{"subtype":"webfilter"},{"date": {"$gte": fechai, "$lte": fechaf}},{"$or":[{"catdesc":"File Sharing and Storage "},{"catdesc":"Freewareand Software Downloads "},{"catdesc":"Internet Radio and TV "},{"catdesc":"Internet Telephony "},{"catdesc":"Peer-to-peer File Sharing "},{"catdesc":"Streaming Media and Download "}]}]}},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]}}},
         {"$group": {"_id": {"usuario":"$user","ip":"$srcip","Categoria":"$catdesc","Sitio":"$hostname"},"count":{ "$sum": "$sentbyte"},"conteo":{"$sum":"$conteo"}}},
         {"$sort": {"conteo": -1}}
@@ -473,4 +485,4 @@ def tb1_ep(fechai,fechaf,empresa): #Intereses personales
     result = list(result)
     for elemnt in result:
         elemnt['count'] = elemnt['count'] /1024
-    return result
+    return
