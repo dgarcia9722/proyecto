@@ -2,6 +2,10 @@ from pymongo import MongoClient
 import pygal
 import time
 import pprint
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import smtplib
+
 client = MongoClient('mongodb://172.16.11.20:27017/')
 db = client.registros
 
@@ -259,11 +263,137 @@ initialDate = "2019-01-25"
 finalDate = "2019-07-02"
 empresa = 'HA-RNT FG100D'
 
-start =time.time()
+head = """\
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  """
+body = """\
+  <body>
+    <p>Hola {}</p>
+    <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
+      es el monitoreo diario de su equipo, el dia de hoy {}, a las {} se detecto el ingreso a {}, nuestro analisis arrojo que es un sitio con contenido referente a abuso infantil, este sitio ha sido verificado por la asociacion reguladora de internet, este sitio puede meter en problemas legales a la compañia dado que es un sitio ilegal. </p>
+    <p>A continuacion se muestra la información más detallada:</p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>IP</th>
+          <th>Host</th>
+          <th>Bytes recibidos</th>
+          <th>Bytes enviados</th>
+        </tr>
+      </thead>
+      <tbody>
+        <th scope="row">{}</th>
+        <td>{}</td>
+        <td>{}</td>
+        <td>{}</td>
+        <td>{}</td>
+      </tbody>
+    </table>
+    <p>{}</p>
+    <p>Cualquier duda o comentario estamos a sus ordenes</p>
+    <p>Saludos cordiales </p>
+  <div class="container">
+  </div>
+  </body>
+  </html>
 
+"""
+
+html = head+body
+
+html = """<!DOCTYPE html><html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Bootstrap Example</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      </head>
+      <body>
+        <p>Hola</p>
+        <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
+          es el monitoreo diario de su equipo, el dia de hoy 2019-07-05, a las 13:40:06 se hizo la detección del virus con nombre: W32/GenKryptik.DLKB!tr , el virus llego
+          atraves del sitio None. <p>El tipo de virus que se detecto es un software malicioso que que busca comprometer la seguridad de nuestro equipo<p>
+          </p>
+        <p>A continuacion se muestra la información más detallada:</p>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>IP</th>
+              <th>Virus</th>
+              <th>Sitio</th>
+              <th>Emisor</th>
+              <th>Receptor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <th scope="row">No disponible </th>
+            <td>192.168.0.102</td>
+            <td>W32/GenKryptik.DLKB!tr</td>
+            <td>None</td>
+            <td>No disponible </td>
+            <td>No disponible </td>
+          </tbody>
+        </table>
+        <p><p>Gracias a nuestro servicio el virus fue bloqueado exitosamente.</p></p>
+                <p>Cualquier duda o comentario estamos a sus ordenes</p>
+                <p>Saludos cordiales </p>
+      <div class="container">
+      </div>
+      </body>
+      </html>
+
+"""
+
+def envioCorreo(html):
+    #sendto = infoempresa[0]['email']
+    sendto = 'asalinas@realnet.com.mx'
+    user = 'admin@aisec.com.mx'
+    password = 'h8TaRg80yY,U'
+    msg = MIMEMultipart('Alternative')
+    msg['Subject'] = "Notificacion AISEC Prueba"
+    msg['From'] = user
+    msg['To'] = sendto
+    part1 = MIMEText(html,'html')
+    msg.attach(part1)
+    mail = smtplib.SMTP('mail.aisec.com.mx',587)
+    mail.ehlo()
+    mail.starttls()
+    mail.login(user, password)
+    mail.sendmail(user, sendto, msg.as_string())
+    mail.quit
+
+start =time.time()
+envioCorreo(html)
 #resultado2 = lectorWeb (initialDate, finalDate)
 print("WEB")
-resultado2 = tb4_rl(initialDate, finalDate,empresa)
+#resultado2 = tb4_rl(initialDate, finalDate,empresa)
+#resultado2 = tb1_prod(initialDate, finalDate,empresa)
+
+
+#print(html)
+
+
+
+
+
+
+
+
+
+
 
 
 print(time.time()-start)

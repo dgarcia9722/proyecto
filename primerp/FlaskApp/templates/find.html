@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-
-    <meta charset="utf-8">
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
   <!--  <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
          Bootstrap CSS -->
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="C:/Users/asalinas/PycharmProjects/flask/proyecto/primerp/primerp/FlaskApp/static/own.css" >
+        <link rel="stylesheet" href="C:/Users/asalinas/Documents/PycharmProjects/flask/proyecto/primerp/primerp/FlaskApp/static/reportes.css" >
 
     <title></title>
   </head>
@@ -39,7 +38,7 @@
     <p id="salto"> </p>
 
 
-    <div class="row"><!-- Tabla de contenidos -->
+    <div class="row"><!-- pd1 de contenidos -->
       <div class="col-xs-1">
 
         <br>
@@ -63,10 +62,9 @@
       <div class="col-xs-1"></div>
       <div class="col-xs-10">
         <h1>{{puntos[0]['puntos'][0]}}</h1>
-        <p>Productivity Gurú, es un sistema con el que apoyamos a las empresas a ser más productivas, eficientes y a disminuir gastos operativos para aumentar la rentabilidad de la empresa.
-Es en base a la experiencia que RealNet brinda en sus servicios de asesoramiento y soluciones por medio de recursos TI, asesorando y administrando las redes de sus clientes con tecnologías de vanguardia que resulten confiables, económicas y flexibles para enfrentarse a los retos del mercado actual.
-El objetivo principal de este reporte es, mostrar el comportamiento de los usuarios en internet de la empresa {{dempresa['nombre']}}. </p>
-
+        <p>Productivity Guru, es un sistema con el que apoyamos a las empresas a ser mas productivas, eficientes y a disminuir gastos operativos para aumentar la rentabilidad de la empresa.
+<br> Es en base a la experiencia que RealNet brinda en sus servicios de asesoramiento y soluciones por medio de recursos TI, asesorando y administrando las redes de sus clientes con tecnologias de vanguardia que resulten confiables, economicas y flexibles para enfrentarse a los retos del mercado actual.
+<br> El objetivo principal de este reporte es, mostrar el comportamiento de los usuarios en internet de la empresa {{dempresa['nombre']}}. </p>
 
       </div>
     </div>
@@ -76,13 +74,33 @@ El objetivo principal de este reporte es, mostrar el comportamiento de los usuar
       <div class="col-xs-1"></div>
       <div class="col-xs-10">
         <h1>{{puntos[0]['puntos'][1]}}</h1>
-        <p>Hola</p>
+        <p>Este punto de seguridad va enfocado a la productividad de los usuarios, hay paginas y aplicaciones que distraen a los empleados y el tener identificado cuales son los principales distractores nos ayudan a tener un mejor control sobre los recursos.</p>
         <div class="row">
-          <p>{{pd4}}</p>
+          <h2>Tabla </h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Sitio</th>
+                <th scope="col">MB</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for i in range(10)%}
+              <tr>
+                <th scope="row">{{i+1}}</th>
+                <td>{{pd4[i]['_id']}}</td>
+                <td>{{pd4[i]['total']}} </td>
+              </tr>
+                {%endfor%}
+            </tbody>
+
+          </table>
+          <p id="salto"> </p>
           <p>Imagen 1</p>
-          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\pd1.png" alt="">
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\pd1.png" alt="">
           <p>Imagen 2</p>
-          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\pd2.png" alt="">
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\pd1.png" alt="">
 
         </div>
 
@@ -97,7 +115,7 @@ El objetivo principal de este reporte es, mostrar el comportamiento de los usuar
         <h1>{{puntos[0]['puntos'][2]}}</h1>
         <p>Hola</p>
         <div class="row">
-          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\pd1.png" alt="">
         </div>
 
 
@@ -111,7 +129,7 @@ El objetivo principal de este reporte es, mostrar el comportamiento de los usuar
         <h1>{{puntos[0]['puntos'][3]}}</h1>
         <p>Hola</p>
         <div class="row">
-          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\pd1.png" alt="">
         </div>
 
 
@@ -125,7 +143,7 @@ El objetivo principal de este reporte es, mostrar el comportamiento de los usuar
         <h1>{{puntos[0]['puntos'][4]}}</h1>
         <p>Hola</p>
         <div class="row">
-          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\pd1.png" alt="">
         </div>
 
 
@@ -139,7 +157,7 @@ El objetivo principal de este reporte es, mostrar el comportamiento de los usuar
         <h1>{{puntos[0]['puntos'][5]}}</h1>
         <p>Hola</p>
         <div class="row">
-          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\pd1.png" alt="">
         </div>
 
 
@@ -153,7 +171,7 @@ El objetivo principal de este reporte es, mostrar el comportamiento de los usuar
         <h1>{{puntos[0]['puntos'][6]}}</h1>
         <p>Hola</p>
         <div class="row">
-          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\pd1.png" alt="">
         </div>
 
 
@@ -167,7 +185,7 @@ El objetivo principal de este reporte es, mostrar el comportamiento de los usuar
         <h1>{{puntos[0]['puntos'][7]}}</h1>
         <p>Hola</p>
         <div class="row">
-          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\pd1.png" alt="">
         </div>
 
 
@@ -181,7 +199,7 @@ El objetivo principal de este reporte es, mostrar el comportamiento de los usuar
         <h1>{{puntos[0]['puntos'][8]}}</h1>
         <p>Hola</p>
         <div class="row">
-          <img src="C:\Users\asalinas\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\tabla.png" alt="">
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\puntos\imagenes\pd1.png" alt="">
         </div>
 
 
