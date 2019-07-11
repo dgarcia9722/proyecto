@@ -12,31 +12,21 @@ client = MongoClient('mongodb://172.16.11.20:27017/')
 db = client.registros
 def functQuery(titulo,result,graph):
     result = list(result)
+    pprint.pprint(result)
     if (len(result)>1):
-        if result[0] == 'DNS':
-            n1 = result[0]
-        else:
-            n1 = result[1]
-        numero = ['numero ', []]
-        total = ['total ', []]
-        appunk = []
-        for doc in result:
-            if (doc['_id']==None):
-                doc['_id']='Desconocido'
-            if 'Desconocido' in doc['_id']:
-                appunk.append(doc)
-            else:
-                if "DNS" in doc['_id']:
-                    pass;
-                else:
-                    numero[1].append(doc['_id'])
-                    total[1].append(int(doc['total']))
+        host = ['host', []]
+        conteomb = ['mb', []]
+        for i in range(9):
+            host[1].append(result[i]['_id'])
+            conteomb[1].append(int(result[i]['total']))
         graph.title = titulo
         for i in range(9):
-            graph.add(numero[1][i], total[1][i])
-        graph_data = graph.render_data_uri()
+            graph.add(host[1][i], conteomb[1][i])
 
-        return graph_data,appunk,n1
+        #graph_data = graph.render_data_uri()
+        #graph_data = graph.render_to_file('C:/Users/asalinas/Documents/PycharmProjects/flask/proyecto/primerp/primerp/FlaskApp/templates/salidaReporte/archivos/chart.svg')
+        #return graph_data
+    print("BIEN")
 
 #TABLAS PRODUCTIVIDAD
 def graph_1(fechai,fechaf,empresa): #Top 10 categorias web
@@ -58,8 +48,8 @@ def tb1_prod(fechai,fechaf,empresa): #Top 10 aplicaciones
     result = db.aplicacion.aggregate([
         {"$match": {"$and": [{"_id.Fecha": {"$gte":fechai, "$lte":fechaf}},{"_id.Empresa":empresa}]}},
         {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
-        {"$group": {"_id": "$_id.Aplicacion","total":{"$sum":"$Total"},"total": {"$sum": 1},}},
-        {"$sort": {"total": -1}},
+        {"$group": {"_id": "$_id.Aplicacion","total":{"$sum":"$Total"},"count": {"$sum": 1},}},
+        {"$sort": {"count": -1}},
         {"$limit":10}
     ])
     pprint.pprint(result)
@@ -74,8 +64,8 @@ def tb3_prod(fechai,fechaf,empresa): #Top 10 paginas
     result = db.web.aggregate([
         {"$match": {"$and": [{"_id.Fecha": {"$gte": fechai, "$lte": fechaf}},{"_id.Empresa": empresa}]}},
         {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
-        {"$group": {"_id": "$_id.hostname","total":{"$sum":"$Total"},"total": {"$sum": 1}}},
-        {"$sort": {"total": -1}},
+        {"$group": {"_id": "$_id.hostname","total":{"$sum":"$Total"},"count": {"$sum": 1}}},
+        {"$sort": {"count": -1}},
         {"$limit":10}
     ])
     pprint.pprint(result)

@@ -4,23 +4,44 @@
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>body{  background-color: #f6f6f6;  } a img{border: none;}.ReadMsgBody { width: 100%;}.ExternalClass {width: 100%;}</style><!-- EndSystemheader --><style type="text/css">
+    /*////// RESET STYLES //////*/
+    			body, #bodyTable, #bodyCell{height:100% !important; margin:0; padding:0; width:100% !important;}
+    			table{border-collapse:collapse;}
+    			img, a img{border:0; outline:none; text-decoration:none;}
+    			h1, h2, h3, h4, h5, h6{margin:0; padding:0;}
+    			p{margin: 1em 0;}
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    			/*////// CLIENT-SPECIFIC STYLES //////*/
+    			.ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail/Outlook.com to display emails at full width. */
+    			.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div{line-height:100%;} /* Force Hotmail/Outlook.com to display line heights normally. */
+    			table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up. */
+    			#outlook a{padding:0;} /* Force Outlook 2007 and up to provide a "view in browser" message. */
+    			img{-ms-interpolation-mode: bicubic;} /* Force IE to smoothly render resized images. */
+    			body, table, td, p, a, li, blockquote{-ms-text-size-adjust:100%; -webkit-text-size-adjust:100%;} /* Prevent Windows- and Webkit-based mobile platforms from changing declared text sizes. */
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    a{
+    color: #69b241;
+    text-decoratin: none;
+    }
+    a:hover{
+      text-decoration: underline;
+    }
+    html {-webkit-text-size-adjust:none}
+    font-family:'Akzidenz-Grotesk Std','Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height:140%;
+    color:rgb(49, 48, 47);
+    </style>
   </head>
   <body>
     <p>Hola</p>
     <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
-      es el monitoreo diario de su equipo, el dia de hoy {}, a las {} se hizo la detección del virus con nombre: {} , el virus llego
+      es el monitoreo diario de su equipo, el dia de hoy 2019-01-01, a las 19:00 se hizo la detección del virus con nombre: {} , el virus llego
       atraves del sitio {}. {}
       </p>
     <p>A continuacion se muestra la información más detallada:</p>
-    <table class="table table-bordered">
+    <table class="table table-bordered" id=bodyTablell>
       <thead>
         <tr>
           <th>Usuario</th>
@@ -33,14 +54,14 @@
       </thead>
       <tbody>
         <th scope="row">{}</th>
-        <td>{}</td>
-        <td>{}</td>
-        <td>{}</td>
-        <td>{}</td>
-        <td>{}</td>
+        <td>Allan</td>
+        <td>192.168.0.50</td>
+        <td>Malware.tr</td>
+        <td>asalinas@realnet.com</td>
+        <td>asalinas@realnet.com</td>
       </tbody>
     </table>
-    <p>{}</p>
+    <p>Ejemplo del texto</p>
             <p>Cualquier duda o comentario estamos a sus ordenes</p>
             <p>Saludos cordiales </p>
   <div class="container">

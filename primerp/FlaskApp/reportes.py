@@ -13,7 +13,6 @@ db = client.registros
 env = Environment(loader=FileSystemLoader(searchpath="templates"))
 template = env.get_template("find.html")
 
-
 path_wkthmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
 config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
 options = {
@@ -21,7 +20,7 @@ options = {
     'encoding': "UTF-8",
     'header-html': './templates/salidaReporte/archivos/header.html',
     'footer-html': './templates/salidaReporte/archivos/footer.html',
-    'margin-top': '50mm',
+    'margin-top': '35mm',
     'margin-left': '0mm',
     'margin-right': '0mm',
     'margin-bottom': '40mm'
@@ -38,7 +37,7 @@ def main():
     encargado = dempresa[0]['encargado']
     diae = datetime.strptime(fecha,'%Y-%m-%d')
     diah = datetime.now()
-    diam = datetime.now()+relativedelta(months=1)
+    diam = datetime.now()+relativedelta(months=-1)
     if diae.day==diah.day:
         print("Son iguales")
     else:
@@ -48,15 +47,15 @@ def main():
     Puntos = content()
 
 
-    initialDate = "2019-01-01"
-    finalDate = "2020-01-01"
+    initialDate = diam
+    finalDate = diah
     empresa = dempresa[0]['devname']
     start =time.time()
 
 
-    graph_1(initialDate,finalDate,empresa)
-    tb1_prod(initialDate,finalDate,empresa)
-    tb3_prod(initialDate,finalDate,empresa)
+    pd1 = graph_1(initialDate,finalDate,empresa)
+    pd2 = tb1_prod(initialDate,finalDate,empresa)
+    pd3 = tb3_prod(initialDate,finalDate,empresa)
     pd4 = tb4_prod(initialDate,finalDate,empresa)
     pd5 = tb5_prod(initialDate,finalDate,empresa)
     pd6 = tb6_prod(initialDate,finalDate,empresa)

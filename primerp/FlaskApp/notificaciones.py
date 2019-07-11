@@ -15,10 +15,6 @@ head = """\
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
   """
 virusp = {
@@ -33,12 +29,8 @@ virusp = {
 
 virusc = {
     "exploit":'<p>El tipo de virus que se detecto es un software malicioso que toma ventaja de alguna vulnerabilidad de nuestro sistema, el atacante puede habilitar el acceso remoto a nuestro equipo y asi hacer lo que sea.<p>',
-    "exploita":'<p>El tipo de virus que se detecto es un software malicioso que toma ventaja de alguna vulnerabilidad de nuestro sistema, el atacante puede habilitar el acceso remoto a nuestro equipo y asi hacer lo que sea.<p>',
     "default":'<p>El tipo de virus que se detecto es un software malicioso que que busca comprometer la seguridad de nuestro equipo<p>'
 }
-
-
-
 
 def seleccion(diccionario):
     devname = diccionario.get("devname")
@@ -47,6 +39,8 @@ def seleccion(diccionario):
         diccionario['sentbyte'] = 0
     if diccionario.get("rcvdbyte")==None:
         diccionario['rcvdbyte'] = 0
+    if diccionario.get("hostname")==None:
+        diccionario['hostname'] = 'Desconocido'
     if not 'user' in diccionario:
         diccionario['user']='No disponible '
     if (diccionario.get('catdesc')=='Advertising'):
@@ -1158,10 +1152,10 @@ def emailProxyapp(diccionario,infoempresa):
     if diccionario.get('action')=='block':
         accion = "<p>Gracias a nuestro servicio esta página fue bloqueada exitosamente."
     else:
-        accion = "<p>Este sitio representa una vulnerabilidad para tu red, por lo que recomendamos contactar al equipo de Productivity Guru para realizar un chequeo de la red"
+        accion = "<p>Esta aplicacion representa una vulnerabilidad para tu red, por lo que recomendamos contactar al equipo de Productivity Guru para realizar un chequeo de la red"
 
     html = """\
-<!DOCTYPE html>
+    <!DOCTYPE html>
       <html lang="en">
       <head>
         <title>Bootstrap Example</title>
@@ -1204,7 +1198,7 @@ def emailProxyapp(diccionario,infoempresa):
       </body>
       </html>
 
-    """.format(infoempresa['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('app'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('app'),diccionario.get('appcat'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'),accion)
+      """.format(infoempresa['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('app'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('app'),diccionario.get('appcat'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'),accion)
 #    envioCorreo(html,infoempresa)
 
     print(html)
