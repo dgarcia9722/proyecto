@@ -10,7 +10,7 @@ cliente = pymongo.MongoClient("mongodb://172.16.11.20:27017")
 mydb = cliente["registros"]
 coleccion = mydb["logs"]
 
-f = open('/run/media/root/sda31/FG/172.16.11.27.log','r',encoding='latin-1') #Carga del archivo
+f = open('/run/media/root/sda31/errores/error.log','r',encoding='latin-1') #Carga del archivo
 
 def follow(f): #Funcion que lee el ultimo renglon del archivo, si detecta cambios espera 0.3 segundos para volver a correr
     f.seek(0, os.SEEK_END)
@@ -67,17 +67,19 @@ def lector(loglines):
         insercion = coleccion.insert_one(diccionario)
     f.close()
 
-loglines = follow(f)
-#lector(loglines)
+loglines = (f)
 
-#try:
-lector(loglines)
-#except:
- #   ferror = open('/run/media/root/sda31/errores/error.log','a',encoding='latin-1') #Carga del archivo
+try:
+    print("BIEN")
+    lector(loglines)
+except:
+    print("ERRROR")
+    ferror = open('/run/media/root/sda31/errores/error.log','a',encoding='latin-1') #Carga del archivo
 
-  #  for data in loglines:
-   #     ferror.write(data)
-   # ferror.close()
+    for data in loglines:
+        print(data)
+        ferror.write(data)
+    ferror.close()
 
 
 

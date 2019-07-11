@@ -15,10 +15,35 @@ head = """\
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style>body{  background-color: #FFF;  } a img{border: none;}.ReadMsgBody { width: 100%;}.ExternalClass {width: 100%;}</style><!-- EndSystemheader --><style type="text/css">
+    /*////// RESET STYLES //////*/
+    			body, #bodyTable,.table,#bodyCell{height:100% !important; margin:0; padding:0; width:100% !important;}
+    			table{border-collapse:collapse;}
+    			img, a img{border:0; outline:none; text-decoration:none;}
+    			h1, h2, h3, h4, h5, h6{margin:0; padding:0;}
+    			p{margin: 1em 0;}
+
+    			/*////// CLIENT-SPECIFIC STYLES //////*/
+    			.ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail/Outlook.com to display emails at full width. */
+    			.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div{line-height:100%;} /* Force Hotmail/Outlook.com to display line heights normally. */
+    			table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up. */
+    			#outlook a{padding:0;} /* Force Outlook 2007 and up to provide a "view in browser" message. */
+    			img{-ms-interpolation-mode: bicubic;} /* Force IE to smoothly render resized images. */
+    			body, table, td, p, a, li, blockquote{-ms-text-size-adjust:100%; -webkit-text-size-adjust:100%;} /* Prevent Windows- and Webkit-based mobile platforms from changing declared text sizes. */
+
+    a{
+    color: #69b241;
+    text-decoratin: none;
+    }
+    a:hover{
+      text-decoration: underline;
+    }
+    html {-webkit-text-size-adjust:none}
+    font-family:'Akzidenz-Grotesk Std','Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height:140%;
+    color:rgb(49, 48, 47);
+    </style>
   </head>
   """
 virusp = {
@@ -605,7 +630,6 @@ def emailProxyav(diccionario,infoempresa):
     html = head+body
     #envioCorreo(html,infoempresa)
     print(html)
-    envioCorreo(html,infoempresa)
 
 def emailAbortion(diccionario,infoempresa):
     if diccionario.get('action')=='blocked':
@@ -1150,27 +1174,18 @@ def emailJobsearch(diccionario,infoempresa):
 
     """.format(infoempresa[0]['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('hostname'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('hostname'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'),accion)
     html = head+body
-    #envioCorreo(html,infoempresa)
-    print(html)
+    envioCorreo(html,infoempresa)
+#    print(html)
     envioCorreo(html,infoempresa)
 
 def emailProxyapp(diccionario,infoempresa):
+    print(diccionario)
     if diccionario.get('action')=='block':
         accion = "<p>Gracias a nuestro servicio esta página fue bloqueada exitosamente."
     else:
         accion = "<p>Este sitio representa una vulnerabilidad para tu red, por lo que recomendamos contactar al equipo de Productivity Guru para realizar un chequeo de la red"
 
-    html = """\
-<!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <title>Bootstrap Example</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-      </head>
+    body = """\
       <body>
         <p>Hola {}</p>
         <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
@@ -1205,9 +1220,11 @@ def emailProxyapp(diccionario,infoempresa):
       </html>
 
     """.format(infoempresa['encargado'],diccionario.get('date'),diccionario.get('time'),diccionario.get('app'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('app'),diccionario.get('appcat'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'),accion)
+    html = head+body
+    print(html)
 #    envioCorreo(html,infoempresa)
 
-    print(html)
+#    print(html)
 
 def emailVirushttp(diccionario,infoempresa):
     accion = "<p>Gracias a nuestro servicio el virus fue bloqueado exitosamente.</p>"
