@@ -341,7 +341,7 @@ def politicas():
         finalDate = request.form['end']
         empresa = request.form['empresa']
 
-        graph1 = tb1_ep(initialDate, finalDate,empresa)
+        #graph1 = tb1_ep(initialDate, finalDate,empresa)
 
 
         if (graph1==None):
@@ -352,15 +352,12 @@ def politicas():
 
         )
     else:
-        fechai = "2019-01-01"
-        fechaf = "2020-01-01"
+        fechai = "2019-07-15"
+        fechaf = "2020-07-22"
         empresa = "FG-Rhino-CDMX"
-        graph1 = tb1_ep(fechai, fechaf,empresa),
 
 
         return render_template("/puntos/politicas.html",Puntos=Puntos,estado=estado,dEmpresa=dEmpresa,dTablas=dTablas,
-        grafica1=graph1,
-
         )
 @app.route('/reportes',methods=["POST","GET"])
 def reportes():

@@ -60,7 +60,7 @@ def Tablas():
 
     }
     RiesgosLegales={
-        1:["Sitios potencialmente problematicos","rl1"],
+        1:["Sitios potencialmente problematicos PRUEBA","rl1"],
         2:["Sitios con contenido adulto ","rl2"],
         3:["Sitios infectados ","rl3"],
         4:["Aplicaciones peligrosas","rl4"],

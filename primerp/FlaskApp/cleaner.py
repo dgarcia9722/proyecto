@@ -274,14 +274,29 @@ def lectorApp(fechai,fechaf): #Top 10 paginas
 #        db.aplicacion.insert_one(element)
     print("Listo")
 
-def prueba(fechai,fechaf,empresa): #Top 10 paginas
-    graph = pygal.Bar()
+def lectorVirus(fechai,fechaf): #Lector Virus
     print("MMMMMMMMMM")
+    pipee = [
+        {"$sort":{"date":1}},
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"subtype":'virus'}]}},
+        {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","hora":"$time","ip":"$srcip","usuario":"$user",'Virus':'$virus',"Accion":"$action"},"count": {"$sum":1}}},
+        {"$out":"virus"},
+    ]
+    result = db.logs.aggregate(pipee,allowDiskUse=True)
+    result = list(result)
+    pprint.pprint(result)
+#    for element in result:
+        #pprint.pprint(element)
+#        db.aplicacion.insert_one(element)
+    print("Listo")
+
+
+def prueba(fechai,fechaf,empresa): #Top 10 paginas
     graph = pygal.Bar()
     pipee = [
 
         {"$match": {"$and": [{"_id.Empresa": empresa},{"_id.Fecha": {"$gte": fechai, "$lte": fechaf}}]}},
-        {"$group": {"_id": "$_id.categoria", "count": {"$sum": 1}}},
+        {"$group": {"_id": "$_id.categoria",'count':{'$sum':1}}},
         {"$sort": {"count": -1}},
     ]
     result = db.pruebas.aggregate(pipee,allowDiskUse=True)
@@ -289,12 +304,13 @@ def prueba(fechai,fechaf,empresa): #Top 10 paginas
     result = list(result)
     pprint.pprint(result)
 
-initialDate = "2018-07-03"
-finalDate = "2020-07-02"
+initialDate = "2018-01-01"
+finalDate = "2020-07-11"
 empresa = 'HA-RNT FG100D'
 
 start =time.time()
-resultado2 = lectorWeb (initialDate, finalDate)
-resultado2 = lectorApp(initialDate, finalDate)
+lectorWeb (initialDate, finalDate)
+lectorApp(initialDate, finalDate)
+lectorVirus(initialDate, finalDate)
 
 print(time.time()-start)
