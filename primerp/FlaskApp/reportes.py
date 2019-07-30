@@ -63,7 +63,6 @@ def main():
     pd2 = tb2_prod(initialDate,finalDate,empresa)
     pd3 = tb3_prod(initialDate,finalDate,empresa)
     pd4 = tb4_prod(initialDate,finalDate,empresa)
-    print("DSADSA")
     pd4 = list(pd4)
     print(pd4)
     pd1u = tb1u_prod(initialDate,finalDate,empresa)

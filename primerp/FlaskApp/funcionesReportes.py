@@ -613,6 +613,167 @@ finalDate = "2019-07-11"
 empresa = "M-Movimiento"
 
 
+##############REPORTES###############################
+def rep1(fechai,fechaf,empresa): #Top 10 categorias web
+    graph = pygal.Pie(height=350)
+    nombre = "rep1"
+    result = db.web.aggregate([
+        {"$match": {"$and": [{"_id.Fecha": {"$gte":fechai, "$lte":fechaf}},{"_id.Empresa":empresa}]}},
+        {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
+        {"$group": {"_id": "$_id.categoria","total":{"$sum":"$Total"}}},
+        {"$sort": {"total": -1}},
+        {"$limit":12}
+    ])
+    result = list(result)
+    graph_data=functQuery("Sitios web",result,graph,nombre)
+    #pprint.pprint(graph_data)
+    return graph_data
+
+def rep2(fechai,fechaf,empresa): #Top usuarios categorias web
+    graph = pygal.Pie(height=350)
+    nombre = "rep2"
+    result = db.web.aggregate([
+        {"$match": {"$and": [{"_id.Fecha": {"$gte":fechai, "$lte":fechaf}},{"_id.Empresa":empresa}]}},
+        {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
+        {"$group": {"_id": {"user":"$_id.usuario","ip":"$_id.ip"},"total":{"$sum":"$Total"}}},
+        {"$sort": {"total": -1}},
+        {"$limit":12}
+    ])
+    result = list(result)
+    graph_data=functQuery("Usuarios",result,graph,nombre)
+    #pprint.pprint(graph_data)
+    return graph_data
+
+
+
+def rep3(fechai,fechaf,empresa): #Usuarios Wifi
+    graph = pygal.Bar(height=350)
+    nombre = "rep3"
+    result = db.web.aggregate([
+        {"$match": {"$and": [{"_id.Fecha": {"$gte": fechai, "$lte": fechaf}},{"_id.Empresa": empresa}]}},
+        {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
+        {"$group": {"_id": "$_id.hostname","total":{"$sum":"$Total"}}},
+        {"$sort": {"total": -1}},
+        {"$limit":12}
+    ])
+    result = list(result)
+    graph_data=functQuery("Usuarios Wifi",result,graph,nombre)
+    return graph_data
+
+def rep4(fechai,fechaf,empresa): #Top 10 aplicaciones
+    graph = pygal.Bar(height=350)
+    nombre = "rep4"
+    result = db.app.aggregate([
+        {"$match": {"$and": [{"_id.Fecha": {"$gte": fechai, "$lte": fechaf}},{"_id.Empresa": empresa}]}},
+        {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
+        {"$group": {"_id": {"Aplicacion":"$_id.app","Categoria":"$_id.categoria","Sitio":"$_id.hostname"}, "total":{"$sum":"$Total"}}},
+        {"$sort": {"total": -1}},
+        {"$limit":12}
+    ])
+    graph_data = functQuery("Aplicaciones",result,graph,nombre)
+    return graph_data
+
+def rep5(fechai,fechaf,empresa): #Top 10 Audio/Video
+    graph = pygal.Bar(height=350)
+    nombre = "rep5"
+    result = db.app.aggregate([
+        {"$match": {"$and": [{"_id.Fecha": {"$gte": fechai, "$lte": fechaf}},{"_id.Empresa": empresa},{"_id.uid":1}]}},
+        {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
+        {"$group": {"_id": {"Aplicacion":"$_id.app","Categoria":"$_id.categoria","Sitio":"$_id.hostname"}, "total":{"$sum":"$Total"}}},
+        {"$sort": {"total": -1}},
+        {"$limit":12}
+    ])
+    result = list(result)
+    graph_data=functQuery("Audio y video",result,graph,nombre)
+    return graph_data
+
+def rep6(fechai,fechaf,empresa): #Top 10 Audio/Video por usuario
+    graph = pygal.Bar(height=350)
+    nombre = "rep6"
+    result = db.app.aggregate([
+        {"$match": {"$and": [{"_id.Fecha": {"$gte": fechai, "$lte": fechaf}},{"_id.Empresa": empresa},{"_id.uid":7}]}},
+        {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
+        {"$group": {"_id": {"Usuario":"$_id.usuario","IP":"$_id.ip","App":"$_id.app"}, "total":{"$sum":"$Total"}}},
+        {"$sort": {"total": -1}},
+        {"$limit":12}
+    ])
+    result = list(result)
+    graph_data=functQuery("Audio y video",result,graph,nombre)
+    return graph_data
+
+def rep7(fechai,fechaf,empresa): #Top 10 Audio/Video WIFI por usuario
+    graph = pygal.Bar(height=350)
+    nombre = "rep7"
+    result = db.app.aggregate([
+        {"$match": {"$and": [{"_id.Fecha": {"$gte": fechai, "$lte": fechaf}},{"_id.Empresa": empresa},{"_id.uid":7}]}},
+        {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
+        {"$group": {"_id": {"Usuario":"$_id.usuario","IP":"$_id.ip","App":"$_id.app"}, "total":{"$sum":"$Total"}}},
+        {"$sort": {"total": -1}},
+        {"$limit":12}
+    ])
+    result = list(result)
+    graph_data=functQuery("Audio y video por WIFI",result,graph,nombre)
+    return graph_data
+
+def rep8(fechai,fechaf,empresa): #Sitios web permitidos
+    graph = pygal.Bar(height=350)
+    nombre = "rep8"
+    result = db.web.aggregate([
+        {"$match": {"$and": [{"_id.Fecha": {"$gte": fechai, "$lte": fechaf}},{"_id.Empresa": empresa},{"_id.accion":"pass"}]}},
+        {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
+        {"$group": {"_id": "$_id.hostname","total":{"$sum":"$Total"}}},
+        {"$sort": {"total": -1}},
+        {"$limit":12}
+    ])
+    result = list(result)
+    graph_data=functQuery("Usuarios Wifi",result,graph,nombre)
+    return graph_data
+
+
+def rep1(fechai,fechaf,empresa): #Categorias web bloqueadas
+    graph = pygal.Pie(height=350)
+    nombre = "rep1"
+    result = db.web.aggregate([
+        {"$match": {"$and": [{"_id.Fecha": {"$gte":fechai, "$lte":fechaf}},{"_id.Empresa":empresa},{"_id.accion":"pass"}]}},
+        {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
+        {"$group": {"_id": "$_id.categoria","total":{"$sum":"$Total"}}},
+        {"$sort": {"total": -1}},
+        {"$limit":12}
+    ])
+    result = list(result)
+    graph_data=functQuery("Sitios web",result,graph,nombre)
+    #pprint.pprint(graph_data)
+    return graph_data
+
+def rep8(fechai,fechaf,empresa): #Sitios web bloqueados
+    graph = pygal.Bar(height=350)
+    nombre = "rep8"
+    result = db.web.aggregate([
+        {"$match": {"$and": [{"_id.Fecha": {"$gte": fechai, "$lte": fechaf}},{"_id.Empresa": empresa},{"_id.accion":"block"}]}},
+        {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
+        {"$group": {"_id": "$_id.hostname","total":{"$sum":"$Total"}}},
+        {"$sort": {"total": -1}},
+        {"$limit":12}
+    ])
+    result = list(result)
+    graph_data=functQuery("Usuarios Wifi",result,graph,nombre)
+    return graph_data
+
+def rep2(fechai,fechaf,empresa): #Top usuarios categorias web bloqueados
+    graph = pygal.Pie(height=350)
+    nombre = "rep2"
+    result = db.web.aggregate([
+        {"$match": {"$and": [{"_id.Fecha": {"$gte":fechai, "$lte":fechaf}},{"_id.Empresa":empresa},{"_id.accion":"block"}]}},
+        {"$addFields":{"Total": {"$sum":"$_id.Bytes"}}},
+        {"$group": {"_id": {"user":"$_id.usuario","ip":"$_id.ip"},"total":{"$sum":"$Total"}}},
+        {"$sort": {"total": -1}},
+        {"$limit":12}
+    ])
+    result = list(result)
+    graph_data=functQuery("Usuarios",result,graph,nombre)
+    #pprint.pprint(graph_data)
+    return graph_data
+
 start =time.time()
 #envioCorreo(html)
 #print("WEB")
