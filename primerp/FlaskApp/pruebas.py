@@ -1,157 +1,90 @@
-from pymongo import MongoClient
-import pygal
+import os
+import time
 import time
 import pprint
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-import cairosvg
-from funcionesReportes import *
 import threading
 import queue
 
-initialDate = "2019-05-01"
-finalDate = "2019-08-11"
-empresa = 'TLA HA 1'
-html = """\
- <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+tiempo = 0
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+f = open('C:/Users/asalinas/Documents/PycharmProjects/flask/proyecto/primerp/primerp/FlaskApp/lp.log','r',encoding='latin-1') #Carga del archivo
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-  </head>
-   <body>
-        <p>Hola Allan</p>
-        <br>
-        <p>Uno de los beneficios de nuestro servicio administrado Productivity Gurú
-          es el monitoreo diario de su equipo, el dia de hoy 2019-07-25, a las 11:57 se detecto el ingreso a realnet.com.mx, nuestro analisis arrojo que es un sitio de publicidad
-        a continuacion se muestra la información más detallada:</p>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Usuario</th>
-              <th>IP</th>
-              <th>Host</th>
-              <th>Bytes recibidos</th>
-              <th>Bytes enviados</th>
-            </tr>
-          </thead>
-          <tbody>
-            <th scope="row">Allan</th>
-            <td>192.168.0.50</td>
-            <td>realnet.com.mx</td>
-            <td>200</td>
-            <td>100</td>
-          </tbody>
-        </table>
-        <p>Gracias a nuestro servicio esta página fue bloqueada exitosamente." </p>
-        <p>Cualquier duda o comentario estamos a sus ordenes</p>
-        <p>Saludos cordiales </p>
-      <div class="container">
-      </div>
-      </body>
-      </html>
-      """
-print(html)
-def envioCorreo(html):
-    #sendto = infoempresa[0]['email']
-    sendto = 'asalinas@realnet.com.mx'
-    user = 'admin@aisec.com.mx'
-    password = 'h8TaRg80yY,U'
-    msg = MIMEMultipart('Alternative')
-    msg['Subject'] = "Notificacion AISEC Prueba"
-    msg['From'] = user
-    msg['To'] = sendto
-    part1 = MIMEText(html,'html')
-    msg.attach(part1)
-    mail = smtplib.SMTPa('mail.aisec.com.mx',587)
-    mail.ehlo()
-    mail.starttls()
-    mail.login(user, password)  
-    mail.sendmail(user, sendto, msg.as_string())
-    mail.quit
+class objetoAcumulador(object):
+    def __init__(self,nombre,conteo):
+        self.nombre = nombre
+        self.conteo = conteo
+    
 
 
-def envioCorreos(html):
-    #sendto = infoempresa[0]['email']
-    sendto = 'asalinas@realnet.com.mx'
-    user = 'allan.salinas.ramirez@gmail.com'
-    password = 'Reflektor94'
-    msg = MIMEMultipart('Alternative')
-    msg['Subject'] = "Notificacion AISEC"
-    msg['From'] = user
-    msg['To'] = sendto
-    part1 = MIMEText(html,'html')
-    msg.attach(part1)
-    mail = smtplib.SMTP('smtp.gmail.com',587)
-    mail.ehlo()
-    mail.starttls()
-    mail.login(user, password)
-    mail.sendmail(user, sendto, msg.as_string())
-    mail.quit
-
-start =time.time()
-envioCorreos(html)
-#print("WEB")
-#tb4_prod(initialDate, finalDate,empresa)
-#funcion = tb4_an(initialDate, finalDate,empresa)
-#funcion = list(funcion)
-#pprint.pprint(funcion)
-
-class MyAccumulator:
-    def __init__(self):
-        self.sum = 0
-    def add(self, number):
-        self.sum += number
-        return self.sum
-
-class log:
-    def __init__(self,empresa,app,conteo):
-        self.empresa = empresa
-        self.app = app
-        self.sum += conteo
-
-
-A = MyAccumulator()
-i = 0
-globals()['string%s' %i] = "hola"
-print(string0)
-globals()['string%s' %i] = "ADios de nuevo"
-print(globals()['string%s' %i])
-
-def coroutine(func):
-    def wrapper(*args, **kw):
-        gen = func(*args, **kw)
-        gen.send(None)
-        return gen
-    return wrapper
-
-@coroutine
-def accumulator():
-    global vglobal 
-    vglobal = "Esto es la global"
-    val = 0
+def follow(f): #Funcion que lee el ultimo renglon del archivo, si detecta cambios espera 0.3 segundos para volver a correr
+    f.seek(0, os.SEEK_END)
     while True:
-        val += (yield val)
+        line = f.readline()
+        if not line:
+            #time.sleep(0.1)
+            continue
+        yield line
+        #return line
+def lector(loglines):
+    global linea
+    global cola
+    cola = queue.Queue()
+
+    objetoNotificacion = objetoAcumulador('Allan',0)
+    print(objetoNotificacion.nombre)
+    for line in loglines:
+        if line != "\n":
+            linea = line
+            cola.put(linea) 
+            if linea == objetoNotificacion.nombre:
+                objetoNotificacion.conteo += 1
+                texto ='nombre: {} y conteo: {}'.format(objetoNotificacion.nombre,objetoNotificacion.conteo)
+                print(texto)
+            else:
+                
+            if  objetoNotificacion.conteo > 3:
+                 objetoNotificacion.conteo = 0
+                 objetoNotificacion.nombre = 'Joshua'
+                 while not cola.empty():
+                    print(cola.get())
 
 
+def temporizador():
+    global tiempo
+    tiempo = time.time()
+    while 1:
+        tfinal = time.time()-tiempo
+        if tfinal > 5:
+            print("Tiempo alcanzado")
+            print(tfinal)
+            break
+    print(time.time()-start)
 
-print(time.time()-start)
+start = time.time()
+x = []
+loglines = follow(f)
+lector(loglines)
+
+colaacum = queue.Queue()
+colad = queue.Queue()
+
+hilo1 = threading.Thread(target=temporizador)
+hilo1.start()
+
+acumulador = 0
+for i in range(5):
+    dato = input()
+    dato = int(dato)
+    if dato == acumulador:
+        print("iguales")
+        colad.put(dato)
+        tiempo = time.time()
+    else:
+        colaacum.put(dato)
+
+print("Cola acumulador")
+while not colaacum.empty():
+    print(colaacum.get())
+print("Cola datos")
+while not colad.empty():
+    print(colad.get())

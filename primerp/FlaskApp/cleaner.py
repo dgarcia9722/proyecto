@@ -203,7 +203,7 @@ def lectorWeb(fechai,fechaf): #Top 10 paginas
         {"$sort": {"Fecha": -1}},
         {"$out":"web"},
     ]
-    result = db.logs.aggregate(pipee,allowDiskUse=True)
+    db.logs.aggregate(pipee,allowDiskUse=True)
     #result = list(result)
     #print(result)
     #
@@ -266,7 +266,7 @@ def lectorApp(fechai,fechaf): #Top 10 paginas
         {"$sort": {"Empresa": -1}},
         {"$out":"aplicacion"},
     ]
-    result = db.logs.aggregate(pipee,allowDiskUse=True)
+    db.logs.aggregate(pipee,allowDiskUse=True)
     result = list(result)
     print(result)
 #    for element in result:
@@ -282,9 +282,8 @@ def lectorVirus(fechai,fechaf): #Lector Virus
         {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","hora":"$time","ip":"$srcip","usuario":"$user",'Virus':'$virus',"Accion":"$action"},"count": {"$sum":1}}},
         {"$out":"virus"},
     ]
-    result = db.logs.aggregate(pipee,allowDiskUse=True)
-    result = list(result)
-    pprint.pprint(result)
+    db.logs.aggregate(pipee,allowDiskUse=True)
+
 #    for element in result:
         #pprint.pprint(element)
 #        db.aplicacion.insert_one(element)
@@ -309,8 +308,8 @@ finalDate = "2020-07-11"
 empresa = 'HA-RNT FG100D'
 
 start =time.time()
-lectorWeb (initialDate, finalDate)
-lectorApp(initialDate, finalDate)
+#lectorWeb (initialDate, finalDate)
+#lectorApp(initialDate, finalDate)
 lectorVirus(initialDate, finalDate)
 
 print(time.time()-start)
