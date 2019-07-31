@@ -13,7 +13,7 @@ class objetoAcumulador(object):
     def __init__(self,nombre,conteo):
         self.nombre = nombre
         self.conteo = conteo
-    
+
 
 
 def follow(f): #Funcion que lee el ultimo renglon del archivo, si detecta cambios espera 0.3 segundos para volver a correr
@@ -35,13 +35,13 @@ def lector(loglines):
     for line in loglines:
         if line != "\n":
             linea = line
-            cola.put(linea) 
+            cola.put(linea)
             if linea == objetoNotificacion.nombre:
                 objetoNotificacion.conteo += 1
                 texto ='nombre: {} y conteo: {}'.format(objetoNotificacion.nombre,objetoNotificacion.conteo)
                 print(texto)
             else:
-                
+
             if  objetoNotificacion.conteo > 3:
                  objetoNotificacion.conteo = 0
                  objetoNotificacion.nombre = 'Joshua'
@@ -88,3 +88,4 @@ while not colaacum.empty():
 print("Cola datos")
 while not colad.empty():
     print(colad.get())
+#Hola soy Diana
