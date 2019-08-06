@@ -274,6 +274,68 @@ def lectorApp(fechai,fechaf): #Top 10 paginas
 #        db.aplicacion.insert_one(element)
     print("Listo")
 
+def lectorAppWifi(fechai,fechaf): #Top 10 paginas
+    print("MMMMMMMMMM")
+    pipee = [
+        {"$sort":{"date":1}},
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"subtype":"forward"},{"srcssid":{"$exists":True}}]}},
+        #{"$match": {"$and": [{"date":fechai},{"subtype":"forward"}]}},
+        {"$project":{"srcssid":1,"sentbyte":1,"rcvdbyte":1,"devname":1,"date":1,"appcat":1,"user":1,"srcip":1,"app":1,"action":1,"duration":1,"appcat":1,
+        "punto":{"$switch":{
+        "branches":[
+        {'case':{'$eq':['$appcat','Mobile']},'then':1},
+        {'case':{'$eq':['$appcat','Game']},'then':1},
+        {'case':{'$eq':['$appcat','Web client']},'then':[1,6]},
+        {'case':{'$eq':['$appcat','General Interest']},'then':1},
+        {'case':{'$eq':['$appcat','P2P']},'then':[1,2,3,4,6,7]},
+        {'case':{'$eq':['$appcat','Social Media']},'then':[1,7]},
+        {'case':{'$eq':['$appcat','Video/Audio']},'then':[1,7]},
+        {'case':{'$eq':['$appcat','Proxy']},'then':[2,4,6]},
+        {'case':{'$eq':['$appcat','Storage backup']},'then':[2,4,6,7]},
+        {'case':{'$eq':['$appcat','Remote access']},'then':[2,6]},
+        {'case':{'$eq':['$appcat','Email']},'then':[4,5]},
+        {'case':{'$eq':['$appcat','Collaboration']},'then':[4,5,6]},
+        {'case':{'$eq':['$appcat','Business']},'then':5},
+        {'case':{'$eq':['$appcat','Cloud IT']},'then':6},
+        {'case':{'$eq':['$appcat','Network service']},'then':6},
+        ],
+        "default":11
+        }},
+        "uid":{"$switch":{
+        "branches":[
+        {'case':{'$eq':['$appcat','Mobile']},'then':1},
+        {'case':{'$eq':['$appcat','Game']},'then':2},
+        {'case':{'$eq':['$appcat','Web client']},'then':3},
+        {'case':{'$eq':['$appcat','General Interest']},'then':4},
+        {'case':{'$eq':['$appcat','P2P']},'then':5},
+        {'case':{'$eq':['$appcat','Social Media']},'then':6},
+        {'case':{'$eq':['$appcat','Video/Audio']},'then':7},
+        {'case':{'$eq':['$appcat','Proxy']},'then':8},
+        {'case':{'$eq':['$appcat','Storage backup']},'then':9},
+        {'case':{'$eq':['$appcat','Remote access']},'then':10},
+        {'case':{'$eq':['$appcat','Email']},'then':11},
+        {'case':{'$eq':['$appcat','Collaboration']},'then':12},
+        {'case':{'$eq':['$appcat','Business']},'then':13},
+        {'case':{'$eq':['$appcat','Cloud IT']},'then':14},
+        {'case':{'$eq':['$appcat','Network service']},'then':15},
+        ],
+        "default":11
+        }}
+
+        }},
+        {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]},"Enviado":{"$sum":"$sentbyte"},"Recibido":{"$sum":"$rcvdbyte"},"Duracion":{"$sum":"$duration"}}},
+        {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","uid":"$uid","Punto":"$punto","categoria":"$appcat","Aplicacion":"$app","usuario":"$user","ip":"$srcip","SSID":"$srcssid","Accion":"$action","Enviado":"$Enviado","Recibido":"$Recibido","Bytes":"$conteo","Duracion":"$Duracion"}}},
+        {"$sort": {"Empresa": -1}},
+        {"$out":"appwifi"},
+    ]
+    db.logs.aggregate(pipee,allowDiskUse=True)
+    result = list(result)
+    print(result)
+#    for element in result:
+        #pprint.pprint(element)
+#        db.aplicacion.insert_one(element)
+    print("Listo")
+
 def lectorVirus(fechai,fechaf): #Lector Virus
     print("MMMMMMMMMM")
     pipee = [
@@ -308,8 +370,9 @@ finalDate = "2020-07-11"
 empresa = 'HA-RNT FG100D'
 
 start =time.time()
-#lectorWeb (initialDate, finalDate)
-#lectorApp(initialDate, finalDate)
+lectorWeb(initialDate, finalDate)
+lectorApp(initialDate, finalDate)
 lectorVirus(initialDate, finalDate)
+lectorAppWifi(initialDate, finalDate)
 
 print(time.time()-start)

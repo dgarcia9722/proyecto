@@ -6,12 +6,12 @@ from dateutil.relativedelta import relativedelta
 import pdfkit
 from content_management import *
 import time
-
+from fpruebas import *
 client = MongoClient('mongodb://172.16.11.20:27017/')
 db = client.registros
 
 env = Environment(loader=FileSystemLoader(searchpath="templates"))
-template = env.get_template("find.html")
+template = env.get_template("treporte.html")
 
 path_wkthmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
 config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
@@ -31,11 +31,16 @@ options = {
 def main():
     client = MongoClient('mongodb://172.16.11.20:27017/')
     db = client.registros
-    dempresa = db.empresas.find()
+    dempresa = db.empresas.find({'empresa':'Cidexsa-Aeropuerto'})
+    #dempresa = db.empresas.find({'empresa':'TLA HA 1'})
+    #dempresa = db.empresas.find({'empresa':'RealNet'})
+
+
     dempresa = list(dempresa)
-    pprint.pprint(dempresa[1])
-    fecha = dempresa[1]['inicio']
-    encargado = dempresa[1]['encargado']
+    pprint.pprint(dempresa)
+    fecha = dempresa[0]['inicio']
+    encargado = dempresa[0]['contacto'][0][0]
+    print(encargado)
     diae = datetime.strptime(fecha,'%Y-%m-%d')
     diah = datetime.now()
     diam = datetime.now()+relativedelta(months=-1)
@@ -50,57 +55,46 @@ def main():
 
     initialDate = diam
     finalDate = diah
-    empresa = 'TLA HA 1'
+    #empresa = "RealNet"
+    empresa = 'Cidexsa-Aeropuerto FWF30D'
     print(empresa)
     start =time.time()
 
-
-    an1 = tb1_an(initialDate,finalDate,empresa)
-    an2 = tb2_an(initialDate,finalDate,empresa)
-    an3 = tb3_an(initialDate,finalDate,empresa)
-    an4 = tb4_an(initialDate,finalDate,empresa)
-    pd1 = tb1_prod(initialDate,finalDate,empresa)
-    pd2 = tb2_prod(initialDate,finalDate,empresa)
-    pd3 = tb3_prod(initialDate,finalDate,empresa)
-    pd4 = tb4_prod(initialDate,finalDate,empresa)
-    pd4 = list(pd4)
-    print(pd4)
-    pd1u = tb1u_prod(initialDate,finalDate,empresa)
-    pd2u = tb2u_prod(initialDate,finalDate,empresa)
-    pd3u = tb3u_prod(initialDate,finalDate,empresa)
-    pd4u = tb4u_prod(initialDate,finalDate,empresa)
-    rl1 = tb1_rl(initialDate,finalDate,empresa)
-    rl2 = tb2_rl(initialDate,finalDate,empresa)
-    rl3 = tb3_rl(initialDate,finalDate,empresa)
-    rl4 = tb4_rl(initialDate,finalDate,empresa)
+    crep1 = rep1(initialDate,finalDate,empresa)
+    crep2 = rep2(initialDate,finalDate,empresa)
+    crep3 = rep3(initialDate,finalDate,empresa)
+    crep4 = rep4(initialDate,finalDate,empresa)
+    crep5 = rep5(initialDate,finalDate,empresa)
+    crep6 = rep6(initialDate,finalDate,empresa)
+    crep7 = rep7(initialDate,finalDate,empresa)
+    crep8 = rep8(initialDate,finalDate,empresa)
+    crep9 = rep9(initialDate,finalDate,empresa)
+    crep10 = rep10(initialDate,finalDate,empresa)
+    crep11 = rep11(initialDate,finalDate,empresa)
+    crep12 = rep12(initialDate,finalDate,empresa)
 
     print(time.time()-start)
 
 
-    with open("templates/salidaReporte/report.html", "w") as f:
-        output = template.render(dempresa=dempresa[2],
+    with open("templates/salidaReporte/report.html",encoding='utf-8',mode="w") as f:
+        output = template.render(dempresa=dempresa[0],
         iDate=initialDate,
         fDate=finalDate,
         diah=diah,
         diam=diam,
         puntos=Puntos,
-        an1=an1,
-        an2=an2,
-        an3=an3,
-        an4=an4,
-        pd1=pd1,
-        pd2=pd2,
-        pd3=pd3,
-        pd4=pd4,
-        pd1u=pd1u,
-        pd2u=pd2u,
-        pd3u=pd3u,
-        pd4u=pd4u,
-        rl1=rl1,
-        rl2=rl2,
-        rl3=rl3,
-        rl4=rl4,
-
+        rep1=crep1,
+        rep2=crep2,
+        rep3=crep3,
+        rep4=crep4,
+        rep5=crep5,
+        rep6=crep6,
+        rep7=crep7,
+        rep8=crep8,
+        rep9=crep9,
+        rep10=crep10,
+        rep11=crep11,
+        rep12=crep12,
         )
         f.write(output)
 

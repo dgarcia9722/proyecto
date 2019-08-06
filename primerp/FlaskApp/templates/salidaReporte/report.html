@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+  <!--  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+         Bootstrap CSS -->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="C:/Users/asalinas/Documents/PycharmProjects/flask/proyecto/primerp/primerp/FlaskApp/static/reportes.css" >
+
+    <title></title>
+  </head>
+  <body>
+    <div class="wrapper" display:block;>
+
+        <div class="row"> <!-- caratula -->
+          <div class="col-xs-1">
+          </div>
+          <div class="col-xs-10">
+            <h1>Reporte Productivity Guru</h1>
+            <h3 class="text-right">Cidexsa-Aeropuerto FWF30D</h4>
+            <h3 class="text-right">Elaborado para: Daniel Gomez</h4>
+            <br><br><br>
+            <img src="C:/Users/asalinas/Documents/PycharmProjects/flask/proyecto/primerp/primerp/FlaskApp/static/Logos/Cidexsa.jpg" style="width:750px; height:550; margin-bottom:" alt="">
+            <div class="row" id="salto" style="page-break-before:always;">
+              <br><br>
+              <h3 class="text-center">Fecha: 2019-08-02</h3>
+              <h3 class="text-center">Periodo: 2019-07-02 - 2019-08-02  </h4>
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+
+    <p id="salto"> </p>
+
+
+    <div class="row"><!-- Tabla de contenidos -->
+      <div class="col-xs-1">
+
+        <br>
+      </div>
+      <div class="col-xs-10">
+        <div class="row" id="salto" style="page-break-before:always;">
+          <h1>Tabla de contenidos.</h1>
+          <ul class="list-unstyled component">
+<br>
+              <h4><a href="#intro">Introducción</a></h4> <br>
+              <h4><a href="#bd1">Consumo de banda ancha</a></h4> <br>
+              <h4><a href="#bd2">Bandwidth por usuario</a></h4> <br>
+              <h4><a href="#bd4"></a>Audio y video</h4> <br>
+              <h4><a href="#bd5"></a>Bandwidth Audio y video</h4> <br>
+              <h4><a href="#bd6"></a>Sitios web</h4><br>
+              <h4><a href="#bd7">Bloqueos</a></h4><br>
+              <h4><a href="#bd8">Virus</a></h4><br>
+              <h4><a href="#bd9">Conclusiones</a></h4><br>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="intro"><!--Introducción-->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>Introducción</h1>
+        <p>Productivity Guru, es un sistema con el que apoyamos a las empresas a ser mas productivas, eficientes y a disminuir gastos operativos para aumentar la rentabilidad de la empresa.
+        <br> Es en base a la experiencia que RealNet brinda en sus servicios de asesoramiento y soluciones por medio de recursos TI, asesorando y administrando las redes de sus clientes con tecnologias de vanguardia que resulten confiables, economicas y flexibles para enfrentarse a los retos del mercado actual.
+        <br> El objetivo principal de este reporte es, mostrar el comportamiento de los usuarios en internet de la empresa . </p>
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="bd1"><!--Bandwidth-->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>Consumo de banda ancha</h1>
+        <p>El ancho de banda es la cantidad de datos que los usuarios utilizan mientras se comunican a través de internet.  Esto nos permite conocer el grado de utilización de la red en relación con cada usuario</p>
+        <p>En la siguiente grafica se muestra el consumo de ancho de banda por categoria de aplicaciones</p>
+        <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\tablas\rep1.png" alt="">
+        <br>
+        <p>Las categorias con mayor consumo de ancho de banda son de la categoria <b>Information Technology </b> con un consumo de 125.76MB, seguida de la categoria <b>Content Servers </b>, y <b>Business </b>  </p>
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" ><!-- tabla bandwidth-->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h4>A continuación se da un mejor detalle de la información anterior</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Uso de datos</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <th scope="row">1</th>
+                <td>Information Technology </td>
+                <td>125.76MB</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">2</th>
+                <td>Content Servers </td>
+                <td>22.36MB</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">3</th>
+                <td>Business </td>
+                <td>14.04MB</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">4</th>
+                <td>Search Engines and Portals </td>
+                <td>5.75MB</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">5</th>
+                <td>Finance and Banking </td>
+                <td>0.23MB</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">6</th>
+                <td>Information and Computer Security </td>
+                <td>0.21MB</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">7</th>
+                <td>Unrated </td>
+                <td>0.21MB</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">8</th>
+                <td>Advertising</td>
+                <td>0.1MB</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">9</th>
+                <td>Web Hosting </td>
+                <td>0.04MB</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">10</th>
+                <td>Streaming Media and Download</td>
+                <td>0.02MB</td>
+              </tr>
+              
+
+            </tbody>
+
+          </table>
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="bd2"><!-- tabla bandwidth por usuario-->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>Bandwidth por usuario</h1>
+        <p>La siguiente tabla muestra a los usuarios que mas ancho de banda utilizaron, en primer lugar se encuentra
+          
+           la ip <b>192.168.0.51</b> y un total de  <b>32.53MB</b>.
+           Seguido por
+           
+           la ip <b>192.168.0.32</b> con un total de  <b>30.35MB</b>., y
+           
+           la ip <b>192.168.0.35</b> con un total de  <b>15.64MB</b>..</p>
+           <p>A continuacion se muestra la informacion mas detallada: </p>
+           <br>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">IP</th>
+                <th scope="col">Host</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <th scope="row">1</th>
+                <td></td>
+                <td>192.168.0.51</td>
+                <td>tlu.dl.delivery.mp.microsoft.com</td>
+                <td>Information Technology </td>
+                <td> <b>32.53MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">2</th>
+                <td></td>
+                <td>192.168.0.32</td>
+                <td>11.tlu.dl.delivery.mp.microsoft.com</td>
+                <td>Information Technology </td>
+                <td> <b>30.35MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">3</th>
+                <td></td>
+                <td>192.168.0.35</td>
+                <td>eus-streaming-video-msn-com.akamaized.net</td>
+                <td>Content Servers </td>
+                <td> <b>15.64MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">4</th>
+                <td></td>
+                <td>192.168.0.51</td>
+                <td>11.tlu.dl.delivery.mp.microsoft.com</td>
+                <td>Information Technology </td>
+                <td> <b>13.03MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">5</th>
+                <td></td>
+                <td>192.168.0.34</td>
+                <td>gomasa.ddns.net:8088</td>
+                <td>Business </td>
+                <td> <b>11.44MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">6</th>
+                <td></td>
+                <td>192.168.0.32</td>
+                <td>3.tlu.dl.delivery.mp.microsoft.com</td>
+                <td>Information Technology </td>
+                <td> <b>9.51MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">7</th>
+                <td></td>
+                <td>192.168.0.32</td>
+                <td>2.tlu.dl.delivery.mp.microsoft.com</td>
+                <td>Information Technology </td>
+                <td> <b>9.46MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">8</th>
+                <td></td>
+                <td>192.168.0.32</td>
+                <td>7.tlu.dl.delivery.mp.microsoft.com</td>
+                <td>Information Technology </td>
+                <td> <b>6.37MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">9</th>
+                <td></td>
+                <td>192.168.0.104</td>
+                <td>38.90.226.39:80</td>
+                <td>Information Technology </td>
+                <td> <b>5.37MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">10</th>
+                <td></td>
+                <td>192.168.0.35</td>
+                <td>dmd.metaservices.microsoft.com</td>
+                <td>Information Technology </td>
+                <td> <b>5.25MB</b>.</td>
+              </tr>
+              
+
+            </tbody>
+
+          </table>
+      </div>
+    </div>
+
+    <p id="salto"> </p>
+    <div class="row" id="bd2"><!-- tabla bandwidth por usuario-->
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <h1>Bandwidth WIFI</h1>
+        <p>La siguiente tabla muestra a los usuarios que más ancho de banda utilizaron, siendo
+          
+           la ip <b>192.168.10.115</b> y un total de  <b>88.94MB</b>. por medio de la red <b>Schott</b>
+           Seguido por
+           
+           la ip <b>192.168.10.108</b> con un total de  <b>55.95MB</b>. por medio de la red <b>Schott</b>, y
+           
+           la ip <b>192.168.10.102</b> con un total de  <b>22.68MB</b>.</b> por medio de la red <b>Schott</b>.</p>
+           <p>A continuacion se muestra la informacion mas detallada: </p>
+           <br>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">IP</th>
+                <th scope="col">SSID</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <th scope="row">1</th>
+                <td></td>
+                <td>192.168.10.115</td>
+                <td>Schott</td>
+                <td> <b>88.94MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">2</th>
+                <td></td>
+                <td>192.168.10.108</td>
+                <td>Schott</td>
+                <td> <b>55.95MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">3</th>
+                <td></td>
+                <td>192.168.10.102</td>
+                <td>Schott</td>
+                <td> <b>22.68MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">4</th>
+                <td></td>
+                <td>192.168.10.117</td>
+                <td>Schott</td>
+                <td> <b>21.84MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">5</th>
+                <td></td>
+                <td>192.168.10.100</td>
+                <td>Schott</td>
+                <td> <b>13.51MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">6</th>
+                <td></td>
+                <td>192.168.10.113</td>
+                <td>Schott</td>
+                <td> <b>8.92MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">7</th>
+                <td></td>
+                <td>192.168.10.103</td>
+                <td>Schott</td>
+                <td> <b>7.66MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">8</th>
+                <td></td>
+                <td>192.168.10.104</td>
+                <td>Schott</td>
+                <td> <b>4.07MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">9</th>
+                <td></td>
+                <td>192.168.10.112</td>
+                <td>Schott</td>
+                <td> <b>3.03MB</b>.</td>
+              </tr>
+              
+              <tr>
+                <th scope="row">10</th>
+                <td></td>
+                <td>192.168.10.105</td>
+                <td>Schott</td>
+                <td> <b>2.28MB</b>.</td>
+              </tr>
+              
+
+            </tbody>
+
+          </table>
+      </div>
+    </div>
+
+      <p id="salto"> </p>
+      <div class="row" id="bd3"><!--Aplicaciones más utilizadas bandwidth-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Aplicaciones más utilizadas</h1>
+          <p>La siguiente gráfica muestra las aplicaciones más utilizadas y el ancho de badna consumido.</p>
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\tablas\rep4.png" alt="">
+          <br>
+          <p>Las aplicaciones con mayor consumo de ancho de banda son <b>AnyDesk</b> con un consumo de  <b>802.48MB</b>., seguida de la categoria <b>Skype</b>, y <b>POP3</b></p>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" ><!--tabla apps bandwidth-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h4>A continuación se da un mejor detalle de la información anterior</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Aplicación</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Uso de datos</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <th scope="row">1</th>
+                  <td>AnyDesk</td>
+                  <td>Remote.Access</td>
+                  <td> <b>802.48MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Skype</td>
+                  <td>Collaboration</td>
+                  <td> <b>512.05MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">3</th>
+                  <td>POP3</td>
+                  <td>Email</td>
+                  <td> <b>230.5MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">4</th>
+                  <td>RDP</td>
+                  <td>Remote.Access</td>
+                  <td> <b>222.1MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">5</th>
+                  <td>Microsoft.Portal</td>
+                  <td>Collaboration</td>
+                  <td> <b>195.88MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">6</th>
+                  <td>HTTP.BROWSER</td>
+                  <td>Web.Client</td>
+                  <td> <b>148.12MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">7</th>
+                  <td>HTTP.Segmented.Download</td>
+                  <td>Network.Service</td>
+                  <td> <b>113.74MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">8</th>
+                  <td>WhatsApp File.Transfer</td>
+                  <td>Collaboration</td>
+                  <td> <b>94.74MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">9</th>
+                  <td>MS.Windows.Update</td>
+                  <td>Update</td>
+                  <td> <b>88.92MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">10</th>
+                  <td>HTTPS.BROWSER</td>
+                  <td>Web.Client</td>
+                  <td> <b>83.7MB</b>.</td>
+                </tr>
+                
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" id="bd5"><!--Aplicaciones Audio/Video-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Aplicaciones más utilizadas Video/Audio</h1>
+          <p>El monitoreo de aplicaciones de Video o Audio tiene como intención aumentar la productividad, ya que el uso de aplicaciones de este tipo afecta en el rendimiento de los usuarios como de la red.</p>
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\tablas\rep5.png" alt="">
+          <br>
+          <p>Las aplicaciones con mayor consumo de ancho de banda de la categoria <b>Video/Audio</b> siendo <b>YouTube</b>
+            la primera con un consumo de  <b>0.58MB</b>., seguida de la categoria
+            <b>HTTP.Video</b>, y <b>Dailymotion</b></p>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" ><!--tabla-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h4>A continuación se da un mejor detalle de la información anterior</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Aplicación</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Uso de datos</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <th scope="row">1</th>
+                  <td>YouTube</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.58MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">2</th>
+                  <td>HTTP.Video</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.01MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Dailymotion</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.01MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">4</th>
+                  <td>Spotify</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.0MB</b>.</td>
+                </tr>
+                
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" id="bd5"><!--Aplicaciones Audio/Video usuarios-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Aplicaciones más utilizadas Video/Audio usuario</h1>
+          <p>En esta gráfica analizamos el trafico de los usuarios del tipo Audio y video, esto nos ayuda a saber de forma clara cual de los usuarios esta haciendo uso de aplicaciones relacionadas a audio y video.</p>
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\tablas\rep6.png" alt="">
+          <br>
+          <p>La siguiente tabla muestra a los usuarios que más ancho de banda utilizaron, siendo
+            
+             la ip <b>192.168.10.103</b> y un total de  <b>0.12MB</b>. accediendo a  <b>YouTube</b>
+             Seguido por
+             
+             la ip <b>192.168.10.117</b> con un total de  <b>0.12MB</b>. accediendo a  <b>YouTube</b>, y
+             
+             la ip <b>192.168.10.100</b> con un total de  <b>0.09MB</b>. accediendo a  <b>YouTube</b>.</p>
+
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" ><!--tabla-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h4>A continuación se da un mejor detalle de la información anterior</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">IP</th>
+                  <th scope="col">Aplicación</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Uso de datos</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <th scope="row">1</th>
+                  <td></td>
+                  <td> </td>
+                  <td>YouTube</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.12MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">2</th>
+                  <td></td>
+                  <td> </td>
+                  <td>YouTube</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.12MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">3</th>
+                  <td></td>
+                  <td> </td>
+                  <td>YouTube</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.09MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">4</th>
+                  <td></td>
+                  <td> </td>
+                  <td>YouTube</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.07MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">5</th>
+                  <td></td>
+                  <td> </td>
+                  <td>YouTube</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.06MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">6</th>
+                  <td></td>
+                  <td> </td>
+                  <td>YouTube</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.03MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">7</th>
+                  <td></td>
+                  <td> </td>
+                  <td>YouTube</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.03MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">8</th>
+                  <td></td>
+                  <td> </td>
+                  <td>YouTube</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.03MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">9</th>
+                  <td></td>
+                  <td> </td>
+                  <td>YouTube</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.01MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">10</th>
+                  <td></td>
+                  <td> </td>
+                  <td>YouTube</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.01MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">11</th>
+                  <td></td>
+                  <td> </td>
+                  <td>HTTP.Video</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.01MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">12</th>
+                  <td></td>
+                  <td> </td>
+                  <td>Dailymotion</td>
+                  <td>Video/Audio</td>
+                  <td> <b>0.01MB</b>.</td>
+                </tr>
+                
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" id="bd2"><!-- tabla bandwidth por usuario-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Bandwidth WIFI Video/Audio</h1>
+          <p>La siguiente tabla muestra a los Usuarios que más ancho de banda utilizaron por medio de WIFI y referente a categorias de <b>Video/Audio</b>, siendo
+            
+             la IP <b></b> y un total de  <b>0.12MB</b>. por medio de la red <b>Schott</b>
+             Seguido por
+             
+             la IP <b></b> con un total de  <b>0.12MB</b>. por medio de la red <b>Schott</b>, y
+             
+             la IP <b></b> con un total de  <b>0.09MB</b>.</b> por medio de la red <b>Schott</b>.</p>
+             <p>A continuacion se muestra la informacion mas detallada: </p>
+             <br>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">IP</th>
+                  <th scope="col">SSID</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <th scope="row">1</th>
+                  <td></td>
+                  <td>192.168.10.103</td>
+                  <td>Schott</td>
+                  <td> <b>0.12MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">2</th>
+                  <td></td>
+                  <td>192.168.10.117</td>
+                  <td>Schott</td>
+                  <td> <b>0.12MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">3</th>
+                  <td></td>
+                  <td>192.168.10.100</td>
+                  <td>Schott</td>
+                  <td> <b>0.09MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">4</th>
+                  <td></td>
+                  <td>192.168.10.113</td>
+                  <td>Schott</td>
+                  <td> <b>0.07MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">5</th>
+                  <td></td>
+                  <td>192.168.10.104</td>
+                  <td>Schott</td>
+                  <td> <b>0.06MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">6</th>
+                  <td></td>
+                  <td>192.168.10.105</td>
+                  <td>Schott</td>
+                  <td> <b>0.03MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">7</th>
+                  <td></td>
+                  <td>192.168.10.102</td>
+                  <td>Schott</td>
+                  <td> <b>0.03MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">8</th>
+                  <td></td>
+                  <td>192.168.10.106</td>
+                  <td>Schott</td>
+                  <td> <b>0.03MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">9</th>
+                  <td></td>
+                  <td>192.168.10.101</td>
+                  <td>Schott</td>
+                  <td> <b>0.01MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">10</th>
+                  <td></td>
+                  <td>192.168.10.108</td>
+                  <td>Schott</td>
+                  <td> <b>0.01MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">11</th>
+                  <td></td>
+                  <td>192.168.10.128</td>
+                  <td>Schott</td>
+                  <td> <b>0.0MB</b>.</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">12</th>
+                  <td></td>
+                  <td>192.168.10.115</td>
+                  <td>Schott</td>
+                  <td> <b>0.0MB</b>.</td>
+                </tr>
+                
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" id="bd4"><!--Sitios web permitidos-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Sitios web permitidos</h1>
+          <p>La siguiente tabla muestra la distribución de las categorías web referentes a la navegación web del periodo. Se puede observar que, en el transcurso del periodo, los usuarios manejaron una tendencia principal hacia sitios catalogados de la siguiente manera:
+
+            </p>
+          <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\tablas\rep8.png" alt="">
+          <br>
+          <p>El sitio web que más accesos tuvo fue <b>11.tlu.dl.delivery.mp.microsoft.com</b> con un consumo de 43.38MB, seguido de  <b>tlu.dl.delivery.mp.microsoft.com</b>, y <b>eus-streaming-video-msn-com.akamaized.net</b></p>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" ><!--tabla apps bandwidth-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h4>A continuación se da un mejor detalle de la información anterior</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Hostname</th>
+                  <th scope="col">Uso de datos</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <th scope="row">1</th>
+                  <td>11.tlu.dl.delivery.mp.microsoft.com</td>
+                  <td>43.38MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">2</th>
+                  <td>tlu.dl.delivery.mp.microsoft.com</td>
+                  <td>32.53MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">3</th>
+                  <td>eus-streaming-video-msn-com.akamaized.net</td>
+                  <td>15.64MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">4</th>
+                  <td>dmd.metaservices.microsoft.com</td>
+                  <td>12.46MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">5</th>
+                  <td>gomasa.ddns.net:8088</td>
+                  <td>11.44MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">6</th>
+                  <td>3.tlu.dl.delivery.mp.microsoft.com</td>
+                  <td>9.52MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">7</th>
+                  <td>2.tlu.dl.delivery.mp.microsoft.com</td>
+                  <td>9.46MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">8</th>
+                  <td>7.tlu.dl.delivery.mp.microsoft.com</td>
+                  <td>7.38MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">9</th>
+                  <td>38.90.226.39:80</td>
+                  <td>6.58MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">10</th>
+                  <td>static-global-s-msn-com.akamaized.net</td>
+                  <td>5.04MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">11</th>
+                  <td>otf.msn.com</td>
+                  <td>3.29MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">12</th>
+                  <td>www.msn.com</td>
+                  <td>2.06MB</td>
+                </tr>
+                
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" ><!--Categorias web bloqueados-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Categorias bloqueadas</h1>
+          <p>En la tabla se muestra las categorías web que fueron bloqueadas durante el periodo debido a intentos de acceso no autorizados. </p>
+
+          <h4>A continuación se da un mejor detalle de la información anterior</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Hostname</th>
+                  <th scope="col">Peticiones</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Advertising</td>
+                  <td>38</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Streaming Media and Download</td>
+                  <td>15</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Games</td>
+                  <td>2</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">4</th>
+                  <td>Social Networking</td>
+                  <td>1</td>
+                </tr>
+                
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" ><!--Sitios web bloqueados-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Sitios web bloqueados</h1>
+          <p>En la tabla se muestra los sitios web más bloqueados debido a intentos de acceso no autorizados</p>
+
+          <h4>A continuación se da un mejor detalle de la información anterior</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Hostname</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Peticiones</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <th scope="row">1</th>
+                  <td>b.scorecardresearch.com</td>
+                  <td>Advertising</td>
+                  <td>37910</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">2</th>
+                  <td>ib.adnxs.com</td>
+                  <td>Advertising</td>
+                  <td>34654</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">3</th>
+                  <td>acdn.adnxs.com</td>
+                  <td>Advertising</td>
+                  <td>27894</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">4</th>
+                  <td>api.snappea.com</td>
+                  <td>Streaming Media and Download</td>
+                  <td>14179</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">5</th>
+                  <td>sensors.snappea.com</td>
+                  <td>Streaming Media and Download</td>
+                  <td>4849</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">6</th>
+                  <td>widgets.outbrain.com</td>
+                  <td>Advertising</td>
+                  <td>4217</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">7</th>
+                  <td>analytics.snappea.com</td>
+                  <td>Streaming Media and Download</td>
+                  <td>1400</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">8</th>
+                  <td>contextual.media.net</td>
+                  <td>Advertising</td>
+                  <td>1374</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">9</th>
+                  <td>adm.fwmrm.net</td>
+                  <td>Streaming Media and Download</td>
+                  <td>929</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">10</th>
+                  <td>push.api.snappea.com</td>
+                  <td>Streaming Media and Download</td>
+                  <td>221</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">11</th>
+                  <td>c.whatsapp.net</td>
+                  <td>Social Networking</td>
+                  <td>157</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">12</th>
+                  <td>cdf-anon.xboxlive.com</td>
+                  <td>Games</td>
+                  <td>138</td>
+                </tr>
+                
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" ><!--Sitios web bloqueados-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Usuarios bloqueados</h1>
+          <p>En la tabla se muestra los usuarios que fueron bloqueados, la IP del equipo y el consumo de ancho de banda que utilizaron en datos enviados y recibidos. </p>
+          <h4>A continuación se da un mejor detalle de la información anterior</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">IP</th>
+                  <th scope="col">Categorias</th>
+                  <th scope="col">Uso de datos</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <th scope="row">1</th>
+                  <td></td>
+                  <td>192.168.0.35</td>
+                  <td>Advertising</td>
+                  <td>0.09MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">2</th>
+                  <td></td>
+                  <td>192.168.10.115</td>
+                  <td>Streaming Media and Download</td>
+                  <td>0.02MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">3</th>
+                  <td></td>
+                  <td>192.168.0.104</td>
+                  <td>Advertising</td>
+                  <td>0.01MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">4</th>
+                  <td></td>
+                  <td>192.168.0.35</td>
+                  <td>Streaming Media and Download</td>
+                  <td>0.0MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">5</th>
+                  <td></td>
+                  <td>192.168.10.117</td>
+                  <td>Social Networking</td>
+                  <td>0.0MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">6</th>
+                  <td></td>
+                  <td>192.168.0.52</td>
+                  <td>Games</td>
+                  <td>0.0MB</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">7</th>
+                  <td></td>
+                  <td>192.168.0.32</td>
+                  <td>Games</td>
+                  <td>0.0MB</td>
+                </tr>
+                
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" id="bd8"><!--Virus-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Virus</h1>
+          <p>Se han detectado equipos infectados con virus dentro de la red interna de Chiltepec la intrusión identificada es de tipo Virus, en las siguientes tablas se muestra información detallada</p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Virus</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col">IP</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">Accion</th>
+                  <th scope="col">Incidencias</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <th scope="row">1</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:10:07</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">2</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:20:08</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">3</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:25:04</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">4</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:55:12</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">5</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:15:06</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">6</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:45:11</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">7</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:05:06</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">8</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:37:26</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">9</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:36:39</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">10</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:50:06</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">11</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:48:57</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">12</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:30:06</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">13</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:25:09</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">14</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:02:35</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">15</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:37:53</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">16</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:45:08</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">17</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:46:57</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">18</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:40:06</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">19</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:02:08</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">20</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:35:15</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">21</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:01:12</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">22</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:00:07</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">23</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:35:12</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">24</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:38:53</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">25</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:40:10</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">26</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>11:00:15</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">27</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:50:10</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">28</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:55:08</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">29</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>09:47:23</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">30</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:01:41</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">31</th>
+                  <td>W32/Injector.EGUR!tr</td>
+                  <td>2019-07-29</td>
+                  <td>10:09:14</td>
+                  <td>192.168.0.106</td>
+                  <td></td>
+                  <td>blocked</td>
+                  <td>1</td>
+                </tr>
+                
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" ><!--Virus-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Conclusiones</h1>
+          <p>En el reporte de este mes las políticas establecidas con anterioridad están mejorando la productividad dentro de la empresa, así como la navegación segura en internet permitiendo que los usuarios entren a los sitios que tienen
+permisos</p>
+            <table class="table">
+    
+              <tbody>
+                <tr><td>
+
+                  
+                    
+                      
+                        
+                        <p>Se detectaron 31 virus. Tu red esta en un estado critico, contacta al equipo de Productivity Guru para hacer un analisis de tu red y evitar perdida de información</p>
+                        
+                        
+                      
+                  
+                </td></tr>
+                <tr><td>
+                  
+                  <p>Se detectaron accesos a sitios con la categoria <b>Audio/Video</b>, contacta al equipo de Productivity Guru para solucionarlo. </p>
+                  
+                </td></tr>
+                <tr><td>
+                  
+                  <p>Se estan bloqueando los sitios adecuadamente</p>
+                  
+                </td></tr>
+
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
