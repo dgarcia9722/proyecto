@@ -14,7 +14,12 @@ class objetoAcumulador(object):
         self.nombre = nombre
         self.conteo = conteo
 
+nombre = "Allan"
 
+def imprime():
+    print(nombre)
+
+imprime()
 
 def follow(f): #Funcion que lee el ultimo renglon del archivo, si detecta cambios espera 0.3 segundos para volver a correr
     f.seek(0, os.SEEK_END)
@@ -88,4 +93,3 @@ while not colaacum.empty():
 print("Cola datos")
 while not colad.empty():
     print(colad.get())
-#Hola soy Diana
