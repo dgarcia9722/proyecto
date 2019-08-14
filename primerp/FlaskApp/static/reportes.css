@@ -24,6 +24,7 @@ li,p {
     line-height: 1.7em;
     /*color: #999; */
     color:black;
+    text-align: justify;
 }
 
 a, a:hover, a:focus {
