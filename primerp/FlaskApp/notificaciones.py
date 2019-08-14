@@ -159,7 +159,7 @@ def emailAdvertising(diccionario,infoempresa):
 
                 <td style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 style="text-align:left; style='font-size:20px;">Hola {}</h3>
-                  <p style='font-size:18px; text-align:justify; '>Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>, nuestro análisis arrojo que es un sitio de publicidad, a continuación se muestra la información más detallada:</p>
+                  <p style='font-size:18px; text-align:justify; '>Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>, nuestro análisis arrojo que es un sitio de publicidad, a continuación se muestra la información más detallada:</p>
         <br>
         <table  width="600"  >
           <thead>
@@ -221,7 +221,7 @@ def emailChildabuse(diccionario,infoempresa):
               <tr>
                 <td style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 style="text-align:left; style='font-size:20px;">Hola {}</h3>
-                  <p style='font-size:18px; text-align:justify; '>Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con contenido referente a abuso infantil, este sitio ha sido verificado por la asociación reguladora de internet, este sitio puede meter en problemas legales a la compañia dado que es un sitio ilegal, a continuación se muestra la información más detallada:</p>
+                  <p style='font-size:18px; text-align:justify; '>Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con contenido referente a abuso infantil, este sitio ha sido verificado por la asociación reguladora de internet, este sitio puede meter en problemas legales a la compañia dado que es un sitio ilegal, a continuación se muestra la información más detallada:</p>
         <br>
         <table  width="600"  >
           <thead>
@@ -281,7 +281,7 @@ def emailDiscrimination(diccionario,infoempresa):
               <tr>
                 <td style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 style="text-align:left; style='font-size:20px;">Hola {}</h3>
-                  <p style='font-size:18px; text-align:justify; '>Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con contenido racista, este contenido abarca <b>Promoción de grupos racistas,Denigración de grupos etnicos y Superioridad de cualquier grupo, a continuación se muestra la información más detallada:</p>
+                  <p style='font-size:18px; text-align:justify; '>Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con contenido racista, este contenido abarca <b>Promoción de grupos racistas,Denigración de grupos etnicos y Superioridad de cualquier grupo, a continuación se muestra la información más detallada:</p>
         <br>
         <table  width="600"  >
           <thead>
@@ -343,7 +343,7 @@ def emailDrugabuse(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio referente a sustancias nocivas.</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio referente a sustancias nocivas.</p>
                   <ul>
                <li>Promoción</li>
                <li>Venta</li>
@@ -414,7 +414,7 @@ def emailViolence(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio de contenido violento.</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio de contenido violento.</p>
                   <ul>
                <li>Violencia extrema</li>
                <li>Crueldad</li>
@@ -483,7 +483,7 @@ def emailExgroups(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a grupos extremistas.</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a grupos extremistas.</p>
                   <p>El sitio puede contener alguno de los siguientes temas: </p>
                   <ul>
                <li>Grupos radicales</li>
@@ -553,7 +553,7 @@ def emailHacking(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con temas relacionados a Hacking.</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con temas relacionados a Hacking.</p>
                   <p>El sitio puede contener alguno de los siguientes temas: </p>
                   <ul>
                <li>Modificación de programas</li>
@@ -623,7 +623,7 @@ def emailIllegalorunethical(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con contenido ilegal o no ético.</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con contenido ilegal o no ético.</p>
                   <p>Este sitio ofrece información, métodos o instrucciones para: </p>
                   <ul>
                <li>Acciones fraudulentas</li>
@@ -695,7 +695,7 @@ def emailPlagiarism(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio que puede contener información o herramientas para realizar algún tipo de plagio, este sitio se dedica a la venta y distribución de:</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio que puede contener información o herramientas para realizar algún tipo de plagio, este sitio se dedica a la venta y distribución de:</p>
                   <ul>
                <li>Examenes escolares</li>
                <li>Proyectos</li>
@@ -763,7 +763,7 @@ def emailProxyav(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio que provee información o herramientas en como burlar la seguridad del equipo PG Guru mediante el uso de Proxy:</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio que provee información o herramientas en como burlar la seguridad del equipo PG Guru mediante el uso de Proxy:</p>
              <p>A continuación se muestra la información más detallada:</p>
         <br>
         <table width="600"  >
@@ -825,7 +825,7 @@ def emailAbortion(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio de contenido sensible(aborto):</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio de contenido sensible(aborto):</p>
              <p>A continuación se muestra la información más detallada:</p>
         <br>
         <table width="600"  >
@@ -887,7 +887,7 @@ def emailDating(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a citas:</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a citas:</p>
                   <p>Esto puede abarcar lo siguiente: </p>
              <ul>
                <li>Desarrollo de relaciones personales</li>
@@ -956,7 +956,7 @@ def emailGambling(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a juegos de apuestas:</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a juegos de apuestas:</p>
                   <p>Esto puede abarcar lo siguiente: </p>
              <ul>
                <li>Loterias</li>
@@ -1025,7 +1025,7 @@ def emailMarijuana(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con información acerca de la cultivación, preparación y uso de marihuana, a continuación se muestra la información más detallada:</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con información acerca de la cultivación, preparación y uso de marihuana, a continuación se muestra la información más detallada:</p>
         <br>
         <table width="600"  >
           <thead>
@@ -1088,7 +1088,7 @@ def emailNudityrisque(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con contenido adulto(18+), esto puede ser desnudez parcial o total pero sin insinuación sexual. A continuación se muestra la información más detallada:</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio con contenido adulto(18+), esto puede ser desnudez parcial o total pero sin insinuación sexual. A continuación se muestra la información más detallada:</p>
         <br>
         <table width="600"  >
           <thead>
@@ -1151,7 +1151,7 @@ def emailSportsHunting(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a:</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a:</p>
                   <ul>
                <li>Juegos de caza</li>
                <li>Juegos de guerra </li>
@@ -1221,7 +1221,7 @@ def emailWeapons(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a venta de armamento, esto puede ser de forma legal o ilegal, abarcando la venta de pistolas, rifles, etc. A continuación se muestra la información mas detallada:</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a venta de armamento, esto puede ser de forma legal o ilegal, abarcando la venta de pistolas, rifles, etc. A continuación se muestra la información mas detallada:</p>
         <br>
         <table width="600"  >
           <thead>
@@ -1283,7 +1283,7 @@ def emailMaliciouswebsites(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio malicioso, entre los riesgos que puede representar el acceso a este sitio esta la descarga de software malicioso, que puede acceder a nuestra información.</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio malicioso, entre los riesgos que puede representar el acceso a este sitio esta la descarga de software malicioso, que puede acceder a nuestra información.</p>
                   <p>Los posibles riesgos que puede representar este software son: </p>
              <ul>
                <li>Dañar nuestro equipo</li>
@@ -1354,7 +1354,7 @@ def emailPhishing(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio falso. Esto se realiza mediante la clonación del sitio original y así engañar al usuario para que ingrese sus datos.</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio falso. Esto se realiza mediante la clonación del sitio original y así engañar al usuario para que ingrese sus datos.</p>
                   <p>Los tipos de páginas que son más recurrentes son del tipo: </p>
              <ul>
                <li>Sitios relacionados a bancos o finanzas</li>
@@ -1424,7 +1424,7 @@ def emailSpamurls(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a publicidad, regularmente se encuentran en correos spam.</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro análisis arrojo que es un sitio relacionado a publicidad, regularmente se encuentran en correos spam.</p>
                   <p>Puede contener publicidad referente a lo siguiente: </p>
              <ul>
                <li>Sitios sexuales</li>
@@ -1495,7 +1495,7 @@ def emailJobsearch(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro analisis arrojo que es un sitio relacionado a búsqueda de trabajo.</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el ingreso a <b>{}</b>,nuestro analisis arrojo que es un sitio relacionado a búsqueda de trabajo.</p>
                   <p>Este sitio puede contener lo siguiente:</p>
              <ul>
                <li>Información acerca de búsqueda de empleo</li>
@@ -1552,7 +1552,7 @@ def emailProxyapp(diccionario,infoempresa):
     else:
         accion = "<p>Esta aplicacion representa una vulnerabilidad para tu red, por lo que recomendamos contactar al equipo de Productivity Guru para realizar un chequeo de la red"
 
-    html = """\
+    body = """\
   <body>
     <table  border="0px " align="center" cellspacing="0px" cellpadding="0px" width="600" style="margin-left: auto; margin-right: auto; height:auto; background-color: #ffffff; margin-top: 0px;">
       <tr>
@@ -1565,7 +1565,7 @@ def emailProxyapp(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el uso de la aplicación <b>{}</b>,nuestro análisis arrojo que es una aplicación Proxy. Esta aplicación sirve para evadir la seguridad de la red. A continuación se muestra la información más detallada:</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se detecto el uso de la aplicación <b>{}</b>,nuestro análisis arrojo que es una aplicación Proxy. Esta aplicación sirve para evadir la seguridad de la red. A continuación se muestra la información más detallada:</p>
         <br>
         <table width="600"  >
           <thead>
@@ -1605,6 +1605,7 @@ def emailProxyapp(diccionario,infoempresa):
 </html>
 
       """.format(infoempresa['contacto'][0][0],diccionario.get('date'),diccionario.get('time'),diccionario.get('app'),diccionario.get('user'),diccionario.get('srcip'),diccionario.get('app'),diccionario.get('appcat'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'),accion)
+      html = head+body
 #    envioCorreo(html,infoempresa)
 
     print(html)
@@ -1622,7 +1623,7 @@ def emailVirushttp(diccionario,infoempresa):
         else:
             virusr = virusp.get('default')
 
-    html = """\
+    body = """\
   <body>
     <table  border="0px " align="center" cellspacing="0px" cellpadding="0px" width="600" style="margin-left: auto; margin-right: auto; height:auto; background-color: #ffffff; margin-top: 0px;">
       <tr>
@@ -1635,7 +1636,7 @@ def emailVirushttp(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se hizo la detección del virus con nombre:<b>{}</b>, el virus llegó a través del sitio <b>{}</b> .<b>{}</b> A continuación se muestra la información más detallada:</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se hizo la detección del virus con nombre:<b>{}</b>, el virus llegó a través del sitio <b>{}</b> .<b>{}</b> A continuación se muestra la información más detallada:</p>
         <br>
         <table width="600"  >
           <thead>
@@ -1675,6 +1676,7 @@ def emailVirushttp(diccionario,infoempresa):
 </html>
 
     """.format(infoempresa['contacto'][0][0],diccionario.get('date'),diccionario.get('time'),diccionario.get('virus'),diccionario.get('url'),virusr,diccionario.get('user'),diccionario.get('srcip'),diccionario.get('virus'),diccionario.get('url'),diccionario.get('rcvdbyte'),diccionario.get('sentbyte'),accion)
+    html = head+body
     envioCorreo(html,infoempresa)
 
 def emailVirusmail(diccionario,infoempresa):
@@ -1695,7 +1697,7 @@ def emailVirusmail(diccionario,infoempresa):
         else:
             virusr = virusc.get('default')
     print(virusr)
-    html = """\
+    body = """\
   <body>
     <table  border="0px " align="center" cellspacing="0px" cellpadding="0px" width="600" style="margin-left: auto; margin-right: auto; height:auto; background-color: #ffffff; margin-top: 0px;">
       <tr>
@@ -1708,7 +1710,7 @@ def emailVirusmail(diccionario,infoempresa):
               <tr>
                 <td id="data" style="padding: 10px; width:400px; border: 0px ; halign:top;">
                   <h3 >Hola {}</h3>
-                  <p >Uno de los beneficios de nuestro servicio administrado <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se hizo la detección del virus con nombre:<b>{}</b>, el virus llegó a traves del sitio <b>{}</b> .<b>{}</b> A continuación se muestra la información más detallada:</p>
+                  <p >Uno de los beneficios de nuestro  servicio <b>Productivity Gurú</b> es el monitoreo diario de su equipo, el día de hoy <b>{}</b>, a las <b>{}</b> se hizo la detección del virus con nombre:<b>{}</b>, el virus llegó a traves del sitio <b>{}</b> .<b>{}</b> A continuación se muestra la información más detallada:</p>
         <br>
         <table width="600"  >
           <thead>
@@ -1749,6 +1751,7 @@ def emailVirusmail(diccionario,infoempresa):
 
 
     """.format(diccionario.get('date'),diccionario.get('time'),diccionario.get('virus'),diccionario.get('url'),virusr,diccionario.get('user'),diccionario.get('srcip'),diccionario.get('virus'),diccionario.get('url'),diccionario.get('from'),diccionario.get('recipient'),accion)
+    html = head+body
     envioCorreo(html,infoempresa)
 
 

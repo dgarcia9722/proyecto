@@ -84,11 +84,12 @@
         <p>En la siguiente grafica se muestra el consumo de ancho de banda por categoria de aplicaciones</p>
         <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\tablas\rep1.png" alt="">
         <br>
-        <p>Las categorias con mayor consumo de ancho de banda son de la categoria <b>{{rep1[0]['_id']}}</b> con un consumo de {{rep1[0]['total']}}MB, seguida de la categoria <b>{{rep1[1]['_id']}}</b>, y <b>{{rep1[2]['_id']}}</b>  </p>
+        <br>
+        <p>Las categorias con mayor consumo de ancho de banda son de la categoria <b>{{rep1[0]['_id']}}</b> con un consumo de {%if rep1[0]['total'] > 1024%} {%set rp1 = rep1[0]['total'] / 1024 %} <b>{{'%0.2f' % rp1|float}}GB</b> {%else%} {{rep1[0]['total']}}MB {%endif%}, seguida de la categoria <b>{{rep1[1]['_id']}}</b>, y <b>{{rep1[2]['_id']}}</b>  </p>
       </div>
     </div>
 
-    <p id="salto"> </p>
+    {# <p id="salto"> </p>
     <div class="row" ><!-- tabla bandwidth-->
       <div class="col-xs-1"></div>
       <div class="col-xs-10">
@@ -114,7 +115,7 @@
 
           </table>
       </div>
-    </div>
+    </div> #}
 
     <p id="salto"> </p>
     <div class="row" id="bd2"><!-- tabla bandwidth por usuario-->
@@ -123,12 +124,13 @@
         <h1>Ancho de banda por usuario</h1>
         <p>La siguiente tabla muestra a los usuarios que más ancho de banda utilizaron, en primer lugar se encuentra
           {%if rep2[0]['_id']['usuario']  %}el usuario <b>{{rep2[0]['_id']['usuario']}}</b> con {%endif%}
-           la ip <b>{{rep2[0]['_id']['ip']}}</b> y un total de {%if rep2[0]['total'] > 1024  %} <b>{{ rep2[0]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep2[0]['total']}}MB</b>.{%endif%}
+           la ip <b>{{rep2[0]['_id']['ip']}}</b> y un total de {%if rep2[0]['total'] > 1024  %} {%set rp2e = rep2[0]['total'] / 1024%} <b>{{'%0.2f' % rp2e|float}}GB</b>. {%else%} <b>{{ rep2[0]['total']}}MB</b>.{%endif%}
            Seguido por
            {%if rep2[1]['_id']['usuario']  %} <b>{{rep2[0]['_id']['usuario']}}</b> con{%endif%}
-           la ip <b>{{rep2[1]['_id']['ip']}}</b> con un total de {%if rep2[0]['total'] > 1024  %} <b>{{ rep2[1]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep2[1]['total']}}MB</b>.{%endif%}, y
+           la ip <b>{{rep2[1]['_id']['ip']}}</b> con un total de {%if rep2[1]['total'] > 1024  %} {%set rp2e = rep2[1]['total'] / 1024%} <b>{{'%0.2f' % rp2e|float}}GB</b>. {%else%} <b>{{ rep2[1]['total']}}MB</b>.{%endif%}, y
            {%if rep2[2]['_id']['usuario']  %} <b>{{rep2[2]['_id']['usuario']}}</b> con{%endif%}
-           la ip <b>{{rep2[2]['_id']['ip']}}</b> con un total de {%if rep2[0]['total'] > 1024  %} <b>{{ rep2[2]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep2[2]['total']}}MB</b>.{%endif%}.</p>
+           la ip <b>{{rep2[2]['_id']['ip']}}</b> con un total de {%if rep2[2]['total'] > 1024  %} {%set rp2e = rep2[2]['total'] / 1024%} <b>{{'%0.2f' % rp2e|float}}GB</b>. {%else%} <b>{{ rep2[2]['total']}}MB</b>.{%endif%}</p>
+
            <p>A continuacion se muestra la informacion mas detallada: </p>
            <br>
           <table class="table">
@@ -138,7 +140,8 @@
                 <th scope="col">Usuario</th>
                 <th scope="col">IP</th>
                 <th scope="col">Host</th>
-                <th scope="col">Categoria</th>
+                <th scope="col">Enviado</th>
+                <th scope="col">Recibido</th>
                 <th scope="col">Total</th>
               </tr>
             </thead>
@@ -149,8 +152,10 @@
                 <td>{{rep2[i]['_id']['usuario']}}</td>
                 <td>{{rep2[i]['_id']['ip']}}</td>
                 <td>{{rep2[i]['_id']['hostname']}}</td>
-                <td>{{rep2[i]['_id']['categoria']}}</td>
-                <td>{%if rep2[i]['total'] > 1024  %} <b>{{ rep2[i]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep2[i]['total']}}MB</b>.{%endif%}</td>
+                <td>{%if rep2[i]['enviado'] > 1024  %} {%set rp2e = rep2[i]['enviado'] / 1024%}  {{'%0.2f' % rp2e|float}}GB{%else%}  {{ rep2[i]['enviado']}}MB{%endif%}</td>
+                <td>{%if rep2[i]['recibido'] > 1024  %} {%set rp2r = rep2[i]['recibido'] / 1024%}  {{'%0.2f' % rp2r|float}}GB{%else%}  {{ rep2[i]['recibido']}}MB{%endif%}</td>
+                <td>{%if rep2[i]['total'] > 1024  %} {%set rp2t = rep2[i]['total'] / 1024%}  {{'%0.2f' % rp2t|float}}GB{%else%}  {{ rep2[i]['total']}}MB{%endif%}</td>
+
               </tr>
               {%endfor%}
 
@@ -182,6 +187,8 @@
                 <th scope="col">Usuario</th>
                 <th scope="col">IP</th>
                 <th scope="col">SSID</th>
+                <th scope="col">Enviado</th>
+                <th scope="col">Recibido</th>
                 <th scope="col">Total</th>
               </tr>
             </thead>
@@ -192,7 +199,10 @@
                 <td>{{rep3[i]['_id']['usuario']}}</td>
                 <td>{{rep3[i]['_id']['ip']}}</td>
                 <td>{{rep3[i]['_id']['SSID']}}</td>
-                <td>{%if rep3[i]['total'] > 1024  %} <b>{{ rep3[i]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep3[i]['total']}}MB</b>.{%endif%}</td>
+                <td>{%if rep3[i]['enviado'] > 1024  %} {%set rp3e = rep3[i]['enviado'] / 1024%}  {{'%0.2f' % rp3e|float}}GB{%else%}  {{ rep3[i]['enviado']}}MB{%endif%}</td>
+                <td>{%if rep3[i]['recibido'] > 1024  %} {%set rp3r = rep3[i]['recibido'] / 1024%}  {{'%0.2f' % rp3r|float}}GB{%else%}  {{ rep3[i]['recibido']}}MB{%endif%}</td>
+                <td>{%if rep3[i]['total'] > 1024  %} {%set rp3t = rep3[i]['total'] / 1024%}  {{'%0.2f' % rp3t|float}}GB{%else%}  {{ rep3[i]['total']}}MB{%endif%}</td>
+
               </tr>
               {%endfor%}
 
@@ -207,10 +217,10 @@
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
           <h1>Aplicaciones más utilizadas</h1>
-          <p>La siguiente gráfica muestra las aplicaciones más utilizadas y el ancho de badna consumido.</p>
+          <p>La siguiente gráfica muestra las aplicaciones más utilizadas y el ancho de banda consumido.</p>
           <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\tablas\rep4.png" alt="">
           <br>
-          <p>Las aplicaciones con mayor consumo de ancho de banda son <b>{{ rep4[0]['_id']['App']}}</b> con un consumo de {%if rep4[0]['total'] > 1024  %} <b>{{ rep4[0]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep4[0]['total']}}MB</b>.{%endif%}, seguida de la categoria <b>{{ rep4[1]['_id']['App']}}</b>, y <b>{{ rep4[2]['_id']['App']}}</b></p>
+          <p>Las aplicaciones con mayor consumo de ancho de banda son <b>{{ rep4[0]['_id']['App']}}</b> con un consumo de {%if rep4[0]['total'] > 1024%} {%set rp4 = rep4[0]['total'] / 1024 %} <b>{{'%0.2f' % rp4|float}}GB</b> {%else%} {{rep4[0]['total']}}MB {%endif%}, seguida de la categoria <b>{{ rep4[1]['_id']['App']}}</b>, y <b>{{ rep4[2]['_id']['App']}}</b></p>
         </div>
       </div>
 
@@ -225,7 +235,10 @@
                   <th scope="col">#</th>
                   <th scope="col">Aplicación</th>
                   <th scope="col">Categoria</th>
+                  <th scope="col">Enviado</th>
+                  <th scope="col">Recibido</th>
                   <th scope="col">Uso de datos</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -234,7 +247,10 @@
                   <th scope="row">{{i+1}}</th>
                   <td>{{ rep4[i]['_id']['App']}}</td>
                   <td>{{ rep4[i]['_id']['Categoria']}}</td>
-                  <td>{%if rep4[i]['total'] > 1024  %} <b>{{ rep4[i]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep4[i]['total']}}MB</b>.{%endif%}</td>
+                  <td>{%if rep4[i]['enviado'] > 1024  %} {%set rp4e = rep4[i]['enviado'] / 1024%}  {{'%0.2f' % rp4e|float}}GB {%else%}  {{ rep4[i]['enviado']}}MB{%endif%}</td>
+                  <td>{%if rep4[i]['recibido'] > 1024  %} {%set rp4r = rep4[i]['recibido'] / 1024%}  {{'%0.2f' % rp4r|float}}GB {%else%}  {{ rep4[i]['recibido']}}MB{%endif%}</td>
+                  <td>{%if rep4[i]['total'] > 1024  %} {%set rp4t = rep4[i]['total'] / 1024%}  {{'%0.2f' % rp4t|float}}GB {%else%}  {{ rep4[i]['total']}}MB{%endif%}</td>
+
                 </tr>
                 {%endfor%}
               </tbody>
@@ -267,6 +283,8 @@
                   <th scope="col">#</th>
                   <th scope="col">Aplicación</th>
                   <th scope="col">Categoria</th>
+                  <th scope="col">Enviado</th>
+                  <th scope="col">Recibido</th>
                   <th scope="col">Uso de datos</th>
                 </tr>
               </thead>
@@ -276,7 +294,10 @@
                   <th scope="row">{{i+1}}</th>
                   <td>{{rep5[i]['_id']['App']}}</td>
                   <td>{{rep5[i]['_id']['Categoria']}}</td>
-                  <td>{%if rep5[i]['total'] > 1024  %} <b>{{ rep5[i]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep5[i]['total']}}MB</b>.{%endif%}</td>
+                  <td>{%if rep5[i]['enviado'] > 1024  %} {%set rp5e = rep5[i]['enviado'] / 1024%}  {{'%0.2f' % rp5e|float}}GB{%else%}  {{ rep5[i]['enviado']}}MB{%endif%}</td>
+                  <td>{%if rep5[i]['recibido'] > 1024  %} {%set rp5r = rep5[i]['recibido'] / 1024%}  {{'%0.2f' % rp5r|float}}GB{%else%}  {{ rep5[i]['recibido']}}MB{%endif%}</td>
+                  <td>{%if rep5[i]['total'] > 1024  %} {%set rp5t = rep5[i]['total'] / 1024%}  {{'%0.2f' % rp5t|float}}GB{%else%}  {{ rep5[i]['total']}}MB{%endif%}</td>
+
                 </tr>
                 {%endfor%}
               </tbody>
@@ -294,12 +315,12 @@
           <br>
           <p>La siguiente tabla muestra a los usuarios que más ancho de banda utilizaron, siendo
             {%if rep6[0]['_id']['usuario']  %} <b>{{rep6[0]['_id']['usuario']}}</b> el usuario que más ancho de banda consumio,con {%endif%}
-             la ip <b>{{rep6[0]['_id']['ip']}}</b> y un total de {%if rep6[0]['total'] > 1024  %} <b>{{ rep6[0]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep6[0]['total']}}MB</b>.{%endif%} accediendo a  <b>{{rep6[0]['_id']['App']}}</b>
-             Seguido por
-             {%if rep6[1]['_id']['usuario']  %} <b>{{rep6[0]['_id']['usuario']}}</b> con{%endif%}
-             la ip <b>{{rep6[1]['_id']['ip']}}</b> con un total de {%if rep6[1]['total'] > 1024  %} <b>{{ rep6[1]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep6[1]['total']}}MB</b>.{%endif%} accediendo a  <b>{{rep6[1]['_id']['App']}}</b>, y
+             la ip <b>{{rep6[0]['_id']['ip']}}</b> y un total de {%if rep6[0]['total'] > 1024%} {%set rp6 = rep6[0]['total'] / 1024 %} <b>{{'%0.2f' % rp6|float}}GB</b> {%else%} {{rep6[0]['total']}}MB {%endif%} accediendo a  <b>{{rep6[0]['_id']['App']}}</b>
+             . Seguido por
+             {%if rep6[1]['_id']['usuario']  %} <b>{{rep6[1]['_id']['usuario']}}</b> con{%endif%}
+             la ip <b>{{rep6[1]['_id']['ip']}}</b> con un total de {%if rep6[1]['total'] > 1024%} {%set rp6 = rep6[1]['total'] / 1024 %} <b>{{'%0.2f' % rp6|float}}GB</b> {%else%} {{rep6[1]['total']}}MB {%endif%} accediendo a  <b>{{rep6[1]['_id']['App']}}</b>, y
              {%if rep6[2]['_id']['usuario']  %} <b>{{rep6[2]['_id']['usuario']}}</b> con{%endif%}
-             la ip <b>{{rep6[2]['_id']['ip']}}</b> con un total de {%if rep6[2]['total'] > 1024  %} <b>{{ rep6[2]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep6[2]['total']}}MB</b>.{%endif%} accediendo a  <b>{{rep6[2]['_id']['App']}}</b>.</p>
+             la ip <b>{{rep6[2]['_id']['ip']}}</b> con un total de {%if rep6[2]['total'] > 1024%} {%set rp6 = rep6[2]['total'] / 1024 %} <b>{{'%0.2f' % rp6|float}}GB</b> {%else%} {{rep6[2]['total']}}MB {%endif%} accediendo a  <b>{{rep6[2]['_id']['App']}}</b>.</p>
 
         </div>
       </div>
@@ -316,7 +337,8 @@
                   <th scope="col">Usuario</th>
                   <th scope="col">IP</th>
                   <th scope="col">Aplicación</th>
-                  <th scope="col">Categoria</th>
+                  <th scope="col">Enviado</th>
+                  <th scope="col">Recibido</th>
                   <th scope="col">Uso de datos</th>
                 </tr>
               </thead>
@@ -327,8 +349,10 @@
                   <td>{{rep6[i]['_id']['Usuario']}}</td>
                   <td>{{rep6[i]['_id']['IP']}} </td>
                   <td>{{rep6[i]['_id']['App']}}</td>
-                  <td>{{rep6[i]['_id']['Categoria']}}</td>
-                  <td>{%if rep6[i]['total'] > 1024  %} <b>{{ rep6[i]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep6[i]['total']}}MB</b>.{%endif%}</td>
+                  <td>{%if rep6[i]['enviado'] > 1024  %} {%set rp6e = rep6[i]['enviado'] / 1024%}  {{'%0.2f' % rp6e|float}}GB{%else%}  {{ rep6[i]['enviado']}}MB{%endif%}</td>
+                  <td>{%if rep6[i]['recibido'] > 1024  %} {%set rp6r = rep6[i]['recibido'] / 1024%}  {{'%0.2f' % rp6r|float}}GB{%else%}  {{ rep6[i]['recibido']}}MB{%endif%}</td>
+                  <td>{%if rep6[i]['total'] > 1024  %} {%set rp6t = rep6[i]['total'] / 1024%}  {{'%0.2f' % rp6t|float}}GB{%else%}  {{ rep6[i]['total']}}MB{%endif%}</td>
+
                 </tr>
                 {%endfor%}
               </tbody>
@@ -358,7 +382,9 @@
                   <th scope="col">Usuario</th>
                   <th scope="col">IP</th>
                   <th scope="col">SSID</th>
-                  <th scope="col">Total</th>
+                  <th scope="col">Enviado</th>
+                  <th scope="col">Recibido</th>
+                  <th scope="col">Uso de datos</th>
                 </tr>
               </thead>
               <tbody>
@@ -368,7 +394,10 @@
                   <td>{{rep7[i]['_id']['Usuario']}}</td>
                   <td>{{rep7[i]['_id']['ip']}}</td>
                   <td>{{rep7[i]['_id']['SSID']}}</td>
-                  <td>{%if rep7[i]['total'] > 1024  %} <b>{{ rep7[i]['total'] / 1024}}GB</b>. {%else%} <b>{{ rep7[i]['total']}}MB</b>.{%endif%}</td>
+                  <td>{%if rep7[i]['enviado'] > 1024  %} {%set rp7e = rep7[i]['enviado'] / 1024%}  {{'%0.2f' % rp7e|float}}GB{%else%}  {{ rep7[i]['enviado']}}MB{%endif%}</td>
+                  <td>{%if rep7[i]['recibido'] > 1024  %} {%set rp7r = rep7[i]['recibido'] / 1024%}  {{'%0.2f' % rp7r|float}}GB{%else%}  {{ rep7[i]['recibido']}}MB{%endif%}</td>
+                  <td>{%if rep7[i]['total'] > 1024  %} {%set rp7t = rep7[i]['total'] / 1024%}  {{'%0.2f' % rp7t|float}}GB{%else%}  {{ rep7[i]['total']}}MB{%endif%}</td>
+
                 </tr>
                 {%endfor%}
               </tbody>
@@ -386,7 +415,7 @@
             </p>
           <img src="C:\Users\asalinas\Documents\PycharmProjects\flask\proyecto\primerp\primerp\FlaskApp\templates\salidaReporte\archivos\tablas\rep8.png" alt="">
           <br>
-          <p>El sitio web que más accesos tuvo fue <b>{{ rep8[0]['_id']}}</b> con un consumo de {{ rep8[0]['total']}}MB, seguido de  <b>{{ rep8[1]['_id']}}</b>, y <b>{{ rep8[2]['_id']}}</b></p>
+          <p>El sitio web que más accesos tuvo fue <b>{{ rep8[0]['_id']}}</b> con un consumo de {%if rep8[0]['total'] > 1024  %} {%set rp8t = rep8[0]['total'] / 1024%} <b>{{'%0.2f' % rp8t|float}}GB</b> {%else%} <b>{{ rep8[0]['total']}}MB</b> {%endif%}, seguido de  <b>{{ rep8[1]['_id']}}</b>, y <b>{{ rep8[2]['_id']}}</b></p>
         </div>
       </div>
 
@@ -400,6 +429,8 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Hostname</th>
+                  <th scope="col">Enviado</th>
+                  <th scope="col">Recibido</th>
                   <th scope="col">Uso de datos</th>
                 </tr>
               </thead>
@@ -408,7 +439,10 @@
                 <tr>
                   <th scope="row">{{i+1}}</th>
                   <td>{{ rep8[i]['_id']}}</td>
-                  <td>{{ rep8[i]['total']}}MB</td>
+                  <td>{%if rep8[i]['enviado'] > 1024  %} {%set rp8e = rep8[i]['enviado'] / 1024%}  {{'%0.2f' % rp8e|float}}GB{%else%}  {{ rep8[i]['enviado']}}MB{%endif%}</td>
+                  <td>{%if rep8[i]['recibido'] > 1024  %} {%set rp8r = rep8[i]['recibido'] / 1024%}  {{'%0.2f' % rp8r|float}}GB{%else%}  {{ rep8[i]['recibido']}}MB{%endif%}</td>
+                  <td>{%if rep8[i]['total'] > 1024  %} {%set rp8t = rep8[i]['total'] / 1024%}  {{'%0.2f' % rp8t|float}}GB{%else%}  {{ rep8[i]['total']}}MB{%endif%}</td>
+
                 </tr>
                 {%endfor%}
               </tbody>
@@ -490,6 +524,8 @@
                   <th scope="col">Usuario</th>
                   <th scope="col">IP</th>
                   <th scope="col">Categorias</th>
+                  <th scope="col">Enviado</th>
+                  <th scope="col">Recibido</th>
                   <th scope="col">Uso de datos</th>
                 </tr>
               </thead>
@@ -500,7 +536,10 @@
                   <td>{{rep11[i]['_id']['usuario']}}</td>
                   <td>{{rep11[i]['_id']['ip']}}</td>
                   <td>{{rep11[i]['_id']['categoria']}}</td>
-                  <td>{{rep11[i]['total']}}MB</td>
+                  <td>{%if rep11[i]['enviado'] > 1024  %} {%set rp11e = rep11[i]['enviado'] / 1024%}  {{'%0.2f' % rp11e|float}}GB{%else%}  {{ rep11[i]['enviado']}}MB{%endif%}</td>
+                  <td>{%if rep11[i]['recibido'] > 1024  %} {%set rp11r = rep11[i]['recibido'] / 1024%}  {{'%0.2f' % rp11r|float}}GB{%else%}  {{ rep11[i]['recibido']}}MB{%endif%}</td>
+                  <td>{%if rep11[i]['total'] > 1024  %} {%set rp11t = rep11[i]['total'] / 1024%}  {{'%0.2f' % rp11t|float}}GB{%else%}  {{ rep11[i]['total']}}MB{%endif%}</td>
+
                 </tr>
                 {%endfor%}
               </tbody>
@@ -509,18 +548,114 @@
       </div>
 
       <p id="salto"> </p>
-      <div class="row" id="bd8"><!--Amenazas-->
+      <div class="row" id="bd8"><!--Proxy-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Aplicaciones Proxy</h1>
+          <p>La siguiente tabla muestra los intentos de utilizar proxy. Un proxy es un equipo informático que hace de intermediario entre las conexiones de un cliente y un servidor de destino, filtrando todos los paquetes entre ambos. </p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Aplicación</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Enviado</th>
+                  <th scope="col">Recibido</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%for i in range( rep13|length)%}
+                <tr>
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{rep13[i]['_id']['App']}}</td>
+                  <td>{{rep13[i]['_id']['Categoria']}}</td>
+                  <td>{{rep13[i]['_id']['enviado']}}</td>
+                  <td>{{rep13[i]['_id']['recibido']}}</td>
+                  <td>{{rep13[i]['_id']['total']}}</td>
+                </tr>
+                {%endfor%}
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" id="bd8"><!--Proxy-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Aplicaciones Proxy</h1>
+          <p>La siguiente tabla muestra los intentos de utilizar proxy. Un proxy es un equipo informático que hace de intermediario entre las conexiones de un cliente y un servidor de destino, filtrando todos los paquetes entre ambos. </p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Aplicación</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Enviado</th>
+                  <th scope="col">Recibido</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%for i in range( rep13|length)%}
+                <tr>
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{rep13[i]['_id']['App']}}</td>
+                  <td>{{rep13[i]['_id']['Categoria']}}</td>
+                  <td>{{rep13[i]['_id']['enviado']}}</td>
+                  <td>{{rep13[i]['_id']['recibido']}}</td>
+                  <td>{{rep13[i]['_id']['total']}}</td>
+                </tr>
+                {%endfor%}
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" id="bd8"><!--Redes sociales-->
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <h1>Redes sociales</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in cursus nibh. Ut aliquet, enim et faucibus posuere, velit justo interdum turpis, et commodo purus arcu sit amet dolor. Mauris justo orci, fermentum ac justo et, hendrerit aliquet dui. Nam neque ante, feugiat venenatis dignissim nec, pharetra a leo. Nam semper porta ipsum, non efficitur dolor venenatis eget. Phasellus ante enim, ultricies sed sodales sed, ornare auctor nisi. Nunc porta lectus et lectus tincidunt fermentum in ac nisl</p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Aplicación</th>
+                  <th scope="col">Enviado</th>
+                  <th scope="col">Recibido</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%for i in range( rep14|length)%}
+                <tr>
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{rep14[i]['_id']['App']}}</td>
+                  <td>{{rep14[i]['_id']['enviado']}}</td>
+                  <td>{{rep14[i]['_id']['recibido']}}</td>
+                  <td>{{rep14[i]['_id']['total']}}</td>
+                </tr>
+                {%endfor%}
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <p id="salto"> </p>
+      <div class="row" id="bd9"><!--Amenazas-->
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
           <h1>Amenazas</h1>
-          <p>Se han detectado equipos infectados con malware dentro de la red interna de dempresa['empresa'] la intrusión identificada es de tipo Virus, en las siguientes tablas se muestra información detallada</p>
+          <p>Se han detectado equipos infectados con malware dentro de la red interna de {{dempresa['empresa']}} la intrusión identificada es de tipo Virus, en las siguientes tablas se muestra información detallada</p>
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Virus</th>
                   <th scope="col">Fecha</th>
-                  <th scope="col">Hora</th>
                   <th scope="col">IP</th>
                   <th scope="col">Usuario</th>
                   <th scope="col">Accion</th>

@@ -31,8 +31,8 @@ options = {
 def main():
     client = MongoClient('mongodb://172.16.11.20:27017/')
     db = client.registros
-    dempresa = db.empresas.find({'empresa':'Cidexsa-Aeropuerto'})
-    #dempresa = db.empresas.find({'empresa':'TLA HA 1'})
+#    dempresa = db.empresas.find({'empresa':'Cidexsa-Aeropuerto'})
+    dempresa = db.empresas.find({'empresa':'TLA HA 1'})
     #dempresa = db.empresas.find({'empresa':'RealNet'})
 
 
@@ -56,7 +56,7 @@ def main():
     initialDate = diam
     finalDate = diah
     #empresa = "RealNet"
-    empresa = 'Cidexsa-Aeropuerto FWF30D'
+    empresa = dempresa[0]['devname']
     print(empresa)
     start =time.time()
 
@@ -72,6 +72,8 @@ def main():
     crep10 = rep10(initialDate,finalDate,empresa)
     crep11 = rep11(initialDate,finalDate,empresa)
     crep12 = rep12(initialDate,finalDate,empresa)
+    crep13 = rep13(initialDate,finalDate,empresa)
+    crep14 = rep14(initialDate,finalDate,empresa)
 
     print(time.time()-start)
 
@@ -95,6 +97,8 @@ def main():
         rep10=crep10,
         rep11=crep11,
         rep12=crep12,
+        rep13=crep13,
+        rep14=crep14,
         )
         f.write(output)
 

@@ -12,7 +12,7 @@ def lectorWeb(fechai,fechaf): #Top 10 paginas
         {"$sort":{"date":1}},
         {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"subtype":"webfilter"}]}},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]},"Enviado":{"$sum":"$sentbyte"},"Recibido":{"$sum":"$rcvdbyte"}}},
-        {"$group": {"_id":{"Empresa":"$devname","Fecha":"$date","categoria":"$catdesc","usuario":"$user","ip":"$srcip","hostname":"$hostname","Enviado":"$Enviado","Recibido":"$Recibido","Bytes":"$conteo"}}},
+        {"$group": {"_id":{"Empresa":"$devname","Fecha":"$date","usuario":"$user","mac":"$mac","ip":"$srcip","categoria":"$catdesc","hostname":"$hostname","Enviado":"$Enviado","Recibido":"$Recibido","Bytes":"$conteo"}}},
         {"$sort": {"Bytes": -1}},
     ]
 
@@ -20,7 +20,7 @@ def lectorWeb(fechai,fechaf): #Top 10 paginas
         {"$sort":{"date":1}},
         {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"subtype":"webfilter"}]}},
         #{"$match": {"$and": [{"date":fechai},{"subtype":"webfilter"}]}},
-        {"$project":{"sentbyte":1,"rcvdbyte":1,"devname":1,"date":1,"catdesc":1,"user":1,"srcip":1,"hostname":1,"action":1,"duration":1,
+        {"$project":{"sentbyte":1,"rcvdbyte":1,"devname":1,"date":1,"catdesc":1,"mac":1,"user":1,"srcip":1,"hostname":1,"action":1,"duration":1,
         "punto":{"$switch":{
         "branches":[
         {'case':{'$eq':['$catdesc','Adult/Mature content ']},'then':[1,2,3]},
@@ -199,7 +199,8 @@ def lectorWeb(fechai,fechaf): #Top 10 paginas
         }},
         }},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]},"Enviado":{"$sum":"$sentbyte"},"Recibido":{"$sum":"$rcvdbyte"}}},
-        {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","uid":"$uid","Punto":"$punto","categoria":"$catdesc","usuario":"$user","ip":"$srcip","hostname":"$hostname","Accion":"$action","Enviado":"$Enviado","Recibido":"$Recibido","Bytes":"$conteo","Duracion":{"$sum":"$duration"}}}},
+        #{"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","uid":"$uid","Punto":"$punto","categoria":"$catdesc","usuario":"$user","ip":"$srcip","hostname":"$hostname","Accion":"$action","Enviado":"$Enviado","Recibido":"$Recibido","Bytes":"$conteo","Duracion":{"$sum":"$duration"}}}},
+        {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","uid":"$uid","Punto":"$punto","categoria":"$catdesc","usuario":"$user","mac":"$mac","ip":"$srcip","hostname":"$hostname","Accion":"$action","Enviado":"$Enviado","Recibido":"$Recibido","Bytes":"$conteo","Duracion":{"$sum":"$duration"}}}},
         {"$sort": {"Fecha": -1}},
         {"$out":"web"},
     ]
@@ -218,7 +219,7 @@ def lectorApp(fechai,fechaf): #Top 10 paginas
         {"$sort":{"date":1}},
         {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"subtype":"forward"}]}},
         #{"$match": {"$and": [{"date":fechai},{"subtype":"forward"}]}},
-        {"$project":{"sentbyte":1,"rcvdbyte":1,"devname":1,"date":1,"appcat":1,"user":1,"srcip":1,"app":1,"action":1,"duration":1,"appcat":1,
+        {"$project":{"sentbyte":1,"rcvdbyte":1,"devname":1,"date":1,"appcat":1,"user":1,"mac":1,"srcip":1,"app":1,"action":1,"duration":1,"appcat":1,
         "punto":{"$switch":{
         "branches":[
         {'case':{'$eq':['$appcat','Mobile']},'then':1},
@@ -262,7 +263,7 @@ def lectorApp(fechai,fechaf): #Top 10 paginas
 
         }},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]},"Enviado":{"$sum":"$sentbyte"},"Recibido":{"$sum":"$rcvdbyte"},"Duracion":{"$sum":"$duration"}}},
-        {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","uid":"$uid","Punto":"$punto","categoria":"$appcat","Aplicacion":"$app","usuario":"$user","ip":"$srcip","Accion":"$action","Enviado":"$Enviado","Recibido":"$Recibido","Bytes":"$conteo","Duracion":"$Duracion"}}},
+        {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","uid":"$uid","Punto":"$punto","categoria":"$appcat","Aplicacion":"$app","usuario":"$user","mac":"$mac","ip":"$srcip","Accion":"$action","Enviado":"$Enviado","Recibido":"$Recibido","Bytes":"$conteo","Duracion":"$Duracion"}}},
         {"$sort": {"Empresa": -1}},
         {"$out":"aplicacion"},
     ]
@@ -280,7 +281,7 @@ def lectorAppWifi(fechai,fechaf): #Top 10 paginas
         {"$sort":{"date":1}},
         {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"subtype":"forward"},{"srcssid":{"$exists":True}}]}},
         #{"$match": {"$and": [{"date":fechai},{"subtype":"forward"}]}},
-        {"$project":{"srcssid":1,"sentbyte":1,"rcvdbyte":1,"devname":1,"date":1,"appcat":1,"user":1,"srcip":1,"app":1,"action":1,"duration":1,"appcat":1,
+        {"$project":{"srcssid":1,"sentbyte":1,"rcvdbyte":1,"devname":1,"date":1,"appcat":1,"user":1,"mac":1,"srcip":1,"app":1,"action":1,"duration":1,"appcat":1,
         "punto":{"$switch":{
         "branches":[
         {'case':{'$eq':['$appcat','Mobile']},'then':1},
@@ -324,7 +325,7 @@ def lectorAppWifi(fechai,fechaf): #Top 10 paginas
 
         }},
         {"$addFields":{"conteo": {"$sum":["$sentbyte","$rcvdbyte"]},"Enviado":{"$sum":"$sentbyte"},"Recibido":{"$sum":"$rcvdbyte"},"Duracion":{"$sum":"$duration"}}},
-        {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","uid":"$uid","Punto":"$punto","categoria":"$appcat","Aplicacion":"$app","usuario":"$user","ip":"$srcip","SSID":"$srcssid","Accion":"$action","Enviado":"$Enviado","Recibido":"$Recibido","Bytes":"$conteo","Duracion":"$Duracion"}}},
+        {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","uid":"$uid","Punto":"$punto","categoria":"$appcat","Aplicacion":"$app","usuario":"$user","mac":"$mac","ip":"$srcip","SSID":"$srcssid","Accion":"$action","Enviado":"$Enviado","Recibido":"$Recibido","Bytes":"$conteo","Duracion":"$Duracion"}}},
         {"$sort": {"Empresa": -1}},
         {"$out":"appwifi"},
     ]
@@ -341,7 +342,7 @@ def lectorVirus(fechai,fechaf): #Lector Virus
     pipee = [
         {"$sort":{"date":1}},
         {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"subtype":'virus'}]}},
-        {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","hora":"$time","ip":"$srcip","usuario":"$user",'Virus':'$virus',"Accion":"$action"},"count": {"$sum":1}}},
+        {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","usuario":"$user","mac":"$mac","ip":"$srcip",'Virus':'$virus',"Accion":"$action"},"count": {"$sum":1}}},
         {"$out":"virus"},
     ]
     db.logs.aggregate(pipee,allowDiskUse=True)
@@ -350,6 +351,32 @@ def lectorVirus(fechai,fechaf): #Lector Virus
         #pprint.pprint(element)
 #        db.aplicacion.insert_one(element)
     print("Listo")
+
+def lectorBotnet(fechai,fechaf): #Lector Virus
+    print("MMMMMMMMMM")
+    pipee = [
+        {"$sort":{"date":1}},
+        {"$match": {"$and": [{"date": {"$gte": fechai, "$lte": fechaf}},{"subtype":'ips'}]}},
+        {"$group": {"_id":{"Fecha":"$date","Empresa":"$devname","usuario":"$user","mac":"$mac","ip":"$srcip","destino":'$dstip','ataque':'$attack',"Accion":"$action"},"count": {"$sum":1}}},
+        {"$out":"botnet"},
+    ]
+    db.logs.aggregate(pipee,allowDiskUse=True)
+
+#    for element in result:
+        #pprint.pprint(element)
+#        db.aplicacion.insert_one(element)
+    print("Listo")
+
+#{ "_id" : ObjectId("5d40311aa5db52bc4865611e"), "timestamp" : "1561241029", "tz" : "UTC-5", "devname" :
+#"TLA HA 1", "devid" : "FG101E4Q17002695", "vd" : "root", "date" : "2019-06-22", "time" : "17:03:49",
+# "logid" : "0419016384", "type" : "utm", "subtype" : "ips", "eventtype" : "signature", "level" : "alert",
+# "logtime" : "1561241029", "severity" : "critical", "srcip" : "66.240.205.34", "srccountry" : "United States",
+# "dstip" : "10.88.242.10", "srcintf" : "wan1", "srcintfrole" : "wan", "dstintf" : "port12", "dstintfrole" : "lan",
+# "policyid" : "82", "sessionid" : "1375985813", "action" : "dropped", "proto" : "6", "service" : "HTTPS",
+#"attack" : "Bladabindi.Botnet", "srcport" : "42028", "dstport" : "443", "direction" : "outgoing", "attackid" : "38856",
+# "profile" : "default", "ref" : "http://www.fortinet.com/ids/VID38856", "incidentserialno" : "1276997834",
+#"msg" : "backdoor: Bladabindi.Botnet,", "crscore" : "50", "crlevel" : "critical " }
+
 
 
 def prueba(fechai,fechaf,empresa): #Top 10 paginas
@@ -368,11 +395,21 @@ def prueba(fechai,fechaf,empresa): #Top 10 paginas
 initialDate = "2018-01-01"
 finalDate = "2020-07-11"
 empresa = 'HA-RNT FG100D'
+#{ "_id" : ObjectId("5d40311aa5db52bc4865611e"), "timestamp" : "1561241029", "tz" : "UTC-5", "devname" :
+#"TLA HA 1", "devid" : "FG101E4Q17002695", "vd" : "root", "date" : "2019-06-22", "time" : "17:03:49",
+# "logid" : "0419016384", "type" : "utm", "subtype" : "ips", "eventtype" : "signature", "level" : "alert",
+# "logtime" : "1561241029", "severity" : "critical", "srcip" : "66.240.205.34", "srccountry" : "United States",
+# "dstip" : "10.88.242.10", "srcintf" : "wan1", "srcintfrole" : "wan", "dstintf" : "port12", "dstintfrole" : "lan",
+# "policyid" : "82", "sessionid" : "1375985813", "action" : "dropped", "proto" : "6", "service" : "HTTPS",
+#"attack" : "Bladabindi.Botnet", "srcport" : "42028", "dstport" : "443", "direction" : "outgoing", "attackid" : "38856",
+# "profile" : "default", "ref" : "http://www.fortinet.com/ids/VID38856", "incidentserialno" : "1276997834",
+#"msg" : "backdoor: Bladabindi.Botnet,", "crscore" : "50", "crlevel" : "critical " }
 
 start =time.time()
-lectorWeb(initialDate, finalDate)
-lectorApp(initialDate, finalDate)
-lectorVirus(initialDate, finalDate)
-lectorAppWifi(initialDate, finalDate)
+#lectorWeb(initialDate, finalDate)
+#lectorApp(initialDate, finalDate)
+#lectorVirus(initialDate, finalDate)
+lectorBotnet(initialDate, finalDate)
+#lectorAppWifi(initialDate, finalDate)
 
 print(time.time()-start)
